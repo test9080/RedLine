@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BAE1CA59A560044441B /* TUSystemInfoManager.m */; };
+		14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BB51CA59DF20044441B /* UIColor+GGColor.m */; };
 		14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A541CA57EBB0084C07E /* TUBatteryController.m */; };
 		14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A551CA57EBB0084C07E /* TUBatteryController.xib */; };
 		14268A671CA57FF10084C07E /* TUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A661CA57FF10084C07E /* TUViewController.m */; };
@@ -25,6 +26,10 @@
 /* Begin PBXFileReference section */
 		14143BAD1CA59A560044441B /* TUSystemInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUSystemInfoManager.h; sourceTree = "<group>"; };
 		14143BAE1CA59A560044441B /* TUSystemInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSystemInfoManager.m; sourceTree = "<group>"; };
+		14143BB11CA59BB20044441B /* TUUIMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUUIMacro.h; sourceTree = "<group>"; };
+		14143BB41CA59DF20044441B /* UIColor+GGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GGColor.h"; sourceTree = "<group>"; };
+		14143BB51CA59DF20044441B /* UIColor+GGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GGColor.m"; sourceTree = "<group>"; };
+		14143BB91CA5A06C0044441B /* RedLine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedLine.pch; sourceTree = "<group>"; };
 		14268A481CA57D8A0084C07E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		14268A531CA57EBB0084C07E /* TUBatteryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryController.h; sourceTree = "<group>"; };
 		14268A541CA57EBB0084C07E /* TUBatteryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryController.m; sourceTree = "<group>"; };
@@ -62,6 +67,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14143BB01CA59B7A0044441B /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				14143BB11CA59BB20044441B /* TUUIMacro.h */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		14143BB21CA59DDC0044441B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				14143BB31CA59DF20044441B /* Color */,
+				14143BB61CA59DF20044441B /* Device */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		14143BB31CA59DF20044441B /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				14143BB41CA59DF20044441B /* UIColor+GGColor.h */,
+				14143BB51CA59DF20044441B /* UIColor+GGColor.m */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		14143BB61CA59DF20044441B /* Device */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 		14268A3D1CA57C6A0084C07E /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +115,7 @@
 		14268A3E1CA57C6A0084C07E /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				14143BB01CA59B7A0044441B /* Macro */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -238,11 +277,13 @@
 		A3DFE45B1CA4ED13002C3E13 /* RedLine */ = {
 			isa = PBXGroup;
 			children = (
+				14143BB21CA59DDC0044441B /* Category */,
 				14268A461CA57C6A0084C07E /* Framework */,
 				14268A471CA57C6A0084C07E /* OpenLib */,
 				14268A3D1CA57C6A0084C07E /* Class */,
 				A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */,
 				A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */,
+				14143BB91CA5A06C0044441B /* RedLine.pch */,
 				A3DFE4681CA4ED13002C3E13 /* Assets.xcassets */,
 				A3DFE46A1CA4ED13002C3E13 /* LaunchScreen.storyboard */,
 				A3DFE46D1CA4ED13002C3E13 /* Info.plist */,
@@ -406,6 +447,7 @@
 				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
+				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +556,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RedLine/Framework",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/RedLine.pch";
 				INFOPLIST_FILE = RedLine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -530,6 +577,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RedLine/Framework",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/RedLine.pch";
 				INFOPLIST_FILE = RedLine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

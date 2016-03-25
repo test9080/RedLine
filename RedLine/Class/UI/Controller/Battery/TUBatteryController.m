@@ -7,6 +7,7 @@
 //
 
 #import "TUBatteryController.h"
+#import "TUSystemInfoManager.h"
 
 @interface TUBatteryController ()
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.    
+    // Do any additional setup after loading the view from its nib.
+    
+    CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
+    NSUInteger levelMAH = [TUSystemInfoManager manager].batteryInfo.levelMAH;
+    NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
+
+    NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
 }
 
 - (void)didReceiveMemoryWarning {
