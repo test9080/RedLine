@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BAE1CA59A560044441B /* TUSystemInfoManager.m */; };
 		14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A541CA57EBB0084C07E /* TUBatteryController.m */; };
 		14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A551CA57EBB0084C07E /* TUBatteryController.xib */; };
 		14268A671CA57FF10084C07E /* TUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A661CA57FF10084C07E /* TUViewController.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14143BAD1CA59A560044441B /* TUSystemInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUSystemInfoManager.h; sourceTree = "<group>"; };
+		14143BAE1CA59A560044441B /* TUSystemInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSystemInfoManager.m; sourceTree = "<group>"; };
 		14268A481CA57D8A0084C07E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		14268A531CA57EBB0084C07E /* TUBatteryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryController.h; sourceTree = "<group>"; };
 		14268A541CA57EBB0084C07E /* TUBatteryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryController.m; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 		14268A3F1CA57C6A0084C07E /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				14143BAD1CA59A560044441B /* TUSystemInfoManager.h */,
+				14143BAE1CA59A560044441B /* TUSystemInfoManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
+				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 			);
