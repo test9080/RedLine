@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14268A3B1CA509F40084C07E /* PodFile in Resources */ = {isa = PBXBuildFile; fileRef = 14268A3A1CA509F40084C07E /* PodFile */; };
 		65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9231342F8DCD99EE5074E132 /* libPods-RedLine.a */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14268A3A1CA509F40084C07E /* PodFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PodFile; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		9231342F8DCD99EE5074E132 /* libPods-RedLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +47,6 @@
 		A3DFE4501CA4ED13002C3E13 = {
 			isa = PBXGroup;
 			children = (
-				14268A3A1CA509F40084C07E /* PodFile */,
 				A3DFE45B1CA4ED13002C3E13 /* RedLine */,
 				A3DFE45A1CA4ED13002C3E13 /* Products */,
 				ED1B25FCE5F0EFBE8CB8358C /* Pods */,
@@ -168,7 +165,6 @@
 			files = (
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
 				A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */,
-				14268A3B1CA509F40084C07E /* PodFile in Resources */,
 				A3DFE4671CA4ED13002C3E13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
