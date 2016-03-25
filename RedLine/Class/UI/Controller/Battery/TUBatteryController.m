@@ -8,6 +8,7 @@
 
 #import "TUBatteryController.h"
 #import "TUSystemInfoManager.h"
+#import "NSDate+Category.h"
 
 @interface TUBatteryController ()
 
@@ -19,11 +20,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateBatteryInfo)
+                                  name:kBatteryInfoChange object:nil];
+    
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
     NSUInteger levelMAH = [TUSystemInfoManager manager].batteryInfo.levelMAH;
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
     NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
+}
+
+- (void)updateBatteryInfo {
+    CGFloat voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
+    NSUInteger count = [TUSystemInfoManager manager].batteryInfo.cycleCount;
+    CGFloat temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
+
+    NSString *date = [[NSDate dateFromStringOrNumber:@([TUSystemInfoManager manager].batteryInfo.updateTime)] standardTimeIntervalDescription];
+    
+    NSLog(@"voltage:%f, count:%lu, temperature:%f, date:%@", voltage, count, temperature, date);
 }
 
 - (void)didReceiveMemoryWarning {

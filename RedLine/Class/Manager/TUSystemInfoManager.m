@@ -7,12 +7,18 @@
 //
 
 #import "TUSystemInfoManager.h"
+#import "ELLIOKitNodeInfo.h"
+#import "ELLIOKitDumper.h"
 
 @implementation BatteryInfo
 @end
 
-
 @interface TUSystemInfoManager ()
+@property(nonatomic, strong) ELLIOKitNodeInfo *root;
+@property(nonatomic, strong) ELLIOKitNodeInfo *locationInTree;
+@property(nonatomic, strong) NSMutableArray *batteryInfoArray;
+@property(nonatomic, strong) NSMutableArray *properitys;
+@property(nonatomic, strong) ELLIOKitDumper *dumper;
 
 @end
 
@@ -24,6 +30,7 @@
     dispatch_once(&onceToken, ^{
         manager = [[self alloc] init];
         [manager configNotification];
+        [manager loadIOKit];
     });
     return manager;
 }
@@ -43,8 +50,7 @@
 
 
 
-- (void)startBatteryMonitoring
-{
+- (void)startBatteryMonitoring {
     UIDevice *device = [UIDevice currentDevice];
 
     if (!device.batteryMonitoringEnabled) {
@@ -74,7 +80,118 @@
     }
 }
 
+- (void)loadIOKit {
+    self.batteryInfoArray = [NSMutableArray new];
+    self.properitys = [NSMutableArray new];
+    self.dumper = [ELLIOKitDumper new];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.root = [_dumper dumpIOKitTree];
+        self.locationInTree = _root;
+        
+        [self getCharge:_root];
+//        NSLog(@"%@-----/n%@", _properitys, _batteryInfoArray);
+    });
+}
+
+// AppleARMPMUCharger
+- (void)getCharge:(ELLIOKitNodeInfo *)node {
+    if (node.properties.count) {
+        [self.properitys addObjectsFromArray:node.properties];
+    }
+    
+    for (int i = 0; i < node.children.count; i ++) {
+        ELLIOKitNodeInfo *info = node.children[i];
+        
+        if ([info.name isEqualToString:@"AppleARMPMUCharger"]) {
+            [_batteryInfoArray addObjectsFromArray:info.properties];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"电池相关信息：%@", _batteryInfoArray);
+                [self updateBatteryInfo];
+            });
+        }
+        [self getCharge:info];
+        
+    }
+}
+
+/*
+ "IOFunctionParent8C000000 = <>",
+ "TimeRemaining = 0",
+ "AppleRawBrickIDVoltages = ((39,39))",
+ "AppleRawCurrentCapacity = 2496",
+ "NominalChargeCapacity = 2571",
+ "AppleRawMaxCapacity = 2538",
+ "ExternalChargeCapable = Yes",
+ "BootVoltage = 4110",
+ "IONameMatched = charger",
+ "AppleRawExternalConnected = Yes",
+ "Voltage = 4320",
+ "AtWarnLevel = No",
+ "AdapterInfo = 16384",
+ "Model = 0003-F",
+ "MaxCapacity = 2600",
+ "UpdateTime = 1458934114",
+ "Manufacturer = F",
+ "built-in = Yes",
+ "Location = 0",
+ "CurrentCapacity = 2600",
+ "IOPowerManagement = {DevicePowerState = 2,CapabilityFlags = 32832,CurrentPowerState = 2,MaxPowerState = 2}",
+ "AppleRawAdapterDetails = ({Amperage = 2100,Description = usb host,FamilyCode = -536854528,AdapterVoltage = 5000,Watts = 10,PMUConfiguration = 2000})",
+ "BatteryInstalled = Yes",
+ "BootBBCapacity = 2100",
+ "CycleCount = 175",
+ "ChargerConfiguration = 0",
+ "DesignCapacity = 2855",
+ "AbsoluteCapacity = 2646",
+ "ChargerData = {ChargingCurrent = 0,NotChargingReason = 8,ChargerAlert = 0,ChargerStatus = 162,ChargingVoltage = 132,UpdateTime = 1458934114}",
+ "AtCriticalLevel = No",
+ "BestAdapterIndex = 0",
+ "CFBundleIdentifier = com.apple.driver.AppleARMPlatform",
+ "Temperature = 2750",
+ "BootCapacityEstimate = 88",
+ "IOProviderClass = IOService",
+ "BatteryKey = 0003-default",
+ "AppleChargeRateLimitIndex = 0",
+ "IONameMatch = charger",
+ "InstantAmperage = 0",
+ "IOClass = AppleARMPMUCharger",
+ "FullyCharged = Yes",
+ "IOGeneralInterest = IOCommand is not serializable",
+ "PresentDOD = 288",
+ "IOMatchCategory = IODefaultMatchCategory",
+ "Amperage = 2100",
+ "IOProbeScore = 1000",
+ "IsCharging = No",
+ "ExternalConnected = Yes",
+ "AdapterDetails = {Amperage = 2100,Description = usb host,FamilyCode = -536854528,AdapterVoltage = 5000,Watts = 10,PMUConfiguration = 2000}"
+ */
+
+
 #pragma mark - private
+
+- (void)updateBatteryInfo {
+    
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [_batteryInfoArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj rangeOfString:@"Temperature = "].length) {
+            NSRange range = [obj rangeOfString:@"Temperature = "];
+            _batteryInfo.temperature = [obj substringFromIndex:range.length].integerValue;
+        } else if ([obj rangeOfString:@"Voltage = "].location == 0) {
+            NSRange range = [obj rangeOfString:@"Voltage = "];
+            _batteryInfo.voltage = [obj substringFromIndex:range.length].integerValue;
+        } else if ([obj rangeOfString:@"CycleCount = "].length) {
+            NSRange range = [obj rangeOfString:@"CycleCount = "];
+            _batteryInfo.cycleCount = [obj substringFromIndex:range.length].integerValue;
+        } else if ([obj rangeOfString:@"UpdateTime = "].location == 0) {
+            NSRange range = [obj rangeOfString:@"UpdateTime = "];
+            _batteryInfo.updateTime = [obj substringFromIndex:range.length].integerValue;
+        }
+    }];
+    
+    [kTUNotificationCenter postNotificationName:kBatteryInfoChange object:nil];
+}
 
 //- (NSUInteger)getBatteryCapacity
 //{
