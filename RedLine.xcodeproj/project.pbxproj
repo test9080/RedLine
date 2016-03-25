@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14268A3B1CA509F40084C07E /* PodFile in Resources */ = {isa = PBXBuildFile; fileRef = 14268A3A1CA509F40084C07E /* PodFile */; };
+		65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9231342F8DCD99EE5074E132 /* libPods-RedLine.a */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
 		A3DFE4641CA4ED13002C3E13 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4631CA4ED13002C3E13 /* ViewController.m */; };
@@ -17,7 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14268A3A1CA509F40084C07E /* PodFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PodFile; sourceTree = "<group>"; };
+		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
+		9231342F8DCD99EE5074E132 /* libPods-RedLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE45D1CA4ED13002C3E13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		A3DFE4681CA4ED13002C3E13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3DFE46B1CA4ED13002C3E13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3DFE46D1CA4ED13002C3E13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACA1CB2F0F3A21195269C316 /* Pods-RedLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,9 +47,10 @@
 		A3DFE4501CA4ED13002C3E13 = {
 			isa = PBXGroup;
 			children = (
-				14268A3A1CA509F40084C07E /* PodFile */,
 				A3DFE45B1CA4ED13002C3E13 /* RedLine */,
 				A3DFE45A1CA4ED13002C3E13 /* Products */,
+				ED1B25FCE5F0EFBE8CB8358C /* Pods */,
+				B109948D4406045EC0E7980E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +86,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B109948D4406045EC0E7980E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9231342F8DCD99EE5074E132 /* libPods-RedLine.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED1B25FCE5F0EFBE8CB8358C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACA1CB2F0F3A21195269C316 /* Pods-RedLine.debug.xcconfig */,
+				497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3DFE4701CA4ED13002C3E13 /* Build configuration list for PBXNativeTarget "RedLine" */;
 			buildPhases = (
+				76D51FE3E2FFD3EB2FAF427D /* Check Pods Manifest.lock */,
 				A3DFE4551CA4ED13002C3E13 /* Sources */,
 				A3DFE4561CA4ED13002C3E13 /* Frameworks */,
 				A3DFE4571CA4ED13002C3E13 /* Resources */,
+				7B8ED1FD22A9BB3C160579AB /* Embed Pods Frameworks */,
+				ADB9D34376AAC3066FDC206D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -141,12 +165,59 @@
 			files = (
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
 				A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */,
-				14268A3B1CA509F40084C07E /* PodFile in Resources */,
 				A3DFE4671CA4ED13002C3E13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		76D51FE3E2FFD3EB2FAF427D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7B8ED1FD22A9BB3C160579AB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RedLine/Pods-RedLine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADB9D34376AAC3066FDC206D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RedLine/Pods-RedLine-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A3DFE4551CA4ED13002C3E13 /* Sources */ = {
@@ -265,6 +336,7 @@
 		};
 		A3DFE4711CA4ED13002C3E13 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACA1CB2F0F3A21195269C316 /* Pods-RedLine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -278,6 +350,7 @@
 		};
 		A3DFE4721CA4ED13002C3E13 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
