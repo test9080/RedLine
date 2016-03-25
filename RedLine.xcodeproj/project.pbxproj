@@ -16,6 +16,11 @@
 		14268A6E1CA580C00084C07E /* TUMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A6C1CA580C00084C07E /* TUMineController.m */; };
 		14268A6F1CA580C00084C07E /* TUMineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A6D1CA580C00084C07E /* TUMineController.xib */; };
 		14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A711CA588AC0084C07E /* TUTabBarController.m */; };
+		14F8B0FD1CA5BE0C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
+		14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */; };
+		14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1021CA5C4DA0006287C /* ELLIOKitNodeInfo.m */; };
+		14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1081CA5D16B0006287C /* NSDate+Category.m */; };
+		14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B10A1CA5D16B0006287C /* NSDateFormatter+Category.m */; };
 		65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9231342F8DCD99EE5074E132 /* libPods-RedLine.a */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
@@ -43,6 +48,15 @@
 		14268A6D1CA580C00084C07E /* TUMineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUMineController.xib; sourceTree = "<group>"; };
 		14268A701CA588AC0084C07E /* TUTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUTabBarController.h; sourceTree = "<group>"; };
 		14268A711CA588AC0084C07E /* TUTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarController.m; sourceTree = "<group>"; };
+		14F8B0FC1CA5BE0C0006287C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IOKit.framework; sourceTree = "<group>"; };
+		14F8B0FE1CA5C09F0006287C /* ELLIOKitDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLIOKitDumper.h; sourceTree = "<group>"; };
+		14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLIOKitDumper.m; sourceTree = "<group>"; };
+		14F8B1011CA5C4DA0006287C /* ELLIOKitNodeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLIOKitNodeInfo.h; sourceTree = "<group>"; };
+		14F8B1021CA5C4DA0006287C /* ELLIOKitNodeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLIOKitNodeInfo.m; sourceTree = "<group>"; };
+		14F8B1071CA5D16B0006287C /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		14F8B1081CA5D16B0006287C /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		14F8B1091CA5D16B0006287C /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
+		14F8B10A1CA5D16B0006287C /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		9231342F8DCD99EE5074E132 /* libPods-RedLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */,
+				14F8B0FD1CA5BE0C0006287C /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,7 @@
 		14143BB21CA59DDC0044441B /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B1041CA5D16B0006287C /* NSDate */,
 				14143BB31CA59DF20044441B /* Color */,
 				14143BB61CA59DF20044441B /* Device */,
 			);
@@ -123,6 +139,10 @@
 		14268A3F1CA57C6A0084C07E /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B1011CA5C4DA0006287C /* ELLIOKitNodeInfo.h */,
+				14F8B1021CA5C4DA0006287C /* ELLIOKitNodeInfo.m */,
+				14F8B0FE1CA5C09F0006287C /* ELLIOKitDumper.h */,
+				14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */,
 				14143BAD1CA59A560044441B /* TUSystemInfoManager.h */,
 				14143BAE1CA59A560044441B /* TUSystemInfoManager.m */,
 			);
@@ -146,6 +166,7 @@
 		14268A461CA57C6A0084C07E /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B0FC1CA5BE0C0006287C /* IOKit.framework */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -254,6 +275,17 @@
 				14268A711CA588AC0084C07E /* TUTabBarController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		14F8B1041CA5D16B0006287C /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				14F8B1071CA5D16B0006287C /* NSDate+Category.h */,
+				14F8B1081CA5D16B0006287C /* NSDate+Category.m */,
+				14F8B1091CA5D16B0006287C /* NSDateFormatter+Category.h */,
+				14F8B10A1CA5D16B0006287C /* NSDateFormatter+Category.m */,
+			);
+			path = NSDate;
 			sourceTree = "<group>";
 		};
 		A3DFE4501CA4ED13002C3E13 = {
@@ -442,11 +474,15 @@
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
+				14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
+				14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */,
+				14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */,
 				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
+				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
