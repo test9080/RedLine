@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "TUTabBarController.h"
+#import "TUNavigationController.h"
+#import "TUBatteryController.h"
+#import "TUMineController.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +21,56 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [self setupViewControllers];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
+
+- (TUTabBarController *)setupViewControllers
+{
+    TUTabBarController *tabBarController = [[TUTabBarController alloc] init];
+    
+    // 电池
+    TUBatteryController *batteryVC = [[TUBatteryController alloc]init];
+    batteryVC.title = @"电池";
+    TUNavigationController *batteryNav = [[TUNavigationController alloc] initWithRootViewController:batteryVC];
+    
+    // 我的
+    TUMineController *mineVC = [[TUMineController alloc] init];
+    mineVC.title = @"我的";
+    TUNavigationController *mineNav = [[TUNavigationController alloc] initWithRootViewController:mineVC];
+    
+    
+//    tabBarController.delegate = self;
+//    tabBarController.tabBar.delegate = self;
+    
+    [tabBarController setViewControllers:@[batteryNav, mineNav]];
+    
+//    [self customizeTabBarForController:tabBarController];
+    
+    return tabBarController;
+}
+
+- (void)customizeTabBarForController:(TUTabBarController *)tabBarController {
+    
+//    NSArray *tabBarItemImages = @[@"tab1", @"tab2"];
+//    NSArray *tabBarItemSelectImages = @[@"tab1", @"tab2"];
+//    NSArray *titles = @[@"电池", @"我的"];
+//    
+//    NSMutableArray *tabBarItems = [[NSMutableArray alloc] init];
+//    for (int i = 0; i < titles.count; i++) {
+//        UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:tabBarItemImages[i]] selectedImage:[UIImage imageNamed:tabBarItemSelectImages[i]]];
+//
+//        [tabBarItems addObject:item];
+//    }
+////    [tabBarController.tabBar addi]
+
+//    [tabBarController.tabBar setItems:tabBarItems];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

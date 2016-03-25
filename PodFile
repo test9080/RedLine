@@ -4,8 +4,8 @@ inhibit_all_warnings!
 platform :ios, '7.0'
 
 target “RedLine” do
-pod 'MJRefresh'
-pod 'MJExtension'
-pod 'AFNetworking', '~> 3.0'
-pod 'MBProgressHUD', '~> 0.9.1'
+    pod 'MJRefresh'
+    pod 'MJExtension'
+    pod 'AFNetworking', '~> 3.0'
+    pod 'MBProgressHUD', '~> 0.9.1'
 end
