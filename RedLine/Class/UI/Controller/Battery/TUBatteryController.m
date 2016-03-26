@@ -7,10 +7,16 @@
 //
 
 #import "TUBatteryController.h"
+
+#import "TUBatteryHeaderView.h"
+
 #import "TUSystemInfoManager.h"
+
 #import "NSDate+Category.h"
+#import "UIColor+GGColor.h"
 
 @interface TUBatteryController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
 
 @end
 
@@ -18,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self UIConfig];
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
@@ -33,6 +40,13 @@
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
     NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
+}
+
+- (void)UIConfig {
+    self.bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
+    
+    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+    [self.bgScrollView addSubview:headerView];
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
