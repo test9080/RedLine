@@ -8,4 +8,5 @@ target “RedLine” do
     pod 'MJExtension'
     pod 'AFNetworking', '~> 3.0'
     pod 'MBProgressHUD', '~> 0.9.1'
+    pod 'Masonry'
 end
