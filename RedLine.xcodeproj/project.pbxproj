@@ -24,6 +24,7 @@
 		14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1141CA633B70006287C /* TUTabBarItem.m */; };
 		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9231342F8DCD99EE5074E132 /* libPods-RedLine.a */; };
+		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
 		A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DFE4681CA4ED13002C3E13 /* Assets.xcassets */; };
@@ -65,6 +66,8 @@
 		14F8B1141CA633B70006287C /* TUTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarItem.m; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		9231342F8DCD99EE5074E132 /* libPods-RedLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryCapacityView.h; sourceTree = "<group>"; };
+		A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryCapacityView.m; sourceTree = "<group>"; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE45D1CA4ED13002C3E13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -189,33 +192,10 @@
 			children = (
 				14268A581CA57EF50084C07E /* Base */,
 				14268A4D1CA57E570084C07E /* Controller */,
-				14268A4A1CA57E570084C07E /* Cell */,
-				14268A501CA57E570084C07E /* View */,
+				A1132D9D1CA6495800B21CBF /* Cell */,
+				A1132D9C1CA6493D00B21CBF /* View */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		14268A4A1CA57E570084C07E /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				14268A4B1CA57E570084C07E /* Battery */,
-				14268A4C1CA57E570084C07E /* Mine */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		14268A4B1CA57E570084C07E /* Battery */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Battery;
-			sourceTree = "<group>";
-		};
-		14268A4C1CA57E570084C07E /* Mine */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mine;
 			sourceTree = "<group>";
 		};
 		14268A4D1CA57E570084C07E /* Controller */ = {
@@ -243,29 +223,6 @@
 				14268A6B1CA580C00084C07E /* TUMineController.h */,
 				14268A6C1CA580C00084C07E /* TUMineController.m */,
 				14268A6D1CA580C00084C07E /* TUMineController.xib */,
-			);
-			path = Mine;
-			sourceTree = "<group>";
-		};
-		14268A501CA57E570084C07E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14268A511CA57E570084C07E /* Battery */,
-				14268A521CA57E570084C07E /* Mine */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14268A511CA57E570084C07E /* Battery */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Battery;
-			sourceTree = "<group>";
-		};
-		14268A521CA57E570084C07E /* Mine */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -311,6 +268,38 @@
 				14F8B1141CA633B70006287C /* TUTabBarItem.m */,
 			);
 			path = TUTabBar;
+			sourceTree = "<group>";
+		};
+		A1132D9C1CA6493D00B21CBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A1132D9E1CA6497500B21CBF /* Battery */,
+				A1132D9F1CA6498500B21CBF /* Mine */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A1132D9D1CA6495800B21CBF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A1132D9E1CA6497500B21CBF /* Battery */ = {
+			isa = PBXGroup;
+			children = (
+				A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */,
+				A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */,
+			);
+			path = Battery;
+			sourceTree = "<group>";
+		};
+		A1132D9F1CA6498500B21CBF /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		A3DFE4501CA4ED13002C3E13 = {
@@ -512,6 +501,7 @@
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
+				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
