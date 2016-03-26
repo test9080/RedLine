@@ -21,8 +21,12 @@
     // Do any additional setup after loading the view from its nib.
     
     [kTUNotificationCenter addObserver:self
-                              selector:@selector(updateBatteryInfo)
+                              selector:@selector(updateBatteryInfo:)
                                   name:kBatteryInfoChange object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateSystemInfo:)
+                                  name:kSystemInfoChange object:nil];
+
     
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
     NSUInteger levelMAH = [TUSystemInfoManager manager].batteryInfo.levelMAH;
@@ -31,19 +35,35 @@
     NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
 }
 
-- (void)updateBatteryInfo {
+- (void)updateBatteryInfo:(NSNotification *)note {
     CGFloat voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
-    NSUInteger count = [TUSystemInfoManager manager].batteryInfo.cycleCount;
+    CGFloat amperage = [TUSystemInfoManager manager].batteryInfo.amperage;
+    CGFloat count = [TUSystemInfoManager manager].batteryInfo.cycleCount;
     CGFloat temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
 
     NSString *date = [[NSDate dateFromStringOrNumber:@([TUSystemInfoManager manager].batteryInfo.updateTime)] standardTimeIntervalDescription];
     
-    NSLog(@"voltage:%f, count:%lu, temperature:%f, date:%@", voltage, count, temperature, date);
+    NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", voltage, amperage, count, temperature, date];
+    NSLog(@"%@", string);
+//    [[[UIAlertView alloc] initWithTitle:@"SystemInfo" message:[note.object componentsJoinedByString:@"\n"] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
+    [[[UIAlertView alloc] initWithTitle:@"BatteryInfo" message:string delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
+
 }
+
+- (void)updateSystemInfo:(NSNotification *)note {
+    
+    NSArray *array = note.object;
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [TUSystemInfoManager refreshInfo];
 }
 
 /*
