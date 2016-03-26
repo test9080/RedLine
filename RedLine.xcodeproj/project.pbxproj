@@ -16,11 +16,13 @@
 		14268A6E1CA580C00084C07E /* TUMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A6C1CA580C00084C07E /* TUMineController.m */; };
 		14268A6F1CA580C00084C07E /* TUMineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A6D1CA580C00084C07E /* TUMineController.xib */; };
 		14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A711CA588AC0084C07E /* TUTabBarController.m */; };
-		14F8B0FD1CA5BE0C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */; };
 		14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1021CA5C4DA0006287C /* ELLIOKitNodeInfo.m */; };
 		14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1081CA5D16B0006287C /* NSDate+Category.m */; };
 		14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B10A1CA5D16B0006287C /* NSDateFormatter+Category.m */; };
+		14F8B1121CA631380006287C /* TUTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1111CA631380006287C /* TUTabBar.m */; };
+		14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1141CA633B70006287C /* TUTabBarItem.m */; };
+		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9231342F8DCD99EE5074E132 /* libPods-RedLine.a */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
@@ -57,6 +59,10 @@
 		14F8B1081CA5D16B0006287C /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		14F8B1091CA5D16B0006287C /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
 		14F8B10A1CA5D16B0006287C /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		14F8B1101CA631380006287C /* TUTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUTabBar.h; sourceTree = "<group>"; };
+		14F8B1111CA631380006287C /* TUTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBar.m; sourceTree = "<group>"; };
+		14F8B1131CA633B70006287C /* TUTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUTabBarItem.h; sourceTree = "<group>"; };
+		14F8B1141CA633B70006287C /* TUTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarItem.m; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		9231342F8DCD99EE5074E132 /* libPods-RedLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */,
 				65241E0276D3D4F1199A3763 /* libPods-RedLine.a in Frameworks */,
-				14F8B0FD1CA5BE0C0006287C /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +294,25 @@
 			path = NSDate;
 			sourceTree = "<group>";
 		};
+		14F8B10E1CA6310C0006287C /* TULib */ = {
+			isa = PBXGroup;
+			children = (
+				14F8B10F1CA631220006287C /* TUTabBar */,
+			);
+			path = TULib;
+			sourceTree = "<group>";
+		};
+		14F8B10F1CA631220006287C /* TUTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				14F8B1101CA631380006287C /* TUTabBar.h */,
+				14F8B1111CA631380006287C /* TUTabBar.m */,
+				14F8B1131CA633B70006287C /* TUTabBarItem.h */,
+				14F8B1141CA633B70006287C /* TUTabBarItem.m */,
+			);
+			path = TUTabBar;
+			sourceTree = "<group>";
+		};
 		A3DFE4501CA4ED13002C3E13 = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +334,7 @@
 		A3DFE45B1CA4ED13002C3E13 /* RedLine */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B10E1CA6310C0006287C /* TULib */,
 				14143BB21CA59DDC0044441B /* Category */,
 				14268A461CA57C6A0084C07E /* Framework */,
 				14268A471CA57C6A0084C07E /* OpenLib */,
@@ -473,10 +499,12 @@
 			files = (
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
+				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
 				14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
+				14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */,
 				14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */,
 				14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */,
 				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,

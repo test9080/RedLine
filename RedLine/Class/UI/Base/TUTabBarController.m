@@ -7,8 +7,9 @@
 //
 
 #import "TUTabBarController.h"
+#import "TUTabBar.h"
 
-@interface TUTabBarController ()
+@interface TUTabBarController () <TUTabBarDelegate>
 
 @end
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    //tabbar是readonly的,所以只能通过KVC赋值,不能直接更改
+    //为什么在这里更改系统的tabBar,在这里系统的tabBar还没有值
+    
+//    TUTabBar *tabBar = [[TUTabBar alloc] init];
+//    tabBar.delegate = self;
+//    [self setValue:tabBar forKeyPath:@"tabBar"];
 }
 
 - (void)didReceiveMemoryWarning {
