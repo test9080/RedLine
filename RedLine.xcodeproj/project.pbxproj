@@ -27,6 +27,7 @@
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
+		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
 		A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DFE4681CA4ED13002C3E13 /* Assets.xcassets */; };
@@ -74,6 +75,8 @@
 		A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryHeaderView.m; sourceTree = "<group>"; };
 		A1132DB41CA6E78300B21CBF /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		A1132DB51CA6E78300B21CBF /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
+		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE45D1CA4ED13002C3E13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */,
 				A1132DAF1CA6E6AD00B21CBF /* TUBatteryHeaderView.h */,
 				A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */,
+				A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */,
+				A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */,
 			);
 			path = Battery;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
+				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,

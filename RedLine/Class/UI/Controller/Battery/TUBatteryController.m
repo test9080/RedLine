@@ -9,6 +9,8 @@
 #import "TUBatteryController.h"
 
 #import "TUBatteryHeaderView.h"
+#import "TUBatteryTipsView.h"
+#import "TUBatteryCapacityView.h"
 
 #import "TUSystemInfoManager.h"
 
@@ -42,11 +44,19 @@
     NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
 }
 
+#pragma mark - UIConfig
 - (void)UIConfig {
     self.bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
     
-    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
     [self.bgScrollView addSubview:headerView];
+    
+    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, 50, kScreenWidth, 50) count:7];
+    [self.bgScrollView addSubview:tipsBtnView];
+    
+    TUBatteryCapacityView *cycleView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 200)];
+    [self.bgScrollView addSubview:cycleView];
+
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {

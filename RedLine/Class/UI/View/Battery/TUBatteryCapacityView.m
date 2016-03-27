@@ -7,6 +7,7 @@
 //
 
 #import "TUBatteryCapacityView.h"
+#import "UIView+Category.h"
 
 @interface TUBatteryCapacityView ()
 {
@@ -15,6 +16,8 @@
 }
 
 @property (strong, nonatomic) UILabel *batteryCapacityLabel;
+@property (strong, nonatomic) UILabel *batteryTimeLabel;
+
 @property (strong, nonatomic) CALayer *animationLayer;
 
 
@@ -27,7 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resume) name:UIApplicationDidBecomeActiveNotification object:nil];
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -45,6 +48,9 @@
 - (void)initLable {
     [self addSubview:self.batteryCapacityLabel];
     self.batteryCapacityLabel.text = @"10%";
+    
+    [self addSubview:self.batteryTimeLabel];
+    self.batteryTimeLabel.text = @"充满所需1小时22分钟";
 }
 
 - (void)initAnimation {
@@ -58,7 +64,7 @@
     
 //    UIRectFill(rect);
     
-    NSInteger pulsingCount = 3;//雷达上波纹的条数
+    NSInteger pulsingCount = 3;//上波纹的条数
     double animationDuration = 2;//一组动画持续的时间，直接决定了动画运行快慢。
     
     CALayer * animationLayer = [[CALayer alloc]init];
@@ -77,23 +83,23 @@
         
         CAAnimationGroup * animationGroup = [[CAAnimationGroup alloc]init];
         animationGroup.fillMode = kCAFillModeBoth;
-        //因为雷达中每个圈圈的大小不一致，故需要他们在一定的相位差的时刻开始运行。
+        //因为每个圈圈的大小不一致，故需要他们在一定的相位差的时刻开始运行。
         animationGroup.beginTime = CACurrentMediaTime() + (double)i * animationDuration/(double)pulsingCount;
         animationGroup.duration = animationDuration;//每个圈圈从生成到消失使用时常，也即动画组每轮动画持续时常
         animationGroup.repeatCount = HUGE_VAL;//表示动画组持续时间为无限大，也即动画无限循环。
         animationGroup.timingFunction = defaultCurve;
         
-        //雷达圆圈初始大小以及最终大小比率。
+        //圆圈初始大小以及最终大小比率。
         CABasicAnimation * scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         scaleAnimation.autoreverses = NO;
         scaleAnimation.fromValue = [NSNumber numberWithDouble:0.2];
         scaleAnimation.toValue = [NSNumber numberWithDouble:1.0];
         
-        //雷达圆圈在n个运行阶段的透明度，n为数组长度。
+        //圆圈在n个运行阶段的透明度，n为数组长度。
         CAKeyframeAnimation * opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-        //雷达运行四个阶段不同的透明度。
+        //运行四个阶段不同的透明度。
         opacityAnimation.values = @[[NSNumber numberWithDouble:1.0],[NSNumber numberWithDouble:0.5],[NSNumber numberWithDouble:0.3],[NSNumber numberWithDouble:0.0]];
-        //雷达运行的不同的四个阶段，为0.0表示刚运行，0.5表示运行了一半，1.0表示运行结束。
+        //运行的不同的四个阶段，为0.0表示刚运行，0.5表示运行了一半，1.0表示运行结束。
         opacityAnimation.keyTimes = @[[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:0.25],[NSNumber numberWithDouble:0.5],[NSNumber numberWithDouble:1.0]];
         //将两组动画（大小比率变化动画，透明度渐变动画）组合到一个动画组。
         animationGroup.animations = @[scaleAnimation,opacityAnimation];
@@ -121,13 +127,24 @@
 #pragma mark - getter or setter
 - (UILabel *)batteryCapacityLabel {
     if (!_batteryCapacityLabel) {
-        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 100, self.frame.size.height/2 - 50, 200, 100)];
+        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 100, self.height/2 - 50, 200, 100)];
         _batteryCapacityLabel.textColor = [UIColor whiteColor];
         _batteryCapacityLabel.font = [UIFont systemFontOfSize:30];
         _batteryCapacityLabel.backgroundColor = [UIColor clearColor];
         _batteryCapacityLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _batteryCapacityLabel;
+}
+
+- (UILabel *)batteryTimeLabel {
+    if (!_batteryTimeLabel) {
+        _batteryTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 150, self.height - 25, 300, 20)];
+        _batteryTimeLabel.textColor = [UIColor whiteColor];
+        _batteryTimeLabel.font = [UIFont systemFontOfSize:17];
+        _batteryTimeLabel.backgroundColor = [UIColor clearColor];
+        _batteryTimeLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _batteryTimeLabel;
 }
 
 #pragma mark - 这个方法有问题
