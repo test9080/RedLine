@@ -19,7 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -34,10 +34,10 @@
 #pragma mark - setter & getter
 - (UILabel *)stateLabel {
     if (!_stateLabel) {
-        _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 100, 10, 200, 40)];
+        _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 100, 10, 200, 30)];
         _stateLabel.textColor = [UIColor whiteColor];
         _stateLabel.textAlignment = NSTextAlignmentCenter;
-        _stateLabel.font = [UIFont systemFontOfSize:20];
+        _stateLabel.font = [UIFont systemFontOfSize:18];
         _stateLabel.text = @"已开启全面保护模式";
         
         [_stateLabel.layer setMasksToBounds:YES];
