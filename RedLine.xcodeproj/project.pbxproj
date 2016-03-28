@@ -28,6 +28,8 @@
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
 		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
+		A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */; };
+		A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
 		A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */; };
 		A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DFE4681CA4ED13002C3E13 /* Assets.xcassets */; };
@@ -77,6 +79,9 @@
 		A1132DB51CA6E78300B21CBF /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
 		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
 		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
+		A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryProgressView.h; sourceTree = "<group>"; };
+		A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryProgressView.m; sourceTree = "<group>"; };
+		A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryProgressView.xib; sourceTree = "<group>"; };
 		A3DFE4591CA4ED13002C3E13 /* RedLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFE45D1CA4ED13002C3E13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -305,6 +310,9 @@
 				A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */,
 				A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */,
 				A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */,
+				A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */,
+				A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */,
+				A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */,
 			);
 			path = Battery;
 			sourceTree = "<group>";
@@ -450,6 +458,7 @@
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
 				14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */,
 				14268A6F1CA580C00084C07E /* TUMineController.xib in Resources */,
+				A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */,
 				A3DFE4691CA4ED13002C3E13 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +532,7 @@
 				A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */,
 				14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */,
 				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,
+				A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */,
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
