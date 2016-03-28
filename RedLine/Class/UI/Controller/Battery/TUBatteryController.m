@@ -12,6 +12,7 @@
 #import "TUBatteryTipsView.h"
 #import "TUBatteryCapacityView.h"
 #import "TUBatteryProgressView.h"
+#import "TUBatteryVIView.h"
 
 #import "TUSystemInfoManager.h"
 
@@ -48,19 +49,29 @@
 #pragma mark - UIConfig
 - (void)UIConfig {
     self.bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
+    [self.bgScrollView setContentSize:CGSizeMake(kScreenWidth, kScreenHeight *2)];
     
+    //已开启全面保护模式
     TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
     [self.bgScrollView addSubview:headerView];
     
+    //7个按钮的View
     TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, 50, kScreenWidth, 50) count:7];
     [self.bgScrollView addSubview:tipsBtnView];
     
+    //电量圆圈的View
     TUBatteryCapacityView *cycleView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 200)];
     [self.bgScrollView addSubview:cycleView];
     
+    //三个充电状态View
     TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
     [progressView setFrame:CGRectMake(0, 320, kScreenWidth, 60)];
     [self.bgScrollView addSubview:progressView];
+    
+    //电压电流折线View
+    TUBatteryVIView *viView = [TUBatteryVIView showGraphView];
+    [viView setFrame:CGRectMake(0, 410, kScreenWidth, 90)];
+    [self.bgScrollView addSubview:viView];
 
 }
 
