@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B929B3BF9C757D3B8B9F66FCDE6AADA"
-               BuildableName = "Pods_RedLine.framework"
-               BlueprintName = "Pods-RedLine"
+               BlueprintIdentifier = "78DD729E6F6BE3C1326232CD5DFFFBB7"
+               BuildableName = "BEMSimpleLineGraph.framework"
+               BlueprintName = "BEMSimpleLineGraph"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6B929B3BF9C757D3B8B9F66FCDE6AADA"
-            BuildableName = "Pods_RedLine.framework"
-            BlueprintName = "Pods-RedLine"
+            BlueprintIdentifier = "78DD729E6F6BE3C1326232CD5DFFFBB7"
+            BuildableName = "BEMSimpleLineGraph.framework"
+            BlueprintName = "BEMSimpleLineGraph"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "78DD729E6F6BE3C1326232CD5DFFFBB7"
+            BuildableName = "BEMSimpleLineGraph.framework"
+            BlueprintName = "BEMSimpleLineGraph"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

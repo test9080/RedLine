@@ -24,14 +24,18 @@
 // 电池信息
 @interface BatteryInfo : NSObject
 
-@property (nonatomic, assign) CGFloat    capacity; // 电池容量
-@property (nonatomic, assign) CGFloat    voltage; // 电压mV "Voltage = 4320"
-@property (nonatomic, assign) CGFloat    amperage; // 电流mA "InstantAmperage = 137", 负数代表输出
-@property (nonatomic, assign) CGFloat    levelPercent; // 电量百分数
-@property (nonatomic, assign) CGFloat    levelMAH;
-@property (nonatomic, copy)   NSString   *status; // 充电状态
-@property (nonatomic, assign) CGFloat    temperature; // 电池温度 "Temperature = 2750"
-@property (nonatomic, assign) CGFloat    cycleCount; // 电池循环次数 "CycleCount = 175"
+//@property (nonatomic, assign) NSInteger     capacity; // 电池容量 标称 6p 1915
+@property (nonatomic, assign) NSInteger     voltage; // 电压mV "Voltage = 4320"
+@property (nonatomic, assign) NSInteger     amperage; // 电流mA "InstantAmperage = 137", 负数代表输出
+@property (nonatomic, assign) CGFloat       levelPercent; // 电量百分数
+@property (nonatomic, assign) CGFloat       levelMAH;   // 剩余
+@property (nonatomic, assign) NSInteger     temperature; // 电池温度 "Temperature = 2750"
+@property (nonatomic, assign) NSInteger     cycleCount; // 电池循环次数 "CycleCount = 175"
+@property (nonatomic, assign) NSInteger     rawMaxCapacity; // 电池实际最大容量 "AppleRawMaxCapacity = 2569"
+@property (nonatomic, assign) NSInteger     designCapacity; // 电池设计最大容量 "DesignCapacity = 2855"
+@property (nonatomic, assign) NSInteger     rawCurrentCapacity; // 电池当前容量 "AppleRawCurrentCapacity = 1576"
+
+@property (nonatomic,   copy) NSString      *status; // 充电状态
 @property (nonatomic, assign) NSTimeInterval updateTime; // "UpdateTime = 1458934114"
 
 @end

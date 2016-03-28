@@ -25,7 +25,7 @@
     NSUInteger red = (rgb>>16)&0xFF;
     NSUInteger green = (rgb>>8)&0xFF;
     NSUInteger blue = rgb&0xFF;
-    return RGBA(red, green, blue, alpha);
+    return kRGBA(red, green, blue, alpha);
 }
 
 + (UIColor*)colorWithString:(NSString *)strColor
@@ -42,7 +42,7 @@
     if (colorValueArr.count == 4) {
         alpha = [[colorValueArr objectAtIndex:3] floatValue];
     }
-    return RGBA(red, green, blue, alpha);
+    return kRGBA(red, green, blue, alpha);
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "TUNavigationController.h"
 #import "TUBatteryController.h"
 #import "TUMineController.h"
+#import "TUTabBar.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +50,19 @@
     
     [tabBarController setViewControllers:@[batteryNav, mineNav]];
     
+    NSArray *titles = @[@"电池", @"我的"];
+    NSArray *selectImages = @[@"电池", @"我的"];
+    NSArray *unSelectImages = @[@"电池", @"我的"];
+
+    NSMutableArray *items = [NSMutableArray array];
+
+    for (int i = 0; i < 2; i ++) {
+        TUTabBarItem *item = [[TUTabBarItem alloc] init];
+        item.title = titles[i];
+        item.selectImage = [UIImage imageNamed:selectImages[i]];
+        item.unSelectImage = [UIImage imageNamed:unSelectImages[i]];
+        [items addObject:item];
+    }
 //    [self customizeTabBarForController:tabBarController];
     
     return tabBarController;
