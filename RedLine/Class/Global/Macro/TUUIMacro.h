@@ -16,6 +16,9 @@
 #define kScreenHeight   [[UIScreen mainScreen] bounds].size.height
 #define kScreenOneScale (1.0 / [UIScreen mainScreen].scale)
 
+#define kRGBA(r,g,b,a)           \
+[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 
 #define kTUNotificationCenter  [NSNotificationCenter defaultCenter]
 //#define kTUNotificationPost(name, object)  [kTUNotificationCenter postNotificationName:name object:#object]

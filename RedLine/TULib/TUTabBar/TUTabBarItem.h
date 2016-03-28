@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TUTabBarItem : UIView
+@interface TUTabBarItem : NSObject
+
+@property (nonatomic,   copy) NSString    *title;
+@property (nonatomic, strong) UIImage     *selectImage;
+@property (nonatomic, strong) UIImage     *unSelectImage;
 
 @end
