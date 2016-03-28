@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BBEAD1A59B5752E0AE3F9B8C'
-               BlueprintName = 'MJRefresh'
+               BlueprintIdentifier = '1C6026DE4D0F5EE5C77FB891'
+               BlueprintName = 'BEMSimpleLineGraph'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMJRefresh.a'>
+               BuildableName = 'libBEMSimpleLineGraph.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
