@@ -101,8 +101,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [kTUNotificationCenter postNotificationName:kSystemInfoChange object:self.properitys];
         });
-
-//        NSLog(@"%@-----/n%@", _properitys, _batteryInfoArray);
     });
 }
 
@@ -202,24 +200,18 @@
         } else if ([obj rangeOfString:@"InstantAmperage = "].location == 0) {
             NSRange range = [obj rangeOfString:@"InstantAmperage = "];
             _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
+        } else if ([obj rangeOfString:@"DesignCapacity = "].location == 0) {
+            NSRange range = [obj rangeOfString:@"DesignCapacity = "];
+            _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
+        } else if ([obj rangeOfString:@"AppleRawMaxCapacity = "].location == 0) {
+            NSRange range = [obj rangeOfString:@"AppleRawMaxCapacity = "];
+            _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
         }
 
     }];
     
     [kTUNotificationCenter postNotificationName:kBatteryInfoChange object:_batteryInfoArray];
 }
-
-//- (NSUInteger)getBatteryCapacity
-//{
-//    HardcodedDeviceData *hardcode = [HardcodedDeviceData sharedDeviceData];
-//    return [hardcode getBatteryCapacity];
-//}
-//
-//- (CGFloat)getBatteryVoltage
-//{
-//    HardcodedDeviceData *hardcode = [HardcodedDeviceData sharedDeviceData];
-//    return [hardcode getBatteryVoltage];
-//}
 
 - (void)batteryLevelUpdatedCB:(NSNotification*)notification {
     [self doUpdateBatteryStatus];
@@ -233,7 +225,7 @@
 - (void)doUpdateBatteryStatus {
     float batteryMultiplier = [[UIDevice currentDevice] batteryLevel];
     self.batteryInfo.levelPercent = batteryMultiplier * 100;
-    self.batteryInfo.levelMAH =  self.batteryInfo.capacity * batteryMultiplier;
+    self.batteryInfo.levelMAH =  self.batteryInfo.rawMaxCapacity * batteryMultiplier;
     
     switch ([[UIDevice currentDevice] batteryState]) {
         case UIDeviceBatteryStateCharging:
