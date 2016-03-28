@@ -7,10 +7,18 @@
 //
 
 #import "TUBatteryController.h"
+
+#import "TUBatteryHeaderView.h"
+#import "TUBatteryTipsView.h"
+#import "TUBatteryCapacityView.h"
+
 #import "TUSystemInfoManager.h"
+
 #import "NSDate+Category.h"
+#import "UIColor+GGColor.h"
 
 @interface TUBatteryController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
 
 @end
 
@@ -18,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self UIConfig];
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
@@ -33,6 +42,21 @@
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
     NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
+}
+
+#pragma mark - UIConfig
+- (void)UIConfig {
+    self.bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
+    
+    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
+    [self.bgScrollView addSubview:headerView];
+    
+    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, 50, kScreenWidth, 50) count:7];
+    [self.bgScrollView addSubview:tipsBtnView];
+    
+    TUBatteryCapacityView *cycleView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 200)];
+    [self.bgScrollView addSubview:cycleView];
+
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
