@@ -7,27 +7,69 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="287"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TUBatteryVIView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="当前电压:5.02V" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFv-50-9mS">
-                    <rect key="frame" x="160" y="8" width="140" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前电压:5.02V" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFv-50-9mS">
+                    <rect key="frame" x="160" y="8" width="140" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="0Ct-Cp-t9T"/>
+                        <constraint firstAttribute="height" constant="20" id="fi2-Um-lLP"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEJ-vP-K3m" customClass="BEMSimpleLineGraphView">
-                    <rect key="frame" x="22" y="32" width="276" height="91"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEJ-vP-K3m" customClass="BEMSimpleLineGraphView">
+                    <rect key="frame" x="20" y="31" width="280" height="90"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="icS-Wj-7c6"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前电流:2.02A" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsN-SN-hlN">
+                    <rect key="frame" x="162" y="132" width="138" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="2tK-yB-trS"/>
+                        <constraint firstAttribute="width" constant="138" id="oHF-9u-JHr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZa-1I-up9" customClass="BEMSimpleLineGraphView">
+                    <rect key="frame" x="20" y="160" width="280" height="90"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="CsI-R5-V0n"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="JFv-50-9mS" secondAttribute="trailing" constant="20" id="1iH-Py-gWR"/>
+                <constraint firstItem="ZEJ-vP-K3m" firstAttribute="top" secondItem="JFv-50-9mS" secondAttribute="bottom" constant="3" id="H0g-C0-8G4"/>
+                <constraint firstItem="ZEJ-vP-K3m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="XPw-BM-oQL"/>
+                <constraint firstItem="cZa-1I-up9" firstAttribute="top" secondItem="dsN-SN-hlN" secondAttribute="bottom" constant="8" id="dbb-W2-O9n"/>
+                <constraint firstItem="cZa-1I-up9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="fZE-CD-0cC"/>
+                <constraint firstAttribute="trailing" secondItem="cZa-1I-up9" secondAttribute="trailing" constant="20" id="oD2-xs-TR9"/>
+                <constraint firstItem="dsN-SN-hlN" firstAttribute="top" secondItem="ZEJ-vP-K3m" secondAttribute="bottom" constant="11" id="pBW-VG-Ukq"/>
+                <constraint firstItem="JFv-50-9mS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="qTY-AH-GPw"/>
+                <constraint firstAttribute="trailing" secondItem="ZEJ-vP-K3m" secondAttribute="trailing" constant="20" id="r7h-6Y-iKP"/>
+                <constraint firstAttribute="trailing" secondItem="dsN-SN-hlN" secondAttribute="trailing" constant="20" id="ya0-W9-Fqi"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="249" y="575.5"/>
+            <connections>
+                <outlet property="currentGraphView" destination="cZa-1I-up9" id="wbP-UU-M2w"/>
+                <outlet property="currentLabel" destination="dsN-SN-hlN" id="yQJ-Xr-uyJ"/>
+                <outlet property="voltageGraphView" destination="ZEJ-vP-K3m" id="9re-D2-ifO"/>
+                <outlet property="voltageLabel" destination="JFv-50-9mS" id="ZMw-5f-El6"/>
+            </connections>
+            <point key="canvasLocation" x="249" y="564"/>
         </view>
     </objects>
 </document>

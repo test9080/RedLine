@@ -6,6 +6,12 @@
 //  Copyright © 2016年 cn. All rights reserved.
 //
 
+/*
+ *
+ * 电池页面三个充电状态View
+ *
+ */
+
 #import <UIKit/UIKit.h>
 
 @interface TUBatteryProgressView : UIView

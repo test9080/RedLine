@@ -6,6 +6,12 @@
 //  Copyright © 2016年 cn. All rights reserved.
 //
 
+/*
+ *
+ *  电池页面建议小圆圈按钮View
+ *
+ */
+
 #import <UIKit/UIKit.h>
 
 @interface TUBatteryTipsView : UIView
