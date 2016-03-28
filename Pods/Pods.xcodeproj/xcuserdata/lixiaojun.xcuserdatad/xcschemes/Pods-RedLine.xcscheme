@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '37FFC0C60E39DE3D8195F85D'
+               BlueprintIdentifier = 'D36E0E964FF955D3D8802E52'
                BlueprintName = 'Pods-RedLine'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-RedLine.a'>
+               BuildableName = 'Pods_RedLine.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

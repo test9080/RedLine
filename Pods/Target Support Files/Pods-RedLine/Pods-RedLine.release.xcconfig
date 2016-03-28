@@ -1,5 +1,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/BEMSimpleLineGraph" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/MJExtension" "${PODS_ROOT}/Headers/Public/MJRefresh" "${PODS_ROOT}/Headers/Public/Masonry"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/BEMSimpleLineGraph" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/MJExtension" -isystem "${PODS_ROOT}/Headers/Public/MJRefresh" -isystem "${PODS_ROOT}/Headers/Public/Masonry"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"BEMSimpleLineGraph" -l"MBProgressHUD" -l"MJExtension" -l"MJRefresh" -l"Masonry" -framework "CoreGraphics" -framework "Foundation" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/AFNetworking.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/BEMSimpleLineGraph.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MBProgressHUD.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MJExtension.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MJRefresh.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Masonry.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "AFNetworking" -framework "BEMSimpleLineGraph" -framework "MBProgressHUD" -framework "MJExtension" -framework "MJRefresh" -framework "Masonry"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-RedLine
 PODS_ROOT = ${SRCROOT}/Pods
