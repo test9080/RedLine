@@ -11,6 +11,7 @@
 #import "TUBatteryHeaderView.h"
 #import "TUBatteryTipsView.h"
 #import "TUBatteryCapacityView.h"
+#import "TUBatteryProgressView.h"
 
 #import "TUSystemInfoManager.h"
 
@@ -56,6 +57,10 @@
     
     TUBatteryCapacityView *cycleView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 200)];
     [self.bgScrollView addSubview:cycleView];
+    
+    TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
+    [progressView setFrame:CGRectMake(0, 320, kScreenWidth, 60)];
+    [self.bgScrollView addSubview:progressView];
 
 }
 
