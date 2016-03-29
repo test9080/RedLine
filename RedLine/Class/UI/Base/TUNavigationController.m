@@ -38,4 +38,10 @@
 }
 */
 
+#pragma mark - Status Bar
+
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.topViewController;
+}
+
 @end

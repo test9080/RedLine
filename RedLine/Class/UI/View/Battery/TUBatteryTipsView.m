@@ -36,7 +36,7 @@
         [button setBackgroundColor:[UIColor whiteColor]];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitle:[NSString stringWithFormat:@"%d",i] forState:UIControlStateNormal];
-        button.frame = CGRectMake(margin + (margin + kButtonWH) * i, 10, kButtonWH, kButtonWH);
+        button.frame = CGRectMake(margin + (margin + kButtonWH) * i, 0, kButtonWH, kButtonWH);
         [button roundToCircle];
         button.tag = i;
         [button addTarget:self action:@selector(tipsBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
