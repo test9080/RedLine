@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TUBatteryController">
             <connections>
-                <outlet property="bgScrollView" destination="c2p-5q-XJ1" id="5Zf-Gk-qgy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,18 +14,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2p-5q-XJ1">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </scrollView>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="c2p-5q-XJ1" secondAttribute="trailing" id="MMk-Vp-UZQ"/>
-                <constraint firstAttribute="bottom" secondItem="c2p-5q-XJ1" secondAttribute="bottom" id="o1u-xV-or9"/>
-                <constraint firstItem="c2p-5q-XJ1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pKF-TC-s87"/>
-                <constraint firstItem="c2p-5q-XJ1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pmc-a2-NXh"/>
-            </constraints>
             <point key="canvasLocation" x="280" y="245"/>
         </view>
     </objects>
