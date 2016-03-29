@@ -17,4 +17,7 @@
 
 @interface TUBatteryCapacityView : UIView
 
+@property (strong, nonatomic) UILabel *batteryCapacityLabel;
+@property (strong, nonatomic) UILabel *batteryTimeLabel;
+
 @end

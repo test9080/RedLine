@@ -10,4 +10,6 @@
 
 @interface TUBatteryBottomView : UIView
 
+@property (strong, nonatomic) UILabel *temperatureValueLabel;//电池温度Value
+
 @end
