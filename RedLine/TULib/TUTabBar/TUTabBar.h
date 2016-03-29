@@ -34,7 +34,7 @@ static NSString const * keyTabBarItemUnSelectionTitleFont = @"UnSelectionTitleFo
 //- (BOOL)tabBarCanSelectFrom:(NSInteger)from to:(NSInteger)to;
 
 /** 选中 初次选中的时候 from = NSNotFound */
-- (void)tabBarDidSelectFrom:(NSInteger)from to:(NSInteger)to;
+- (void)tabBar:(TUTabBar *)tabBar didSelectFrom:(NSInteger)from to:(NSInteger)to;
 
 @end
 

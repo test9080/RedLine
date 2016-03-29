@@ -14,11 +14,10 @@
 #import <UIKit/UIKit.h>
 
 // 电池信息变化 通知
-#define kBatteryStatusChange @"batteryStatusChange"
-#define kBatteryLevelChange @"batteryLevelChange"
-#define kBatteryInfoChange @"batteryInfoChange"
-
-#define kSystemInfoChange @"systemInfoChange"
+#define kBatteryStatusDidChangeNotification    @"batteryStatusChange"
+#define kBatteryLevelDidChangeNotification     @"batteryLevelChange"
+#define kBatteryInfoDidChangeNotification      @"batteryInfoChange"
+#define kSystemInfoDidChangeNotification       @"systemInfoChange"
 
 
 // 电池信息
@@ -28,13 +27,12 @@
 @property (nonatomic, assign) NSInteger     voltage; // 电压mV "Voltage = 4320"
 @property (nonatomic, assign) NSInteger     amperage; // 电流mA "InstantAmperage = 137", 负数代表输出
 @property (nonatomic, assign) CGFloat       levelPercent; // 电量百分数
-@property (nonatomic, assign) CGFloat       levelMAH;   // 剩余
+@property (nonatomic, assign) CGFloat       levelMAH; // 剩余
 @property (nonatomic, assign) NSInteger     temperature; // 电池温度 "Temperature = 2750"
 @property (nonatomic, assign) NSInteger     cycleCount; // 电池循环次数 "CycleCount = 175"
 @property (nonatomic, assign) NSInteger     rawMaxCapacity; // 电池实际最大容量 "AppleRawMaxCapacity = 2569"
 @property (nonatomic, assign) NSInteger     designCapacity; // 电池设计最大容量 "DesignCapacity = 2855"
 @property (nonatomic, assign) NSInteger     rawCurrentCapacity; // 电池当前容量 "AppleRawCurrentCapacity = 1576"
-
 @property (nonatomic,   copy) NSString      *status; // 充电状态
 @property (nonatomic, assign) NSTimeInterval updateTime; // "UpdateTime = 1458934114"
 
@@ -52,6 +50,7 @@
 /** 单例 */
 + (TUSystemInfoManager *)manager;
 
+/** 刷新数据 */
 + (void)refreshInfo;
 
 @end

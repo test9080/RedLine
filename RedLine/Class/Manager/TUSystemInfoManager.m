@@ -14,6 +14,7 @@
 @end
 
 @interface TUSystemInfoManager ()
+
 @property(nonatomic, strong) ELLIOKitNodeInfo *root;
 @property(nonatomic, strong) ELLIOKitNodeInfo *locationInTree;
 @property(nonatomic, strong) NSMutableArray *batteryInfoArray;
@@ -30,17 +31,31 @@
     dispatch_once(&onceToken, ^{
         manager = [[self alloc] init];
         manager.batteryInfoArray = [NSMutableArray new];
-        manager.properitys = [NSMutableArray new];
+//        manager.properitys = [NSMutableArray new];
         manager.dumper = [ELLIOKitDumper new];
 
         [manager configNotification];
-        [manager loadIOKit];
+        
+//        [manager refreshBatteryInfo];
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     });
     return manager;
 }
 
 + (void)refreshInfo {
     [[self manager] loadIOKit];
+}
+
+- (void)refreshBatteryInfo {
+
+    [self.batteryInfoArray removeAllObjects];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.locationInTree = [_dumper dumpIOKitTree];
+        
+        [self getCharge:self.locationInTree];
+    });
 }
 
 - (void)configNotification {
@@ -93,13 +108,13 @@
     [self.batteryInfoArray removeAllObjects];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.root = [_dumper dumpIOKitTree];
-        self.locationInTree = _root;
+
+        self.locationInTree = [_dumper dumpIOKitTree];
         
-        [self getCharge:_root];
+        [self getCharge:self.locationInTree];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [kTUNotificationCenter postNotificationName:kSystemInfoChange object:self.properitys];
+            [kTUNotificationCenter postNotificationName:kSystemInfoDidChangeNotification object:self.properitys];
         });
     });
 }
@@ -110,7 +125,7 @@
     if ([node.name isEqualToString:@"AppleARMPMUCharger"]) {
         [_batteryInfoArray addObjectsFromArray:node.properties];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"电池相关信息：%@", _batteryInfoArray);
+//            NSLog(@"电池相关信息：%@", _batteryInfoArray);
             [self updateBatteryInfo];
         });
     }
@@ -202,20 +217,24 @@
             _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
         } else if ([obj rangeOfString:@"DesignCapacity = "].location == 0) {
             NSRange range = [obj rangeOfString:@"DesignCapacity = "];
-            _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
+            _batteryInfo.designCapacity = [obj substringFromIndex:range.length].floatValue;
         } else if ([obj rangeOfString:@"AppleRawMaxCapacity = "].location == 0) {
             NSRange range = [obj rangeOfString:@"AppleRawMaxCapacity = "];
-            _batteryInfo.amperage = [obj substringFromIndex:range.length].floatValue;
+            _batteryInfo.rawMaxCapacity = [obj substringFromIndex:range.length].floatValue;
+        } else if ([obj rangeOfString:@"AppleRawCurrentCapacity ="].location == 0) {
+            NSRange range = [obj rangeOfString:@"AppleRawCurrentCapacity ="];
+            _batteryInfo.rawCurrentCapacity = [obj substringFromIndex:range.length].floatValue;
         }
 
     }];
     
-    [kTUNotificationCenter postNotificationName:kBatteryInfoChange object:_batteryInfoArray];
+    [kTUNotificationCenter postNotificationName:kBatteryInfoDidChangeNotification object:_batteryInfoArray];
+//    [self refreshBatteryInfo];
 }
 
 - (void)batteryLevelUpdatedCB:(NSNotification*)notification {
     [self doUpdateBatteryStatus];
-    [kTUNotificationCenter postNotificationName:kBatteryLevelChange object:self.batteryInfo];
+    [kTUNotificationCenter postNotificationName:kBatteryLevelDidChangeNotification object:self.batteryInfo];
 }
 
 - (void)batteryStatusUpdatedCB:(NSNotification*)notification {
