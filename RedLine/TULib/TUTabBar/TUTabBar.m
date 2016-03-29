@@ -13,7 +13,7 @@
 #define kTabAnimateImageHeight (40)
 #define kTabAnimateImageWidthPecent (0.7)
 #define kTabAnimateImageScale (1.8)
-#define kTabLineColor   [UIColor colorWithRGB:0x444d76]
+#define kTabLineColor   kRGBA(74, 173, 201, 1)
 
 
 @interface TUTabBarItemView : UIView
@@ -136,22 +136,23 @@
     self.itemViews = [NSMutableArray array];
     self.items = [NSMutableArray array];
     self.currentIndex = NSNotFound;
-    [self addAnimateView];
     [self addTabLine];
+    [self addAnimateView];
     self.tabConfig = [NSMutableDictionary dictionaryWithDictionary:[self defaultConfig]];
 }
 
 - (void)addAnimateView {
-//    UIView *view = [[UIView alloc] init];
-    UIImageView *view = [[UIImageView alloc] init];
-    view.image = [UIImage imageNamed:@"tab_yuandi"];
+    UIView *view = [[UIView alloc] init];
+//    view.image = [UIImage imageNamed:@"tab_yuandi"];
+    view.layer.borderColor = kTabLineColor.CGColor;
+    view.layer.borderWidth = kScreenOneScale;
     self.animateView = view;
     [self addSubview:view];
 }
 
 - (void)addTabLine {
     UIView *view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, -2, CGRectGetWidth(self.bounds), 2);
+    view.frame = CGRectMake(0, -kScreenOneScale, CGRectGetWidth(self.bounds), kScreenOneScale);
     view.backgroundColor = kTabLineColor;
     [self addSubview:view];
 }
