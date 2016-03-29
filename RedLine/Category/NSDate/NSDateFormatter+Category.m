@@ -14,20 +14,17 @@
 
 @implementation NSDateFormatter (Category)
 
-+ (id)dateFormatter
-{
++ (instancetype)dateFormatter {
     return [[self alloc] init];
 }
 
-+ (id)dateFormatterWithFormat:(NSString *)dateFormat
-{
++ (instancetype)dateFormatterWithFormat:(NSString *)dateFormat {
     NSDateFormatter *dateFormatter = [[self alloc] init];
     dateFormatter.dateFormat = dateFormat;
     return dateFormatter;
 }
 
-+ (id)defaultDateFormatter
-{
++ (instancetype)defaultDateFormatter {
     return [self dateFormatterWithFormat:@"yyyy-MM-dd HH:mm:ss"];
 }
 

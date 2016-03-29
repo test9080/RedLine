@@ -9,9 +9,10 @@
 #import "TUTabBar.h"
 
 #define kTabBarHeight   (49)
-#define kTabImageHeight (28)
+#define kTabImageHeight (20)
 #define kTabAnimateImageHeight (40)
 #define kTabAnimateImageWidthPecent (0.7)
+#define kTabAnimateImageScale (1.8)
 
 @interface TUTabBarItemView : UIView
 
@@ -41,7 +42,7 @@
 //    CGFloat height = CGRectGetHeight(self.frame);
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, kTabImageHeight + 2, width, kTabBarHeight - kTabImageHeight);
+    label.frame = CGRectMake(0, kTabImageHeight + 6, width, kTabBarHeight - kTabImageHeight - 6);
     label.textAlignment = NSTextAlignmentCenter;
     self.titleLabel = label;
     
@@ -51,7 +52,7 @@
     self.badgeLabel = badgeLabel;
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(0, 0, width, kTabImageHeight);
+    imageView.frame = CGRectMake(0, 4, width, kTabImageHeight);
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView = imageView;
     
@@ -177,8 +178,6 @@
     self.animateView.backgroundColor = self.tabConfig[keyTabBarItemSelectionBackColor];
     self.animateView.layer.cornerRadius = animateW * 0.5;
     self.animateView.clipsToBounds = YES;
-//    [self bringSubviewToFront:self.animateView];
-
 
 }
 
@@ -193,50 +192,66 @@
             [self.delegate tabBar:self didSelectFrom:from to:to];
         }
         
-        if (from < _itemViews.count) {
-            UIFont *unSelectFont = self.tabConfig[keyTabBarItemUnSelectionTitleFont];
-            UIColor *unSelectColor = self.tabConfig[keyTabBarItemUnSelectionTextColor];
-            UIColor *unSelectBackColor = self.tabConfig[keyTabBarItemUnSelectionBackColor];
+        TUTabBarItemView *fromItemView = nil;
+        TUTabBarItemView *toItemView = nil;
 
-            TUTabBarItemView *itemView = self.itemViews[from];
-            itemView.isSelect = NO;
-            itemView.titleLabel.font = unSelectFont;
-            itemView.titleLabel.textColor = unSelectColor;
-            itemView.backgroundColor = unSelectBackColor;
-            itemView.imageView.image = self.items[from].unSelectImage;
+        if (from < _itemViews.count) {
+            fromItemView = self.itemViews[from];
+            fromItemView.imageView.image = self.items[from].unSelectImage;
         }
         
         if (to < _itemViews.count) {
-            UIFont *selectFont = self.tabConfig[keyTabBarItemSelectionTitleFont];
-            UIColor *selectColor = self.tabConfig[keyTabBarItemSelectionTextColor];
-            UIColor *selectBackColor = self.tabConfig[keyTabBarItemSelectionBackColor];
-
-            TUTabBarItemView *itemView = self.itemViews[to];
-            itemView.isSelect = YES;
-            itemView.titleLabel.font = selectFont;
-            itemView.titleLabel.textColor = selectColor;
-            itemView.backgroundColor = selectBackColor;
-            itemView.imageView.image = self.items[to].selectImage;
-            
-            // usingSpringWithDamping 抖动系数 越小抖的越厉害
-            // initialSpringVelocity 动画初始速度
-            CGFloat animateW = CGRectGetWidth(self.animateView.frame);
-            CGFloat itemW = CGRectGetWidth(itemView.frame);
-            CGFloat offSetW = (itemW - animateW) * 0.5;
-            
-            CGRect toFrame = self.animateView.frame;
-            toFrame.origin.x = itemW * to + offSetW;
-            
-            [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                
-                self.animateView.frame = toFrame;
-                //            imageView.frame = oldframe;
-                //        backgroundView.alpha = 0;
-            } completion:^(BOOL finished) {
-                //            [backgroundView removeFromSuperview];
-                
-            }];
+            toItemView = self.itemViews[to];
+            toItemView.imageView.image = self.items[to].selectImage;
         }
+        
+        
+        UIFont *unSelectFont = self.tabConfig[keyTabBarItemUnSelectionTitleFont];
+        UIColor *unSelectColor = self.tabConfig[keyTabBarItemUnSelectionTextColor];
+        UIColor *unSelectBackColor = self.tabConfig[keyTabBarItemUnSelectionBackColor];
+        
+        fromItemView.isSelect = NO;
+        fromItemView.titleLabel.font = unSelectFont;
+        fromItemView.titleLabel.textColor = unSelectColor;
+        fromItemView.backgroundColor = unSelectBackColor;
+        
+        
+        UIFont *selectFont = self.tabConfig[keyTabBarItemSelectionTitleFont];
+        UIColor *selectColor = self.tabConfig[keyTabBarItemSelectionTextColor];
+        UIColor *selectBackColor = self.tabConfig[keyTabBarItemSelectionBackColor];
+        
+        toItemView.isSelect = YES;
+        toItemView.titleLabel.font = selectFont;
+        toItemView.titleLabel.textColor = selectColor;
+        toItemView.backgroundColor = selectBackColor;
+
+        // usingSpringWithDamping 抖动系数 越小抖的越厉害
+        // initialSpringVelocity 动画初始速度
+        CGFloat animateW = CGRectGetWidth(self.animateView.frame);
+        CGFloat itemW = CGRectGetWidth(toItemView.frame);
+        CGFloat offSetW = (itemW - animateW) * 0.5;
+        
+        CGRect toFrame = self.animateView.frame;
+        toFrame.origin.x = itemW * to + offSetW;
+        
+        @weakify(self);
+        
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            fromItemView.imageView.transform = CGAffineTransformIdentity;
+            
+            CGAffineTransform form = CGAffineTransformMakeTranslation(0, -5);
+            
+            toItemView.imageView.transform = CGAffineTransformScale(form, kTabAnimateImageScale, kTabAnimateImageScale);
+
+            weak_self.animateView.frame = toFrame;
+            
+        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.1 animations:^{
+//                toItemView.imageView.transform = CGAffineTransformMakeScale(kTabAnimateImageScale ,kTabAnimateImageScale);
+//            }];
+        }];
+
 
     }
 }
@@ -247,7 +262,7 @@
 }
 
 - (NSDictionary *)defaultConfig {
-    return @{keyTabBarItemContentVerticalMargin : @6,
+    return @{
              keyTabBarItemSelectionTextColor    : [UIColor whiteColor],
              keyTabBarItemUnSelectionTextColor  : [UIColor whiteColor],
              keyTabBarItemSelectionTitleFont    : [UIFont systemFontOfSize:14.0],

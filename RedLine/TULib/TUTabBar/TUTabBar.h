@@ -10,8 +10,8 @@
 #import "TUTabBarItem.h"
 
 
-// This is mainly for the top/bottom margin of the imageView
-static NSString const * keyTabBarItemContentVerticalMargin = @"VerticalMargin";
+//// This is mainly for the top/bottom margin of the imageView
+//static NSString const * keyTabBarItemContentVerticalMargin = @"VerticalMargin";
 
 // The background color when the item is under selected/unselected
 static NSString const * keyTabBarItemSelectionBackColor = @"SelectionBackgroundColor";

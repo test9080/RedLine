@@ -14,9 +14,7 @@
 #import "TUBatteryProgressView.h"
 #import "TUBatteryVIView.h"
 #import "TUBatteryBottomView.h"
-
 #import "TUSystemInfoManager.h"
-
 #import "NSDate+Category.h"
 #import "UIColor+GGColor.h"
 
@@ -111,13 +109,9 @@
     
     NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", voltage, amperage, count, self.temperature, date];
     NSLog(@"%@", string);
-    [[[UIAlertView alloc] initWithTitle:@"SystemInfo" message:[note.object componentsJoinedByString:@"\n"] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
-    [[[UIAlertView alloc] initWithTitle:@"BatteryInfo" message:string delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
-    
     
     [self updateUI];
 }
-
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

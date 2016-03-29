@@ -31,12 +31,12 @@
     dispatch_once(&onceToken, ^{
         manager = [[self alloc] init];
         manager.batteryInfoArray = [NSMutableArray new];
-//        manager.properitys = [NSMutableArray new];
+        //        manager.properitys = [NSMutableArray new];
         manager.dumper = [ELLIOKitDumper new];
-
+        
         [manager configNotification];
         
-//        [manager refreshBatteryInfo];
+        //        [manager refreshBatteryInfo];
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     });
@@ -48,7 +48,7 @@
 }
 
 - (void)refreshBatteryInfo {
-
+    
     [self.batteryInfoArray removeAllObjects];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -75,7 +75,7 @@
 
 - (void)startBatteryMonitoring {
     UIDevice *device = [UIDevice currentDevice];
-
+    
     if (!device.batteryMonitoringEnabled) {
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -106,9 +106,9 @@
 - (void)loadIOKit {
     [self.properitys removeAllObjects];
     [self.batteryInfoArray removeAllObjects];
-
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
+        
         self.locationInTree = [_dumper dumpIOKitTree];
         
         [self getCharge:self.locationInTree];
@@ -125,7 +125,7 @@
     if ([node.name isEqualToString:@"AppleARMPMUCharger"]) {
         [_batteryInfoArray addObjectsFromArray:node.properties];
         dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"电池相关信息：%@", _batteryInfoArray);
+            //            NSLog(@"电池相关信息：%@", _batteryInfoArray);
             [self updateBatteryInfo];
         });
     }
@@ -197,7 +197,7 @@
 
 - (void)updateBatteryInfo {
     
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     [_batteryInfoArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj rangeOfString:@"Temperature = "].length) {
@@ -209,6 +209,7 @@
         } else if ([obj rangeOfString:@"CycleCount = "].length) {
             NSRange range = [obj rangeOfString:@"CycleCount = "];
             _batteryInfo.cycleCount = [obj substringFromIndex:range.length].floatValue;
+            _batteryInfo.remainLifeMonths = [self.class getBatteryLifeWithCycleCount:_batteryInfo.cycleCount];
         } else if ([obj rangeOfString:@"UpdateTime = "].location == 0) {
             NSRange range = [obj rangeOfString:@"UpdateTime = "];
             _batteryInfo.updateTime = [obj substringFromIndex:range.length].floatValue;
@@ -225,11 +226,11 @@
             NSRange range = [obj rangeOfString:@"AppleRawCurrentCapacity ="];
             _batteryInfo.rawCurrentCapacity = [obj substringFromIndex:range.length].floatValue;
         }
-
+        
     }];
     
     [kTUNotificationCenter postNotificationName:kBatteryInfoDidChangeNotification object:_batteryInfoArray];
-//    [self refreshBatteryInfo];
+    //    [self refreshBatteryInfo];
 }
 
 - (void)batteryLevelUpdatedCB:(NSNotification*)notification {
@@ -251,25 +252,29 @@
             // UIDeviceBatteryStateFull seems to be overwritten by UIDeviceBatteryStateCharging
             // when charging therefore it's more reliable if we check the battery level here
             // explicitly.
-            if (self.batteryInfo.levelPercent == 100)
-            {
-                self.batteryInfo.status = @"Fully charged";
-            }
-            else
-            {
-                self.batteryInfo.status = @"Charging";
+            if (self.batteryInfo.levelPercent == 100) {
+                self.batteryInfo.status = kTULocalString(@"fullyCharged");
+            } else {
+                self.batteryInfo.status = kTULocalString(@"charging");
             }
             break;
         case UIDeviceBatteryStateFull:
-            self.batteryInfo.status = @"Fully charged";
+            self.batteryInfo.status = kTULocalString(@"fullyCharged");
             break;
         case UIDeviceBatteryStateUnplugged:
-            self.batteryInfo.status = @"Unplugged";
+            self.batteryInfo.status = kTULocalString(@"unPlugged");
             break;
         case UIDeviceBatteryStateUnknown:
-            self.batteryInfo.status = @"Unknown";
+            self.batteryInfo.status = kTULocalString(@"unKnown");
             break;
     }
+}
+
+/** 获取电池剩余寿命 （剩余多少个月） */
++ (NSInteger)getBatteryLifeWithCycleCount:(NSInteger)cycleCount {
+    CGFloat months = cycleCount / 1500.0 * 60;
+    // 四舍五入
+    return ceilf(months);
 }
 
 

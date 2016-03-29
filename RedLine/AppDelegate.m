@@ -30,8 +30,8 @@
     return YES;
 }
 
-- (TUTabBarController *)setupViewControllers
-{
+- (TUTabBarController *)setupViewControllers {
+    
     TUTabBarController *tabBarController = [[TUTabBarController alloc] init];
     
     // 充电
@@ -54,47 +54,10 @@
     mineVC.title = @"我的";
     TUNavigationController *mineNav = [[TUNavigationController alloc] initWithRootViewController:mineVC];
     
-    
-//    tabBarController.delegate = self;
-//    tabBarController.tabBar.delegate = self;
-    
     [tabBarController setViewControllers:@[batteryNav, redLineNav, rankNav, mineNav]];
-    
-//    NSArray *titles = @[@"充电", @"我的"];
-//    NSArray *selectImages = @[@"电池", @"我的"];
-//    NSArray *unSelectImages = @[@"电池", @"我的"];
-//
-//    NSMutableArray *items = [NSMutableArray array];
-//
-//    for (int i = 0; i < 2; i ++) {
-//        TUTabBarItem *item = [[TUTabBarItem alloc] init];
-//        item.title = titles[i];
-//        item.selectImage = [UIImage imageNamed:selectImages[i]];
-//        item.unSelectImage = [UIImage imageNamed:unSelectImages[i]];
-//        [items addObject:item];
-//    }
-//    [self customizeTabBarForController:tabBarController];
     
     return tabBarController;
 }
-
-- (void)customizeTabBarForController:(TUTabBarController *)tabBarController {
-    
-//    NSArray *tabBarItemImages = @[@"tab1", @"tab2"];
-//    NSArray *tabBarItemSelectImages = @[@"tab1", @"tab2"];
-//    NSArray *titles = @[@"电池", @"我的"];
-//    
-//    NSMutableArray *tabBarItems = [[NSMutableArray alloc] init];
-//    for (int i = 0; i < titles.count; i++) {
-//        UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:tabBarItemImages[i]] selectedImage:[UIImage imageNamed:tabBarItemSelectImages[i]]];
-//
-//        [tabBarItems addObject:item];
-//    }
-////    [tabBarController.tabBar addi]
-
-//    [tabBarController.tabBar setItems:tabBarItems];
-}
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

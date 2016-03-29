@@ -1,0 +1,13 @@
+/* 
+  TUSystemInfo.strings
+  RedLine
+
+  Created by chengxianghe on 16/3/29.
+  Copyright © 2016年 cn. All rights reserved.
+*/
+
+// battery status
+"fullyCharged"  = "Fully Charged";
+"charging"      = "Charging";
+"unPlugged"     = "Unplugged";
+"unKnown"       = "Unknown";
