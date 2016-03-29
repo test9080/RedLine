@@ -13,6 +13,7 @@
 #import "TUBatteryCapacityView.h"
 #import "TUBatteryProgressView.h"
 #import "TUBatteryVIView.h"
+#import "TUBatteryBottomView.h"
 
 #import "TUSystemInfoManager.h"
 
@@ -20,7 +21,8 @@
 #import "UIColor+GGColor.h"
 
 @interface TUBatteryController ()
-@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
+
+@property (strong, nonatomic) UIScrollView *bgScrollView;
 
 @end
 
@@ -30,6 +32,8 @@
     [super viewDidLoad];
 
     [self UIConfig];
+    
+//    self.navigationController.navigationBarHidden = YES;
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
@@ -44,8 +48,8 @@
 
 #pragma mark - UIConfig
 - (void)UIConfig {
-    self.bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
-    [self.bgScrollView setContentSize:CGSizeMake(kScreenWidth, kScreenHeight *2)];
+    [self.view addSubview:self.bgScrollView];
+
     
     //已开启全面保护模式
     TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
@@ -68,6 +72,10 @@
     TUBatteryVIView *viView = [TUBatteryVIView showGraphView];
     [viView setFrame:CGRectMake(0, 410, kScreenWidth, 90)];
     [self.bgScrollView addSubview:viView];
+    
+    TUBatteryBottomView *bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, 670, kScreenWidth, 160)];
+    [self.bgScrollView addSubview:bottomView];
+
 
 }
 
@@ -84,6 +92,17 @@
 //    [[[UIAlertView alloc] initWithTitle:@"SystemInfo" message:[note.object componentsJoinedByString:@"\n"] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
 //    [[[UIAlertView alloc] initWithTitle:@"BatteryInfo" message:string delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
 
+}
+
+
+#pragma mark - setter & getter 
+- (UIScrollView *)bgScrollView {
+    if (!_bgScrollView) {
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
+        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 850)];
+    }
+    return _bgScrollView;
 }
 
 - (void)didReceiveMemoryWarning {

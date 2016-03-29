@@ -25,7 +25,6 @@
 
 @implementation TUBatteryCapacityView
 
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -38,11 +37,11 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    [self initAnimation2];
     [self initLable];
     
 //    [self initAnimation];
     
-    [self initAnimation2];
 }
 
 - (void)initLable {
@@ -127,7 +126,7 @@
 #pragma mark - getter or setter
 - (UILabel *)batteryCapacityLabel {
     if (!_batteryCapacityLabel) {
-        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 100, self.height/2 - 50, 200, 100)];
+        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 50, self.height/2 - 20, 100, 40)];
         _batteryCapacityLabel.textColor = [UIColor whiteColor];
         _batteryCapacityLabel.font = [UIFont systemFontOfSize:30];
         _batteryCapacityLabel.backgroundColor = [UIColor clearColor];
