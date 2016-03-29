@@ -252,6 +252,8 @@
             // UIDeviceBatteryStateFull seems to be overwritten by UIDeviceBatteryStateCharging
             // when charging therefore it's more reliable if we check the battery level here
             // explicitly.
+            kLocalizedString(@"", @"");
+            kTULocalString(@"");
             if (self.batteryInfo.levelPercent == 100) {
                 self.batteryInfo.status = kTULocalString(@"fullyCharged");
             } else {
