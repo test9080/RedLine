@@ -24,6 +24,7 @@
 		14F8B1121CA631380006287C /* TUTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1111CA631380006287C /* TUTabBar.m */; };
 		14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1141CA633B70006287C /* TUTabBarItem.m */; };
 		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
+		14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */; };
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
@@ -72,6 +73,8 @@
 		14F8B1111CA631380006287C /* TUTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBar.m; sourceTree = "<group>"; };
 		14F8B1131CA633B70006287C /* TUTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUTabBarItem.h; sourceTree = "<group>"; };
 		14F8B1141CA633B70006287C /* TUTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarItem.m; sourceTree = "<group>"; };
+		14F8B11D1CAA1FF30006287C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TUSystemInfoManager.strings; sourceTree = "<group>"; };
+		14F8B11F1CAA1FF80006287C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TUSystemInfoManager.strings"; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		951691417E220DF6ACB14566 /* Pods_RedLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryCapacityView.h; sourceTree = "<group>"; };
@@ -177,6 +180,7 @@
 				14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */,
 				14143BAD1CA59A560044441B /* TUSystemInfoManager.h */,
 				14143BAE1CA59A560044441B /* TUSystemInfoManager.m */,
+				14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -452,6 +456,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A3DFE4501CA4ED13002C3E13;
 			productRefGroup = A3DFE45A1CA4ED13002C3E13 /* Products */;
@@ -469,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
+				14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */,
 				14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */,
 				A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */,
 				14268A6F1CA580C00084C07E /* TUMineController.xib in Resources */,
@@ -560,6 +566,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14F8B11D1CAA1FF30006287C /* en */,
+				14F8B11F1CAA1FF80006287C /* zh-Hans */,
+			);
+			name = TUSystemInfoManager.strings;
+			sourceTree = "<group>";
+		};
 		A3DFE46A1CA4ED13002C3E13 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

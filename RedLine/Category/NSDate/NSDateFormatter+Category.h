@@ -14,9 +14,11 @@
 
 @interface NSDateFormatter (Category)
 
-+ (id)dateFormatter;
-+ (id)dateFormatterWithFormat:(NSString *)dateFormat;
++ (instancetype)dateFormatter;
 
-+ (id)defaultDateFormatter;/*yyyy-MM-dd HH:mm:ss*/
++ (instancetype)dateFormatterWithFormat:(NSString *)dateFormat;
+
+/** yyyy-MM-dd HH:mm:ss */
++ (instancetype)defaultDateFormatter;
 
 @end

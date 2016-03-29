@@ -34,6 +34,8 @@
 @property (nonatomic, assign) NSInteger     designCapacity; // 电池设计最大容量 "DesignCapacity = 2855"
 @property (nonatomic, assign) NSInteger     rawCurrentCapacity; // 电池当前容量 "AppleRawCurrentCapacity = 1576"
 @property (nonatomic,   copy) NSString      *status; // 充电状态
+@property (nonatomic, assign) NSInteger     remainLifeMonths; // 剩余寿命（月）
+
 @property (nonatomic, assign) NSTimeInterval updateTime; // "UpdateTime = 1458934114"
 
 @end
@@ -52,6 +54,9 @@
 
 /** 刷新数据 */
 + (void)refreshInfo;
+
+///** 获取电池剩余寿命 （剩余多少个月） */
+//+ (NSInteger)getBatteryLifeWithCycleCount:(NSInteger)cycleCount;
 
 @end
 
