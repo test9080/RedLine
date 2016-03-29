@@ -57,13 +57,10 @@
 }
 
 - (void)next {
-    NSLog(@"走了一次");
     self.progressView.progress = self.progressView.progress + 0.01;
     // 进度条走完 销毁定时器
     if (self.progressView.progress == 1.0) {
         [_timer invalidate];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"battery finish" message:@"finish" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
     }
 }
 
