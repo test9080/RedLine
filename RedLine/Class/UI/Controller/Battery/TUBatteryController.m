@@ -33,17 +33,13 @@
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
-                                  name:kBatteryInfoChange object:nil];
-    [kTUNotificationCenter addObserver:self
-                              selector:@selector(updateSystemInfo:)
-                                  name:kSystemInfoChange object:nil];
-
+                                  name:kBatteryInfoDidChangeNotification
+                                object:nil];
     
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
-    NSUInteger levelMAH = [TUSystemInfoManager manager].batteryInfo.levelMAH;
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
-    NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
+    NSLog(@"level:%f, status:%@", level, status);
 }
 
 #pragma mark - UIConfig
@@ -86,16 +82,9 @@
     NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", voltage, amperage, count, temperature, date];
     NSLog(@"%@", string);
 //    [[[UIAlertView alloc] initWithTitle:@"SystemInfo" message:[note.object componentsJoinedByString:@"\n"] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
-    [[[UIAlertView alloc] initWithTitle:@"BatteryInfo" message:string delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"BatteryInfo" message:string delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil] show];
 
 }
-
-- (void)updateSystemInfo:(NSNotification *)note {
-    
-    NSArray *array = note.object;
-    
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

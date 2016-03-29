@@ -189,8 +189,8 @@
 
         self.currentIndex = sender.tag;
 
-        if ([self.delegate respondsToSelector:@selector(tabBarDidSelectFrom:to:)]) {
-            [self.delegate tabBarDidSelectFrom:from to:to];
+        if ([self.delegate respondsToSelector:@selector(tabBar:didSelectFrom:to:)]) {
+            [self.delegate tabBar:self didSelectFrom:from to:to];
         }
         
         if (from < _itemViews.count) {
