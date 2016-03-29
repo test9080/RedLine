@@ -32,6 +32,11 @@
 		A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */; };
 		A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */; };
 		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
+		A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109AE1CAA71110035610D /* BEMAverageLine.m */; };
+		A1D109B81CAA71110035610D /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B01CAA71110035610D /* BEMCircle.m */; };
+		A1D109B91CAA71110035610D /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B21CAA71110035610D /* BEMLine.m */; };
+		A1D109BA1CAA71110035610D /* BEMPermanentPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */; };
+		A1D109BB1CAA71110035610D /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */; };
 		A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */; };
 		A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
@@ -90,6 +95,16 @@
 		A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryBottomView.m; sourceTree = "<group>"; };
 		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
 		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
+		A1D109AD1CAA71110035610D /* BEMAverageLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAverageLine.h; sourceTree = "<group>"; };
+		A1D109AE1CAA71110035610D /* BEMAverageLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAverageLine.m; sourceTree = "<group>"; };
+		A1D109AF1CAA71110035610D /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
+		A1D109B01CAA71110035610D /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
+		A1D109B11CAA71110035610D /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
+		A1D109B21CAA71110035610D /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
+		A1D109B31CAA71110035610D /* BEMPermanentPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPermanentPopupView.h; sourceTree = "<group>"; };
+		A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPermanentPopupView.m; sourceTree = "<group>"; };
+		A1D109B51CAA71110035610D /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
+		A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryProgressView.h; sourceTree = "<group>"; };
 		A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryProgressView.m; sourceTree = "<group>"; };
 		A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryProgressView.xib; sourceTree = "<group>"; };
@@ -205,13 +220,6 @@
 				14F8B0FC1CA5BE0C0006287C /* IOKit.framework */,
 			);
 			path = Framework;
-			sourceTree = "<group>";
-		};
-		14268A471CA57C6A0084C07E /* OpenLib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OpenLib;
 			sourceTree = "<group>";
 		};
 		14268A491CA57E570084C07E /* UI */ = {
@@ -350,6 +358,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A1D1099B1CAA70C40035610D /* OpenLib */ = {
+			isa = PBXGroup;
+			children = (
+				A1D109AC1CAA71110035610D /* Classes */,
+			);
+			path = OpenLib;
+			sourceTree = "<group>";
+		};
+		A1D109AC1CAA71110035610D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A1D109AD1CAA71110035610D /* BEMAverageLine.h */,
+				A1D109AE1CAA71110035610D /* BEMAverageLine.m */,
+				A1D109AF1CAA71110035610D /* BEMCircle.h */,
+				A1D109B01CAA71110035610D /* BEMCircle.m */,
+				A1D109B11CAA71110035610D /* BEMLine.h */,
+				A1D109B21CAA71110035610D /* BEMLine.m */,
+				A1D109B31CAA71110035610D /* BEMPermanentPopupView.h */,
+				A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */,
+				A1D109B51CAA71110035610D /* BEMSimpleLineGraphView.h */,
+				A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		A3DFE4501CA4ED13002C3E13 = {
 			isa = PBXGroup;
 			children = (
@@ -374,7 +407,7 @@
 				14F8B10E1CA6310C0006287C /* TULib */,
 				14143BB21CA59DDC0044441B /* Category */,
 				14268A461CA57C6A0084C07E /* Framework */,
-				14268A471CA57C6A0084C07E /* OpenLib */,
+				A1D1099B1CAA70C40035610D /* OpenLib */,
 				14268A3D1CA57C6A0084C07E /* Class */,
 				A3DFE45F1CA4ED13002C3E13 /* AppDelegate.h */,
 				A3DFE4601CA4ED13002C3E13 /* AppDelegate.m */,
@@ -539,14 +572,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
+				A1D109BA1CAA71110035610D /* BEMPermanentPopupView.m in Sources */,
 				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
 				A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */,
+				A1D109B91CAA71110035610D /* BEMLine.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
 				14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */,
+				A1D109BB1CAA71110035610D /* BEMSimpleLineGraphView.m in Sources */,
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
 				14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */,
 				A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */,
@@ -558,8 +594,10 @@
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
+				A1D109B81CAA71110035610D /* BEMCircle.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,
+				A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

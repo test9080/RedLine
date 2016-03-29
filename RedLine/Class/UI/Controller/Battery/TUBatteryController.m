@@ -25,12 +25,16 @@
 
 @property (strong, nonatomic) TUBatteryCapacityView *capacityView; //电量圆圈的View
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
-
+@property (strong, nonatomic) TUBatteryVIView *viView;     //电压电流折线图
 
 @property (strong, nonatomic) NSString *batteryStatus;     //电池状态
 @property (assign, nonatomic) CGFloat levelPercent;        //电量百分比
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
+@property (assign, nonatomic) float voltage; // 电压
+@property (assign, nonatomic) float current; // 电流
 
+@property (strong, nonatomic) NSMutableArray *voltageArray;
+@property (strong, nonatomic) NSMutableArray *currentArray;
 
 @end
 
@@ -61,6 +65,9 @@
     [self setNeedsStatusBarAppearanceUpdate];
 
     [self.view addSubview:self.bgScrollView];
+    
+    self.voltageArray = [NSMutableArray array];
+    self.currentArray = [NSMutableArray array];
 
     //headerStateLabel
     [self.bgScrollView addSubview:self.headerLabel];
@@ -83,9 +90,9 @@
     [self.bgScrollView addSubview:progressView];
     
     //电压电流折线View
-    TUBatteryVIView *viView = [TUBatteryVIView showGraphView];
-    [viView setFrame:CGRectMake(0, 454, kScreenWidth, 90)];
-    [self.bgScrollView addSubview:viView];
+    self.viView = [TUBatteryVIView showGraphView];
+    [self.viView setFrame:CGRectMake(0, 454, kScreenWidth, 90)];
+    [self.bgScrollView addSubview:self.viView];
     
     //电池温度以及剩余寿命的View
     self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, 714, kScreenWidth, 160)];
@@ -96,18 +103,16 @@
 
 - (void)updateBatteryInfo:(NSNotification *)note {
     self.batteryStatus = [TUSystemInfoManager manager].batteryInfo.status;
-    
     self.levelPercent = [TUSystemInfoManager manager].batteryInfo.levelPercent;
-
     self.temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
     
-    CGFloat voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
-    CGFloat amperage = [TUSystemInfoManager manager].batteryInfo.amperage;
+    self.voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
+    self.current = [TUSystemInfoManager manager].batteryInfo.amperage/1000.0;
     CGFloat count = [TUSystemInfoManager manager].batteryInfo.cycleCount;
 
     NSString *date = [[NSDate dateFromStringOrNumber:@([TUSystemInfoManager manager].batteryInfo.updateTime)] standardTimeIntervalDescription];
     
-    NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", voltage, amperage, count, self.temperature, date];
+    NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", self.voltage, self.current, count, self.temperature, date];
     NSLog(@"%@", string);
     
     [self updateUI];
@@ -122,6 +127,7 @@
     [self updateBatteryStatus];
     [self updateBatteryCapacity];
     [self updateTemperature];
+    [self updateVI];
 }
 
 - (void)updateBatteryStatus {
@@ -146,6 +152,18 @@
 
 - (void)updateTemperature {
     self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
+}
+
+- (void)updateVI {
+    self.viView.voltageLabel.text = [NSString stringWithFormat:@"当前电压:%.3fV",self.voltage];
+    self.viView.currentLabel.text = [NSString stringWithFormat:@"当前电流:%.3fA",self.current];
+    
+    
+    
+    [self.voltageArray addObject:[NSNumber numberWithFloat:self.voltage]];
+    [self.currentArray addObject:[NSNumber numberWithFloat:self.current]];
+
+    [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
 }
 
 #pragma mark - setter & getter 
