@@ -11,5 +11,4 @@ target “RedLine” do
     pod 'AFNetworking', '~> 3.0'
     pod 'MBProgressHUD', '~> 0.9.1'
     pod 'Masonry'
-    pod 'BEMSimpleLineGraph'
 end

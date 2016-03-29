@@ -14,15 +14,12 @@
 
 @interface TUBatteryVIView ()<BEMSimpleLineGraphDelegate,BEMSimpleLineGraphDataSource>
 
-
-@property (weak, nonatomic) IBOutlet UILabel *voltageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *currentLabel;
-
 @property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *voltageGraphView;
 @property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *currentGraphView;
 
-@property (strong, nonatomic)NSMutableArray *voltageArray;
-@property (strong, nonatomic)NSMutableArray *currentArray;
+@property (strong, nonatomic)NSMutableArray *voltageArray;//电压valueArray
+@property (strong, nonatomic)NSMutableArray *currentArray;//电流valueArray
+
 
 @end
 
@@ -52,10 +49,10 @@
 }
 
 - (void)setup {
-    for (int i = 0 ; i < 9; i ++ ) {
-        [self.voltageArray addObject:@([self getRandomFloat])]; // Random values for the graph
-        [self.currentArray addObject:@([self getRandomFloat])]; // Random values for the graph
-    }
+//    for (int i = 0 ; i < 9; i ++ ) {
+//        [self.voltageArray addObject:@([self getRandomFloat])]; // Random values for the graph
+//        [self.currentArray addObject:@([self getRandomFloat])]; // Random values for the graph
+//    }
     
     // Create a gradient to apply to the bottom portion of the graph
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
@@ -80,14 +77,14 @@
     self.voltageGraphView.enableReferenceAxisFrame = YES;
     
     // Draw an average line
-    self.voltageGraphView.averageLine.enableAverageLine = YES;
-    self.voltageGraphView.averageLine.alpha = 0.6;
-    self.voltageGraphView.averageLine.color = [UIColor darkGrayColor];
-    self.voltageGraphView.averageLine.width = 2.5;
-    self.voltageGraphView.averageLine.dashPattern = @[@(2),@(2)];
+//    self.voltageGraphView.averageLine.enableAverageLine = YES;
+//    self.voltageGraphView.averageLine.alpha = 0.6;
+//    self.voltageGraphView.averageLine.color = [UIColor darkGrayColor];
+//    self.voltageGraphView.averageLine.width = 2.5;
+//    self.voltageGraphView.averageLine.dashPattern = @[@(2),@(2)];
     
     // Set the graph's animation style to draw, fade, or none
-    self.voltageGraphView.animationGraphStyle = BEMLineAnimationDraw;
+//    self.voltageGraphView.animationGraphStyle = BEMLineAnimationDraw;
     
     // Dash the y reference lines
     self.voltageGraphView.lineDashPatternForReferenceYAxisLines = @[@(2),@(2)];
@@ -96,7 +93,6 @@
     self.voltageGraphView.formatStringForValues = @"%.1f";
     
     self.voltageGraphView.enableBezierCurve = YES;
-    self.voltageGraphView.animationGraphStyle = BEMLineAnimationFade;
     
     self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff60b1ce];
     self.voltageGraphView.colorTop = [UIColor clearColor];
@@ -144,15 +140,31 @@
     return i1;
 }
 
+#pragma updateUI
+- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray {
+    self.voltageArray = voltageArray;
+    self.currentArray = currentArray;
+    [self.voltageGraphView reloadGraph];
+    [self.currentGraphView reloadGraph];
+}
+
 
 #pragma mark - SimpleLineGraph Data Source
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return (int)self.currentArray.count;
+    if (graph == self.voltageGraphView) {
+        return (int)self.voltageArray.count;
+    } else {
+        return (int)self.currentArray.count;
+    }
 }
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    return [[self.currentArray objectAtIndex:index] doubleValue];
+    if (graph == self.voltageGraphView) {
+        return [[self.voltageArray objectAtIndex:index] doubleValue];
+    } else {
+        return [[self.currentArray objectAtIndex:index] doubleValue];
+    }
 }
 
 
