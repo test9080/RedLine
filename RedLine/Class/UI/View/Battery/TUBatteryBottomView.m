@@ -21,7 +21,6 @@
 @property (strong, nonatomic) CAShapeLayer *batteryDotLayer;
 
 @property (strong, nonatomic) UILabel *temperatureLabel;
-@property (strong, nonatomic) UILabel *temperatureValueLabel;
 
 @property (strong, nonatomic) UILabel *batteryLabel;
 @property (strong, nonatomic) UILabel *batteryValueLabel;
