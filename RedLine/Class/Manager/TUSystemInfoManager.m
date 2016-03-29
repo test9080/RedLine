@@ -252,8 +252,7 @@
             // UIDeviceBatteryStateFull seems to be overwritten by UIDeviceBatteryStateCharging
             // when charging therefore it's more reliable if we check the battery level here
             // explicitly.
-            kLocalizedString(@"", @"");
-            kTULocalString(@"");
+
             if (self.batteryInfo.levelPercent == 100) {
                 self.batteryInfo.status = kTULocalString(@"fullyCharged");
             } else {
@@ -275,8 +274,10 @@
 /** 获取电池剩余寿命 （剩余多少个月） */
 + (NSInteger)getBatteryLifeWithCycleCount:(NSInteger)cycleCount {
     CGFloat months = cycleCount / 1500.0 * 60;
-    // 四舍五入
-    return ceilf(months);
+    // 四舍五入 至少剩余寿命1个月
+    NSInteger life = 60 - ceilf(months);
+    NSLog(@"life:%lu", life);
+    return MAX(1, life);
 }
 
 
