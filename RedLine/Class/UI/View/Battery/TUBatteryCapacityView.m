@@ -15,8 +15,6 @@
     CADisplayLink *_disPlayLink;
 }
 
-@property (strong, nonatomic) UILabel *batteryCapacityLabel;
-@property (strong, nonatomic) UILabel *batteryTimeLabel;
 
 @property (strong, nonatomic) CALayer *animationLayer;
 
@@ -126,7 +124,7 @@
 #pragma mark - getter or setter
 - (UILabel *)batteryCapacityLabel {
     if (!_batteryCapacityLabel) {
-        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 50, self.height/2 - 20, 100, 40)];
+        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 60, self.height/2 - 20, 120, 40)];
         _batteryCapacityLabel.textColor = [UIColor whiteColor];
         _batteryCapacityLabel.font = [UIFont systemFontOfSize:30];
         _batteryCapacityLabel.backgroundColor = [UIColor clearColor];
