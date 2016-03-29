@@ -1,0 +1,13 @@
+/* 
+  TUSystemInfo.strings
+  RedLine
+
+  Created by chengxianghe on 16/3/29.
+  Copyright © 2016年 cn. All rights reserved.
+*/
+
+// battery status
+"fullyCharged"  = "电池已充满";
+"charging"      = "正在充电";
+"unPlugged"     = "未接入电源";
+"unKnown"       = "未知状态";

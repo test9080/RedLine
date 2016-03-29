@@ -61,5 +61,8 @@
 #endif
 #endif
 
+// local
+#define kTULocalString(_S_, ...) NSLocalizedStringFromTable([NSString stringWithFormat:(_S_), ##__VA_ARGS__],@"TUSystemInfoManager",nil)
+
 
 #endif /* TUUIMacro_h */

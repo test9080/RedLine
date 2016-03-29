@@ -19,8 +19,8 @@
     [super viewDidLoad];
 
     NSArray *titles = @[@"充电", @"红线", @"排行", @"我的"];
-    NSArray *selectImages = @[@"充电", @"红线", @"排行", @"我的"];
-    NSArray *unSelectImages = @[@"充电", @"红线", @"排行", @"我的"];
+    NSArray *selectImages = @[@"tab_chongdianbig", @"tab_hongxianbig", @"tab_paihangbig", @"tab_wodebig"];
+    NSArray *unSelectImages = @[@"tab_chongdian", @"tab_hongxian", @"tab_paihang", @"tab_wode"];
     
     NSMutableArray *items = [NSMutableArray array];
     

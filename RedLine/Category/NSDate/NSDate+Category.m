@@ -39,10 +39,10 @@
 }
 
 
-/**爱生活定制 - 距离当前的时间间隔描述*/
+/** yyyy-MM-dd HH:mm:ss */
 - (NSString *)standardTimeIntervalDescription
 {
-    NSDateFormatter *dateFormatter = [NSDateFormatter dateFormatterWithFormat:@"yyyy-MM-dd HH:mm"];
+    NSDateFormatter *dateFormatter = [NSDateFormatter defaultDateFormatter];
     return [dateFormatter stringFromDate:self];
 }
 
