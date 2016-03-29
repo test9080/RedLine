@@ -16,5 +16,6 @@
 #import <Foundation/Foundation.h>
 
 #import "TUUIMacro.h"
+#import "UIColor+GGColor.h"
 
 #endif /* RedLine_pch */
