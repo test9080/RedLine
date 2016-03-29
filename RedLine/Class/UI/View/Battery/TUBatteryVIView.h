@@ -18,4 +18,10 @@
 
 + (TUBatteryVIView *)showGraphView;
 
+@property (weak, nonatomic) IBOutlet UILabel *voltageLabel;//电压显示
+@property (weak, nonatomic) IBOutlet UILabel *currentLabel;//电流显示
+
+
+- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray;
+
 @end

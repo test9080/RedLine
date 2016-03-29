@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BEMSimpleLineGraph.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +42,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>506D30D16BCB896FE1737BD01A1E73C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6847254D016329D4A531D34ED2B6DF81</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6B929B3BF9C757D3B8B9F66FCDE6AADA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>78DD729E6F6BE3C1326232CD5DFFFBB7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
