@@ -20,10 +20,13 @@
 @property (strong, nonatomic) CAShapeLayer *temperatureDotLayer;
 @property (strong, nonatomic) CAShapeLayer *batteryDotLayer;
 
+@property (strong, nonatomic) UIImageView *temperatureImage;
+@property (strong, nonatomic) UIImageView *batteryLifeImage;
+
+
 @property (strong, nonatomic) UILabel *temperatureLabel;
 
 @property (strong, nonatomic) UILabel *batteryLabel;
-@property (strong, nonatomic) UILabel *batteryValueLabel;
 
 
 @end
@@ -44,10 +47,13 @@
 }
 
 - (void)setup {
-    [self addSubview:self.temperatureView];
+    
+    [self addSubview:self.temperatureImage];
+    
+//    [self addSubview:self.temperatureView];
     [self addSubview:self.batteryLifeView];
     
-    [self.temperatureView addSubview:self.temperatureLabel];
+//    [self.temperatureView addSubview:self.temperatureLabel];
     [self.temperatureView addSubview:self.temperatureValueLabel];
     
     [self.batteryLifeView addSubview:self.batteryLabel];
@@ -236,6 +242,14 @@
         _batteryValueLabel.text = @"2年6个月";
     }
     return _batteryValueLabel;
+}
+
+- (UIImageView *)temperatureImage {
+    if (!_temperatureImage) {
+        _temperatureImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 - 151, 20, 131, 131)];
+        _temperatureImage.image = [UIImage imageNamed:@"battery_wendu"];
+    }
+    return _temperatureImage;
 }
 
 /*
