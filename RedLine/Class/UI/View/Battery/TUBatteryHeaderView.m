@@ -16,6 +16,7 @@
 @end
 
 @implementation TUBatteryHeaderView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -34,15 +35,15 @@
 #pragma mark - setter & getter
 - (UILabel *)stateLabel {
     if (!_stateLabel) {
-        _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 100, 10, 200, 30)];
+        _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.width - 175) / 2, 0, 175, 30)];
         _stateLabel.textColor = [UIColor whiteColor];
         _stateLabel.textAlignment = NSTextAlignmentCenter;
-        _stateLabel.font = [UIFont systemFontOfSize:18];
+        _stateLabel.font = [UIFont systemFontOfSize:12];
         _stateLabel.text = @"已开启全面保护模式";
         
         [_stateLabel.layer setMasksToBounds:YES];
-        [_stateLabel.layer setCornerRadius:18.0]; //设置矩形四个圆角半径
-        [_stateLabel.layer setBorderWidth:1.0]; //边框宽度
+        [_stateLabel.layer setCornerRadius:_stateLabel.bounds.size.height / 2.0]; //设置矩形四个圆角半径
+        [_stateLabel.layer setBorderWidth:1]; //边框宽度
         [_stateLabel.layer setBorderColor:[UIColor whiteColor].CGColor];//边框颜色
 
     }

@@ -44,7 +44,7 @@
 
 - (void)initLable {
     [self addSubview:self.batteryCapacityLabel];
-    self.batteryCapacityLabel.text = @"10%";
+//    self.batteryCapacityLabel.text = @"10%";
     
     [self addSubview:self.batteryTimeLabel];
     self.batteryTimeLabel.text = @"充满所需1小时22分钟";
@@ -69,12 +69,12 @@
     
     for (int i = 0; i < pulsingCount; i++) {
         CALayer * pulsingLayer = [[CALayer alloc]init];
-        pulsingLayer.cornerRadius = self.frame.size.height/2;
-        pulsingLayer.frame = CGRectMake(0, 0, pulsingLayer.cornerRadius * 2, pulsingLayer.cornerRadius * 2);
-        pulsingLayer.backgroundColor = [UIColor redColor].CGColor;//圈圈背景颜色，不设置则为透明。
-        pulsingLayer.borderColor = [UIColor redColor].CGColor;
+        pulsingLayer.frame = CGRectMake((self.width - 220) / 2, 0, 220, 220);
+        pulsingLayer.cornerRadius = pulsingLayer.frame.size.width / 2;
+        pulsingLayer.backgroundColor = [self circleDisplayColor].CGColor;//圈圈背景颜色，不设置则为透明。
+        pulsingLayer.borderColor = [self circleDisplayColor].CGColor;
         pulsingLayer.borderWidth = 1.0;
-        pulsingLayer.position  = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+//        pulsingLayer.position  = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
 
         CAMediaTimingFunction * defaultCurve = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         
@@ -89,7 +89,7 @@
         //圆圈初始大小以及最终大小比率。
         CABasicAnimation * scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         scaleAnimation.autoreverses = NO;
-        scaleAnimation.fromValue = [NSNumber numberWithDouble:0.2];
+        scaleAnimation.fromValue = [NSNumber numberWithDouble:0.27];
         scaleAnimation.toValue = [NSNumber numberWithDouble:1.0];
         
         //圆圈在n个运行阶段的透明度，n为数组长度。
@@ -124,9 +124,9 @@
 #pragma mark - getter or setter
 - (UILabel *)batteryCapacityLabel {
     if (!_batteryCapacityLabel) {
-        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 60, self.height/2 - 20, 120, 40)];
+        _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 60, 220 / 2 - 20, 120, 40)];
         _batteryCapacityLabel.textColor = [UIColor whiteColor];
-        _batteryCapacityLabel.font = [UIFont systemFontOfSize:30];
+        _batteryCapacityLabel.font = [UIFont systemFontOfSize:25];
         _batteryCapacityLabel.backgroundColor = [UIColor clearColor];
         _batteryCapacityLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -135,7 +135,7 @@
 
 - (UILabel *)batteryTimeLabel {
     if (!_batteryTimeLabel) {
-        _batteryTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 150, self.height - 25, 300, 20)];
+        _batteryTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 220 + 20, self.width, 20)];
         _batteryTimeLabel.textColor = [UIColor whiteColor];
         _batteryTimeLabel.font = [UIFont systemFontOfSize:17];
         _batteryTimeLabel.backgroundColor = [UIColor clearColor];
@@ -220,5 +220,23 @@
     // Drawing code
 }
 */
+
+#pragma mark - color help
+
+- (UIColor *)circleDisplayColor
+{
+    if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleRed)
+    {
+        return [UIColor colorWithARGB:0xffd74760];
+    }
+    else if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleYellow)
+    {
+        return [UIColor yellowColor];
+    }
+    else
+    {
+        return [UIColor greenColor];
+    }
+}
 
 @end

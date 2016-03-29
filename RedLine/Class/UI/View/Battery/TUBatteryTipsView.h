@@ -16,7 +16,6 @@
 
 @interface TUBatteryTipsView : UIView
 
-
 - (instancetype)initWithFrame:(CGRect)frame count:(NSInteger)count;
 
 @end
