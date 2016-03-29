@@ -34,10 +34,20 @@
 {
     TUTabBarController *tabBarController = [[TUTabBarController alloc] init];
     
-    // 电池
+    // 充电
     TUBatteryController *batteryVC = [[TUBatteryController alloc]init];
-    batteryVC.title = @"电池";
+    batteryVC.title = @"充电";
     TUNavigationController *batteryNav = [[TUNavigationController alloc] initWithRootViewController:batteryVC];
+    
+    // 红线
+    TUViewController *redLineVC = [[TUViewController alloc]init];
+    redLineVC.title = @"红线";
+    TUNavigationController *redLineNav = [[TUNavigationController alloc] initWithRootViewController:redLineVC];
+    
+    // 排行
+    TUViewController *rankVC = [[TUViewController alloc]init];
+    rankVC.title = @"排行";
+    TUNavigationController *rankNav = [[TUNavigationController alloc] initWithRootViewController:rankVC];
     
     // 我的
     TUMineController *mineVC = [[TUMineController alloc] init];
@@ -48,21 +58,21 @@
 //    tabBarController.delegate = self;
 //    tabBarController.tabBar.delegate = self;
     
-    [tabBarController setViewControllers:@[batteryNav, mineNav]];
+    [tabBarController setViewControllers:@[batteryNav, redLineNav, rankNav, mineNav]];
     
-    NSArray *titles = @[@"电池", @"我的"];
-    NSArray *selectImages = @[@"电池", @"我的"];
-    NSArray *unSelectImages = @[@"电池", @"我的"];
-
-    NSMutableArray *items = [NSMutableArray array];
-
-    for (int i = 0; i < 2; i ++) {
-        TUTabBarItem *item = [[TUTabBarItem alloc] init];
-        item.title = titles[i];
-        item.selectImage = [UIImage imageNamed:selectImages[i]];
-        item.unSelectImage = [UIImage imageNamed:unSelectImages[i]];
-        [items addObject:item];
-    }
+//    NSArray *titles = @[@"充电", @"我的"];
+//    NSArray *selectImages = @[@"电池", @"我的"];
+//    NSArray *unSelectImages = @[@"电池", @"我的"];
+//
+//    NSMutableArray *items = [NSMutableArray array];
+//
+//    for (int i = 0; i < 2; i ++) {
+//        TUTabBarItem *item = [[TUTabBarItem alloc] init];
+//        item.title = titles[i];
+//        item.selectImage = [UIImage imageNamed:selectImages[i]];
+//        item.unSelectImage = [UIImage imageNamed:unSelectImages[i]];
+//        [items addObject:item];
+//    }
 //    [self customizeTabBarForController:tabBarController];
     
     return tabBarController;

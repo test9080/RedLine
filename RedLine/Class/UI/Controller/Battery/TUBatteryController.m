@@ -47,17 +47,13 @@
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
-                                  name:kBatteryInfoChange object:nil];
-    [kTUNotificationCenter addObserver:self
-                              selector:@selector(updateSystemInfo:)
-                                  name:kSystemInfoChange object:nil];
-
+                                  name:kBatteryInfoDidChangeNotification
+                                object:nil];
     
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
-    NSUInteger levelMAH = [TUSystemInfoManager manager].batteryInfo.levelMAH;
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
-    NSLog(@"level:%f, status:%@, levelMAH:%lu", level, status, (unsigned long)levelMAH);
+    NSLog(@"level:%f, status:%@", level, status);
 }
 
 #pragma mark - UIConfig
@@ -122,11 +118,6 @@
     [self updateUI];
 }
 
-- (void)updateSystemInfo:(NSNotification *)note {
-    
-    NSArray *array = note.object;
-    
-}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
