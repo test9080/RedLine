@@ -25,6 +25,7 @@
 		14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1141CA633B70006287C /* TUTabBarItem.m */; };
 		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */; };
+		14F8B1241CAA5C8C0006287C /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */; };
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
@@ -75,6 +76,8 @@
 		14F8B1141CA633B70006287C /* TUTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarItem.m; sourceTree = "<group>"; };
 		14F8B11D1CAA1FF30006287C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TUSystemInfoManager.strings; sourceTree = "<group>"; };
 		14F8B11F1CAA1FF80006287C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TUSystemInfoManager.strings"; sourceTree = "<group>"; };
+		14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYWebImage.h"; sourceTree = "<group>"; };
+		14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYWebImage.m"; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		951691417E220DF6ACB14566 /* Pods_RedLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryCapacityView.h; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		14143BB21CA59DDC0044441B /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B1211CAA5C8C0006287C /* UIImage */,
 				14F8B1041CA5D16B0006287C /* NSDate */,
 				14143BB31CA59DF20044441B /* Color */,
 				14143BB61CA59DF20044441B /* Device */,
@@ -295,6 +299,15 @@
 				14F8B1141CA633B70006287C /* TUTabBarItem.m */,
 			);
 			path = TUTabBar;
+			sourceTree = "<group>";
+		};
+		14F8B1211CAA5C8C0006287C /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */,
+				14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 		A1132D9C1CA6493D00B21CBF /* View */ = {
@@ -550,6 +563,7 @@
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
 				14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */,
 				A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */,
+				14F8B1241CAA5C8C0006287C /* UIImage+YYWebImage.m in Sources */,
 				14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */,
 				A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */,
 				14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */,
