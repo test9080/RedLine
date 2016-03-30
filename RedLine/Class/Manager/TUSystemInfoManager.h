@@ -75,7 +75,7 @@
  *  计算电池剩余可用时间
  *
  *  @param amperage         平均电流(mA)
- *  @param currentCapacity  电池最大容量(mAh)
+ *  @param currentCapacity  电池当前容量(mAh)
  *  @param temperature      电池温度(℃)
  *
  *  @return 电池可用时间(h)

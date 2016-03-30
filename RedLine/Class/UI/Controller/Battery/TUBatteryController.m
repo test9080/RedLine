@@ -34,6 +34,7 @@
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
 @property (assign, nonatomic) float voltage; // 电压
 @property (assign, nonatomic) float current; // 电流
+
 @property (assign, nonatomic) NSInteger remainLifeMonths; // 电池剩余月份
 
 @property (strong, nonatomic) NSMutableArray *voltageArray;
@@ -59,6 +60,11 @@
     NSLog(@"level:%f, status:%@", level, status);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.capacityView resume];
+}
+
 - (void)dealloc {
     [self.voltageArray removeAllObjects];
     self.voltageArray = nil;
@@ -81,6 +87,7 @@
     _isShowBatteryLife = YES;
     
     int displayY = 15;
+    
     
     //已开启全面保护模式
     TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 15, kScreenWidth, 30)];
@@ -116,7 +123,7 @@
     
     //电池温度以及剩余寿命的View
     displayY += 60;
-    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 120)];
+    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 150)];
     [self.bgScrollView addSubview:self.bottomView];
     displayY += self.bottomView.bounds.size.height;
     
@@ -253,6 +260,8 @@
     }
     
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
+    
+    NSLog(@"fdasfasdfas:%f", [TUSystemInfoManager timeToFullWithAverageAmperage:self.viView.averageCurrent maxCapacity:[TUSystemInfoManager manager].batteryInfo.rawMaxCapacity currentCapacity:[TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity]);
 }
 
 #pragma mark - setter & getter 
