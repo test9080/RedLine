@@ -22,6 +22,7 @@
 @interface TUBatteryController ()
 {
     int _viCount;
+    BOOL _isShowBatteryLife;//电池剩余时间，就显示一次就行了
 }
 
 @property (strong, nonatomic) UIScrollView *bgScrollView;  //背景scroll
@@ -82,6 +83,7 @@
     self.currentArray = [NSMutableArray array];
     
     _viCount = 0;
+    _isShowBatteryLife = YES;
     
     int displayY = 15;
     
@@ -162,7 +164,10 @@
     [self updateBatteryCapacity];
     [self updateBatteryChargeTimeStatus];
     [self updateTemperature];
-    [self updateBatteryLife];
+    if (_isShowBatteryLife) {
+        [self updateBatteryLife];
+        _isShowBatteryLife = NO;
+    }
     [self updateVI];
 }
 
@@ -207,12 +212,11 @@
 
 - (void)updateTemperature {
     [self.bottomView updateTemperatureUI:self.temperature];
-    
-//    self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
 }
 
 - (void)updateBatteryLife {
-    self.bottomView.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",self.remainLifeMonths/12,self.remainLifeMonths%12];
+    [self.bottomView updateBatteryLifeUI:self.remainLifeMonths];
+//    self.bottomView.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",self.remainLifeMonths/12,self.remainLifeMonths%12];
 }
 
 - (void)updateVI {
