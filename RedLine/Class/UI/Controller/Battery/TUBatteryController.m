@@ -18,7 +18,6 @@
 #import "NSDate+Category.h"
 #import "UIColor+GGColor.h"
 #import "UIImage+YYWebImage.h"
-#import "AFNetworking.h"
 
 @interface TUBatteryController ()
 {
@@ -206,8 +205,6 @@
 
 - (void)updateBatteryChargeTimeStatus
 {
-    
-    [afnew];
     NSString *temp = @"充满所需1小时22分钟";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
