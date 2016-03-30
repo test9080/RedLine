@@ -28,7 +28,7 @@
 
 @property (strong, nonatomic) UILabel *batteryLabel;
 
-
+@property (assign, nonatomic) CGFloat lastTemperature;
 @end
 
 @implementation TUBatteryBottomView
@@ -49,12 +49,14 @@
 - (void)setup {
     
     [self addSubview:self.temperatureImage];
+    [self.temperatureImage addSubview:self.temperatureLabel];
+    [self.temperatureImage addSubview:self.temperatureValueLabel];
     
 //    [self addSubview:self.temperatureView];
     [self addSubview:self.batteryLifeView];
     
 //    [self.temperatureView addSubview:self.temperatureLabel];
-    [self.temperatureView addSubview:self.temperatureValueLabel];
+//    [self.temperatureView addSubview:self.temperatureValueLabel];
     
     [self.batteryLifeView addSubview:self.batteryLabel];
     [self.batteryLifeView addSubview:self.batteryValueLabel];
@@ -65,61 +67,15 @@
 
 - (void)temperatureUI {
     self.temperatureDotLayer = [CAShapeLayer layer];
-    self.temperatureDotLayer.position = CGPointMake(55, 55);
+    self.temperatureDotLayer.position = CGPointMake(self.temperatureImage.width/2, self.temperatureImage.height/2);
     self.temperatureDotLayer.fillColor = [UIColor whiteColor].CGColor;
     
     //设置圆的半径
     //设置路径
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(32, 32, 10, 10)];
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(30, 30, 10, 10)];
     self.temperatureDotLayer.path = circlePath.CGPath;
     
-    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    anima.duration = 10.f;
-    anima.repeatCount = HUGE;
-    anima.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
-    //    anima.removedOnCompletion = NO;
-    //    anima.fillMode = kCAFillModeForwards;
-    
-    [self.temperatureDotLayer addAnimation:anima forKey:nil];
-    
-    //画圆
-    CAShapeLayer * trackLayer = [CAShapeLayer layer];
-    trackLayer.frame = self.temperatureView.bounds;
-    trackLayer.fillColor = [[UIColor clearColor] CGColor];//填充颜色，这里应该是  clearColor
-    trackLayer.strokeColor = [[UIColor redColor] CGColor];//边框颜色
-    trackLayer.opacity = 1;
-    trackLayer.lineCap = kCALineCapRound;
-    trackLayer.lineWidth = 4.0;  // 红色的边框宽度
-    
-    UIBezierPath * path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(55, 55) radius:53 startAngle:DegreesToRadians(-210) endAngle:DegreesToRadians(30) clockwise:YES];
-    //角度是从 -210到30度，具体可以看如下图所示
-    trackLayer.path = [path CGPath];
-    
-    [self.temperatureView.layer addSublayer:trackLayer];
-    
-    
-    CALayer * gradinetLayer = [CALayer layer];
-    
-    CAGradientLayer * gradLayer1 = [CAGradientLayer layer];
-    gradLayer1.frame = CGRectMake(0, 0, self.temperatureView.width/2, self.temperatureView.height);
-    [gradLayer1 setColors:[NSArray arrayWithObjects:(id)[[UIColor colorWithARGB:0xff3ed0bd] CGColor],(id)[UIColor colorWithARGB:0xfff2e562].CGColor, nil]];
-    [gradLayer1 setLocations:@[@0.5,@0.9,@1 ]];
-    [gradLayer1 setStartPoint:CGPointMake(0.5, 1)];
-    [gradLayer1 setEndPoint:CGPointMake(0.5, 0)];
-    [gradinetLayer addSublayer:gradLayer1];
-    
-    CAGradientLayer * gradLayer2 = [CAGradientLayer layer];
-    gradLayer2.frame = CGRectMake(self.temperatureView.width/2, 0, self.temperatureView.width/2, self.temperatureView.height);
-    [gradLayer2 setColors:[NSArray arrayWithObjects:(id)[UIColor colorWithARGB:0xfff2e562].CGColor,(id)[[UIColor colorWithARGB:0xffd93d64] CGColor], nil]];
-    [gradLayer2 setLocations:@[@0.2,@0.5,@1 ]];
-    [gradLayer2 setStartPoint:CGPointMake(0.5, 0)];
-    [gradLayer2 setEndPoint:CGPointMake(0.5, 1)];
-    [gradinetLayer addSublayer:gradLayer2];
-    
-    [gradinetLayer setMask:trackLayer];
-    
-    [self.temperatureView.layer addSublayer:gradinetLayer];
-    [self.temperatureView.layer addSublayer:self.temperatureDotLayer];
+    [self.temperatureImage.layer addSublayer:self.temperatureDotLayer];
 }
 
 - (void)batteryUI {
@@ -182,6 +138,27 @@
     
 }
 
+- (void)updateTemperatureUI:(CGFloat)temperature {
+    self.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",temperature];
+    self.temperatureDotLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
+    
+    CGFloat lastTemp = self.lastTemperature ? self.lastTemperature : 0;
+    
+    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    anima.duration = 2.f;
+
+    anima.fromValue = [NSNumber numberWithFloat:M_PI_4 * 3 + DegreesToRadians(lastTemp/35.0*180)];
+    anima.toValue = [NSNumber numberWithFloat:M_PI_4 * 3 + DegreesToRadians(temperature/35.0*180)];
+    //1.2设置动画执行完毕之后不删除动画
+    anima.removedOnCompletion = NO;
+    //1.3设置保存动画的最新状态,即动画执行完后保持在最后的位置
+    anima.fillMode = kCAFillModeForwards;
+    [self.temperatureDotLayer addAnimation:anima forKey:nil];
+    
+    self.lastTemperature = temperature;
+
+}
+
 #pragma mark - setter & getter
 - (UIView *)temperatureView {
     if (!_temperatureView) {
@@ -201,9 +178,9 @@
 
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
-        _temperatureLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 90, 20)];
+        _temperatureLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 45, 90, 20)];
         _temperatureLabel.textColor = [UIColor whiteColor];
-        _temperatureLabel.font = [UIFont systemFontOfSize:15.f];
+        _temperatureLabel.font = [UIFont systemFontOfSize:14.f];
         _temperatureLabel.textAlignment = NSTextAlignmentCenter;
         _temperatureLabel.text = @"当前电池温度";
     }
@@ -212,7 +189,7 @@
 
 - (UILabel *)temperatureValueLabel {
     if (!_temperatureValueLabel) {
-        _temperatureValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, 90, 20)];
+        _temperatureValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 65, 90, 20)];
         _temperatureValueLabel.textColor = [UIColor whiteColor];
         _temperatureValueLabel.font = [UIFont systemFontOfSize:20.f];
         _temperatureValueLabel.textAlignment = NSTextAlignmentCenter;
@@ -246,7 +223,7 @@
 
 - (UIImageView *)temperatureImage {
     if (!_temperatureImage) {
-        _temperatureImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 - 151, 20, 131, 131)];
+        _temperatureImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 - 140, 10, 130, 130)];
         _temperatureImage.image = [UIImage imageNamed:@"battery_wendu"];
     }
     return _temperatureImage;

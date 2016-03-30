@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TUViewController.h"
 
+//typedef NS_ENUM(NSUInteger, UIBackgroundFetchResult) {
+//    UIBackgroundFetchResultNewData,
+//    UIBackgroundFetchResultNoData,
+//    UIBackgroundFetchResultFailed
+//}
+
 @interface TUBatteryController : TUViewController
 
 @end

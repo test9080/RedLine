@@ -17,6 +17,7 @@
 #import "TUSystemInfoManager.h"
 #import "NSDate+Category.h"
 #import "UIColor+GGColor.h"
+#import "UIImage+YYWebImage.h"
 
 @interface TUBatteryController ()
 {
@@ -24,7 +25,6 @@
 }
 
 @property (strong, nonatomic) UIScrollView *bgScrollView;  //背景scroll
-@property (strong, nonatomic) UILabel *headerLabel;        //充电与否状态的Label
 
 @property (strong, nonatomic) TUBatteryCapacityView *capacityView; //电量圆圈的View
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
@@ -49,7 +49,7 @@
 
     [self UIConfig];
     
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = NO;
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
@@ -72,34 +72,40 @@
 
 #pragma mark - UIConfig
 - (void)UIConfig {
+    [self configNavigationBar];
     
-    [self preferredStatusBarStyle];
     [self setNeedsStatusBarAppearanceUpdate];
 
     [self.view addSubview:self.bgScrollView];
     
     self.voltageArray = [NSMutableArray array];
     self.currentArray = [NSMutableArray array];
+    
     _viCount = 0;
     
-    //headerStateLabel
-    [self.bgScrollView addSubview:self.headerLabel];
-
+    int displayY = 15;
+    
     //已开启全面保护模式
-    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, 50)];
+    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 15, kScreenWidth, 30)];
     [self.bgScrollView addSubview:headerView];
+    displayY += headerView.bounds.size.height;
     
     //7个按钮的View
-    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, 94, kScreenWidth, 50) count:7];
+    displayY += 15;
+    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 30) count:7];
     [self.bgScrollView addSubview:tipsBtnView];
+    displayY += tipsBtnView.bounds.size.height;
     
     //电量圆圈的View
-    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, 144, kScreenWidth, 200)];
+    displayY += 33;
+    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255)];
     [self.bgScrollView addSubview:self.capacityView];
+    displayY += self.capacityView.bounds.size.height;
     
     //三个充电状态View
+    displayY += 55;
     TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
-    [progressView setFrame:CGRectMake(0, 364, kScreenWidth, 60)];
+    [progressView setFrame:CGRectMake(0, displayY, kScreenWidth, 60)];
     [self.bgScrollView addSubview:progressView];
     
     //电压电流折线View
@@ -110,13 +116,9 @@
     //电池温度以及剩余寿命的View
     self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, 714, kScreenWidth, 160)];
     [self.bgScrollView addSubview:self.bottomView];
-
-
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
-    self.batteryStatus = [TUSystemInfoManager manager].batteryInfo.status;
-    self.levelPercent = [TUSystemInfoManager manager].batteryInfo.levelPercent;
     self.temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
     self.remainLifeMonths = [TUSystemInfoManager manager].batteryInfo.remainLifeMonths;
     
@@ -138,36 +140,75 @@
 }
 
 #pragma mark - updateUI
+
+// 配置导航栏
+- (void)configNavigationBar
+{
+    // bg color
+    UIImage *temp = [UIImage yy_imageWithColor:[UIColor colorWithARGB:0xff1c2137]];
+    [self.navigationController.navigationBar setBackgroundImage:temp forBarMetrics:UIBarMetricsDefault];
+    
+    // shadow color
+    temp = [UIImage yy_imageWithColor:[UIColor colorWithARGB:0xff2a2f4b]];
+    [self.navigationController.navigationBar setShadowImage:temp];
+    
+    // title
+    NSDictionary *titleDic = @{NSForegroundColorAttributeName: [UIColor colorWithARGB:0xffffffff]};
+    [self.navigationController.navigationBar setTitleTextAttributes:titleDic];
+}
+
 - (void)updateUI {
     [self updateBatteryStatus];
     [self updateBatteryCapacity];
+    [self updateBatteryChargeTimeStatus];
     [self updateTemperature];
     [self updateBatteryLife];
     [self updateVI];
 }
 
 - (void)updateBatteryStatus {
-    if (self.batteryStatus.length > 0) {
-        NSString *status = self.batteryStatus;
-        
-        if ([status isEqualToString:@"Fully charged"]) {
-            self.headerLabel.text = @"已充满";
-        } else if ([status isEqualToString:@"Charging"]) {
-            self.headerLabel.text = @"正在充电";
-        } else if ([status isEqualToString:@"Unplugged"]) {
-            self.headerLabel.text = @"未充电";
-        } else if ([status isEqualToString:@"Unknown"]) {
-            self.headerLabel.text = @"未知状态";
-        }
-    }
+    self.title = [TUSystemInfoManager manager].batteryInfo.status;
 }
 
 - (void)updateBatteryCapacity {
-    self.capacityView.batteryCapacityLabel.text = [NSString stringWithFormat:@"%d%@",(int)self.levelPercent,@"%"];
+    NSString *temp = [NSString stringWithFormat:@"%d%@",(int)[TUSystemInfoManager manager].batteryInfo.levelPercent,@"%"];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
+    
+    //设置字体
+    UIFont *font = [UIFont systemFontOfSize:25];
+    [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, [temp length] - 1)];
+    
+    font = [UIFont boldSystemFontOfSize:12];
+    [attrString addAttribute:NSFontAttributeName value:font range:[temp rangeOfString:@"%"]];
+    
+    self.capacityView.batteryCapacityLabel.attributedText = attrString;
+}
+
+- (void)updateBatteryChargeTimeStatus
+{
+    NSString *temp = @"充满所需1小时22分钟";
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
+    
+    //设置字体
+    UIFont *font = [UIFont systemFontOfSize:15];
+    [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, [temp length])];
+    
+    font = [UIFont systemFontOfSize:20];
+    NSRange temp1 = [temp rangeOfString:@"充满所需"];
+    NSRange temp2 = [temp rangeOfString:@"小时"];
+    NSRange temp3 = [temp rangeOfString:@"分钟"];
+    unsigned long tempLoc = temp1.location + temp1.length;
+    [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange(temp1.location + temp1.length, temp2.location - tempLoc)];
+    tempLoc = temp2.location + temp2.length;
+    [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange(temp2.location + temp2.length, temp3.location - tempLoc)];
+    
+    self.capacityView.batteryTimeLabel.attributedText = attrString;
 }
 
 - (void)updateTemperature {
-    self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
+    [self.bottomView updateTemperatureUI:self.temperature];
+    
+//    self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
 }
 
 - (void)updateBatteryLife {
@@ -194,23 +235,12 @@
 }
 
 #pragma mark - setter & getter 
-- (UILabel *)headerLabel {
-    if (!_headerLabel) {
-        _headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
-        _headerLabel.textColor = [UIColor whiteColor];
-        _headerLabel.text = @"正在充电";
-        _headerLabel.backgroundColor = [UIColor colorWithRGB:0xff1c2135];
-        _headerLabel.font = [UIFont systemFontOfSize:19.f];
-        _headerLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _headerLabel;
-}
 
 - (UIScrollView *)bgScrollView {
     if (!_bgScrollView) {
         _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2135];
-        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 850)];
+        _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2137];
+        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 950)];
     }
     return _bgScrollView;
 }

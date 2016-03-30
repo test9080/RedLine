@@ -9,10 +9,10 @@
 #import "TUTabBar.h"
 
 #define kTabBarHeight   (49)
-#define kTabImageHeight (20)
 #define kTabAnimateImageHeight (40)
 #define kTabAnimateImageWidthPecent (0.7)
 #define kTabAnimateImageScale (1.8)
+#define kTabAnimateImageTranslation (-10)
 #define kTabLineColor   kRGBA(74, 173, 201, 1)
 
 
@@ -43,8 +43,18 @@
     CGFloat width = CGRectGetWidth(self.frame);
 //    CGFloat height = CGRectGetHeight(self.frame);
     
+    CGFloat space = 4;
+    CGFloat imageH = 20;
+    CGFloat labelH = 10;
+    CGFloat imageY = (kTabBarHeight - imageH - labelH - space) * 0.5;
+
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.frame = CGRectMake(0, imageY, width, imageH);
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView = imageView;
+    
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, kTabImageHeight + 6, width, kTabBarHeight - kTabImageHeight - 6);
+    label.frame = CGRectMake(0, imageY + imageH + space, width, labelH);
     label.textAlignment = NSTextAlignmentCenter;
     self.titleLabel = label;
     
@@ -52,12 +62,7 @@
     badgeLabel.frame = CGRectMake(width - 10,  0, 10, 10);
     badgeLabel.textAlignment = NSTextAlignmentCenter;
     self.badgeLabel = badgeLabel;
-    
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(0, 4, width, kTabImageHeight);
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.imageView = imageView;
-    
+
     UIButton *button = [[UIButton alloc] init];
     button.frame = self.bounds;
     self.button = button;
@@ -237,9 +242,7 @@
         toItemView.titleLabel.font = selectFont;
         toItemView.titleLabel.textColor = selectColor;
         toItemView.backgroundColor = selectBackColor;
-
-        // usingSpringWithDamping 抖动系数 越小抖的越厉害
-        // initialSpringVelocity 动画初始速度
+        
         CGFloat animateW = CGRectGetWidth(self.animateView.frame);
         CGFloat itemW = CGRectGetWidth(toItemView.frame);
         CGFloat offSetW = (itemW - animateW) * 0.5;
@@ -249,23 +252,37 @@
         
         @weakify(self);
         
-        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        fromItemView.imageView.alpha = 0.1;
+//        [UIView animateWithDuration:0.3 animations:^{
+//            CGAffineTransform from = CGAffineTransformMakeScale(1, 1);
+//            fromItemView.imageView.transform = from;
+//            fromItemView.imageView.alpha = 1;
+//
+//        } completion:^(BOOL finished) {
+//            fromItemView.imageView.transform = CGAffineTransformIdentity;
+//        }];
+        
+        fromItemView.imageView.alpha = 0.1;
+        
+        // usingSpringWithDamping 抖动系数 越小抖的越厉害
+        // initialSpringVelocity 动画初始速度
+        CGFloat damp = 0.75;
+        if (from == NSNotFound) {
+            damp = 10;
+        } else {
+            damp = 0.71 + 0.04 * abs((int)(to - from));
+        }
+        
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:damp initialSpringVelocity:5 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             
             fromItemView.imageView.transform = CGAffineTransformIdentity;
+            fromItemView.imageView.alpha = 1;
+            toItemView.imageView.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0, kTabAnimateImageTranslation), kTabAnimateImageScale, kTabAnimateImageScale);
             
-            CGAffineTransform form = CGAffineTransformMakeTranslation(0, -5);
-            
-            toItemView.imageView.transform = CGAffineTransformScale(form, kTabAnimateImageScale, kTabAnimateImageScale);
-
             weak_self.animateView.frame = toFrame;
             
         } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.1 animations:^{
-//                toItemView.imageView.transform = CGAffineTransformMakeScale(kTabAnimateImageScale ,kTabAnimateImageScale);
-//            }];
         }];
-
-
     }
 }
 
@@ -278,8 +295,8 @@
     return @{
              keyTabBarItemSelectionTextColor    : [UIColor whiteColor],
              keyTabBarItemUnSelectionTextColor  : [UIColor whiteColor],
-             keyTabBarItemSelectionTitleFont    : [UIFont systemFontOfSize:14.0],
-             keyTabBarItemUnSelectionTitleFont  : [UIFont systemFontOfSize:14.0],
+             keyTabBarItemSelectionTitleFont    : [UIFont systemFontOfSize:11.0],
+             keyTabBarItemUnSelectionTitleFont  : [UIFont systemFontOfSize:11.0],
              keyTabBarItemSelectionBackColor    : kRGBA(51, 59, 98, 1),
              keyTabBarItemUnSelectionBackColor  : kRGBA(51, 59, 98, 1),
              };
