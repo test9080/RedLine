@@ -9,6 +9,8 @@
 #import "TUBatteryBottomView.h"
 #import "UIView+Category.h"
 #import "UIColor+GGColor.h"
+#import "UIImage+Color.h"
+#import "UIImage+YYWebImage.h"
 
 #define DegreesToRadians(_degrees) ((M_PI * (_degrees))/180)
 
@@ -153,7 +155,8 @@
     anima.removedOnCompletion = NO;
     //1.3设置保存动画的最新状态,即动画执行完后保持在最后的位置
     anima.fillMode = kCAFillModeForwards;
-    [self.temperatureDotLayer addAnimation:anima forKey:nil];
+    anima.delegate = self;
+    [self.temperatureDotLayer addAnimation:anima forKey:@"temperature"];
     
     self.lastTemperature = temperature;
 
@@ -227,6 +230,41 @@
         _temperatureImage.image = [UIImage imageNamed:@"battery_wendu"];
     }
     return _temperatureImage;
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    
+    // 130, (65,65)
+    UIView *view = [[UIView alloc] init];
+    view.frame = CGRectMake(0, 0, 4, 4);
+    view.backgroundColor = [UIColor redColor];
+    
+    NSNumber *toValue = [(CABasicAnimation *)anim toValue];
+    NSLog(@"%@", toValue);
+    
+    CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(65, 65) andWithAngle:toValue.floatValue andWithRadius:50];
+    
+    view.center = point;
+    
+    [self.temperatureImage addSubview:view];
+    
+    NSLog(@"self.temperatureImage: %@", NSStringFromCGRect(self.temperatureDotLayer.contentsCenter));
+    
+    //
+    UIColor *color = [self.temperatureImage.image colorAtPoint:view.center];
+    
+//    CGRect cropRect = CGRectMake(point.x-2, point.y-2, 4, 4);
+//    UIImage *cropImage = [self.temperatureImage.image yy_imageByCropToRect:cropRect];
+//    UIColor *color = [self.temperatureImage.image colorAtPoint:point imageRect:self.temperatureImage.frame];
+    
+    view.backgroundColor = color;
+    self.temperatureDotLayer.fillColor = color.CGColor;
+}
+
++(CGPoint) calcCircleCoordinateWithCenter:(CGPoint) center  andWithAngle : (CGFloat) angle andWithRadius: (CGFloat) radius{
+    CGFloat x2 = radius*cosf(angle*M_PI/180);
+    CGFloat y2 = radius*sinf(angle*M_PI/180);
+    return CGPointMake(center.x+x2, center.y-y2);
 }
 
 /*
