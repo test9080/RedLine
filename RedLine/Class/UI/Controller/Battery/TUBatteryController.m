@@ -20,6 +20,9 @@
 #import "UIImage+YYWebImage.h"
 
 @interface TUBatteryController ()
+{
+    int _viCount;
+}
 
 @property (strong, nonatomic) UIScrollView *bgScrollView;  //背景scroll
 
@@ -32,6 +35,7 @@
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
 @property (assign, nonatomic) float voltage; // 电压
 @property (assign, nonatomic) float current; // 电流
+@property (assign, nonatomic) NSInteger remainLifeMonths; // 电池剩余月份
 
 @property (strong, nonatomic) NSMutableArray *voltageArray;
 @property (strong, nonatomic) NSMutableArray *currentArray;
@@ -58,6 +62,14 @@
     NSLog(@"level:%f, status:%@", level, status);
 }
 
+- (void)dealloc {
+    [self.voltageArray removeAllObjects];
+    self.voltageArray = nil;
+    
+    [self.currentArray removeAllObjects];
+    self.currentArray = nil;
+}
+
 #pragma mark - UIConfig
 - (void)UIConfig {
     [self configNavigationBar];
@@ -68,7 +80,9 @@
     
     self.voltageArray = [NSMutableArray array];
     self.currentArray = [NSMutableArray array];
-
+    
+    _viCount = 0;
+    
     int displayY = 15;
     
     //已开启全面保护模式
@@ -106,6 +120,8 @@
 
 - (void)updateBatteryInfo:(NSNotification *)note {
     self.temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
+    self.remainLifeMonths = [TUSystemInfoManager manager].batteryInfo.remainLifeMonths;
+    
     
     self.voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
     self.current = [TUSystemInfoManager manager].batteryInfo.amperage/1000.0;
@@ -146,6 +162,7 @@
     [self updateBatteryCapacity];
     [self updateBatteryChargeTimeStatus];
     [self updateTemperature];
+    [self updateBatteryLife];
     [self updateVI];
 }
 
@@ -189,18 +206,31 @@
 }
 
 - (void)updateTemperature {
-    self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
+    [self.bottomView updateTemperatureUI:self.temperature];
+    
+//    self.bottomView.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",self.temperature];
+}
+
+- (void)updateBatteryLife {
+    self.bottomView.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",self.remainLifeMonths/12,self.remainLifeMonths%12];
 }
 
 - (void)updateVI {
     self.viView.voltageLabel.text = [NSString stringWithFormat:@"当前电压:%.3fV",self.voltage];
     self.viView.currentLabel.text = [NSString stringWithFormat:@"当前电流:%.3fA",self.current];
     
+    _viCount++;
+    if (_viCount >= 20) {
+        [self.voltageArray removeObjectAtIndex:0];
+        [self.currentArray removeObjectAtIndex:0];
+        
+        [self.voltageArray addObject:[NSNumber numberWithFloat:self.voltage]];
+        [self.currentArray addObject:[NSNumber numberWithFloat:self.current]];
+    } else {
+        [self.voltageArray addObject:[NSNumber numberWithFloat:self.voltage]];
+        [self.currentArray addObject:[NSNumber numberWithFloat:self.current]];
+    }
     
-    
-    [self.voltageArray addObject:[NSNumber numberWithFloat:self.voltage]];
-    [self.currentArray addObject:[NSNumber numberWithFloat:self.current]];
-
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
 }
 
@@ -210,7 +240,7 @@
     if (!_bgScrollView) {
         _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
         _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2137];
-        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 850)];
+        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 950)];
     }
     return _bgScrollView;
 }

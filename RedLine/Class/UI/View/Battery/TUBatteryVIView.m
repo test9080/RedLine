@@ -76,26 +76,17 @@
     self.voltageGraphView.enableReferenceYAxisLines = YES;
     self.voltageGraphView.enableReferenceAxisFrame = YES;
     
-    // Draw an average line
-//    self.voltageGraphView.averageLine.enableAverageLine = YES;
-//    self.voltageGraphView.averageLine.alpha = 0.6;
-//    self.voltageGraphView.averageLine.color = [UIColor darkGrayColor];
-//    self.voltageGraphView.averageLine.width = 2.5;
-//    self.voltageGraphView.averageLine.dashPattern = @[@(2),@(2)];
-    
     // Set the graph's animation style to draw, fade, or none
-//    self.voltageGraphView.animationGraphStyle = BEMLineAnimationDraw;
+    self.voltageGraphView.animationGraphStyle = BEMLineAnimationExpand;
     
     // Dash the y reference lines
-    self.voltageGraphView.lineDashPatternForReferenceYAxisLines = @[@(2),@(2)];
+//    self.voltageGraphView.lineDashPatternForReferenceYAxisLines = @[@(2),@(2)];
     
     // Show the y axis values with this format string
-    self.voltageGraphView.formatStringForValues = @"%.1f";
+    self.voltageGraphView.formatStringForValues = @"%.2f";
     
     self.voltageGraphView.enableBezierCurve = YES;
-    
-    self.voltageGraphView.alphaBottom = 0.8;
-    self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff60b1ce];
+    self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff7386c5];
     self.voltageGraphView.colorTop = [UIColor clearColor];
     
     
@@ -111,27 +102,19 @@
     self.currentGraphView.enableReferenceXAxisLines = YES;
     self.currentGraphView.enableReferenceYAxisLines = YES;
     self.currentGraphView.enableReferenceAxisFrame = YES;
-    
-    // Draw an average line
-    self.currentGraphView.averageLine.enableAverageLine = NO;
-    self.currentGraphView.averageLine.alpha = 0.6;
-    self.currentGraphView.averageLine.color = [UIColor darkGrayColor];
-    self.currentGraphView.averageLine.width = 2.5;
-    self.currentGraphView.averageLine.dashPattern = @[@(2),@(2)];
-    
+
     // Set the graph's animation style to draw, fade, or none
-    self.currentGraphView.animationGraphStyle = BEMLineAnimationDraw;
+    self.currentGraphView.animationGraphStyle = BEMLineAnimationExpand;
     
     // Dash the y reference lines
     self.currentGraphView.lineDashPatternForReferenceYAxisLines = @[@(2),@(2)];
     
     // Show the y axis values with this format string
-    self.currentGraphView.formatStringForValues = @"%.1f";
+    self.currentGraphView.formatStringForValues = @"%.2f";
     
     self.currentGraphView.enableBezierCurve = YES;
-    self.currentGraphView.animationGraphStyle = BEMLineAnimationFade;
     
-    self.currentGraphView.colorBottom = [UIColor colorWithARGB:0xff60b1ce];
+    self.currentGraphView.colorBottom = [UIColor colorWithARGB:0xff7386c5];
     self.currentGraphView.colorTop = [UIColor clearColor];
 
 }
