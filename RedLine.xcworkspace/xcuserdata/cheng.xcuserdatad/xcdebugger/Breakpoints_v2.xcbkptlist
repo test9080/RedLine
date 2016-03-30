@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RedLine/Class/Manager/TUSystemInfoManager.m"
-            timestampString = "480995688.675954"
+            timestampString = "481003684.804168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298">
+            startingLineNumber = "299"
+            endingLineNumber = "299">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RedLine/Class/Manager/TUSystemInfoManager.m"
-            timestampString = "480995688.675954"
+            timestampString = "481003684.804168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309">
+            startingLineNumber = "310"
+            endingLineNumber = "310">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -39,6 +39,22 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedLine/Class/UI/Controller/Battery/TUBatteryController.m"
+            timestampString = "481009744.529252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-updateBatteryChargeTimeStatus"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

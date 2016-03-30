@@ -24,12 +24,13 @@
 
 @implementation TUBatteryCapacityView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame style:(TUBatteryCapacityViewStyle)style {
     self = [super initWithFrame:frame];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resume) name:UIApplicationDidBecomeActiveNotification object:nil];
         pulsingLayerArray = [[NSMutableArray alloc] initWithCapacity:5];
         self.backgroundColor = [UIColor clearColor];
+        _batteryCapacityViewStyle = style;
     }
     return self;
 }

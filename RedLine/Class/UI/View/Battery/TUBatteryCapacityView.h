@@ -28,4 +28,6 @@ typedef NS_ENUM(NSUInteger, TUBatteryCapacityViewStyle) {
 
 @property (assign, nonatomic) TUBatteryCapacityViewStyle batteryCapacityViewStyle;
 
+- (instancetype)initWithFrame:(CGRect)frame style:(TUBatteryCapacityViewStyle)style;
+
 @end
