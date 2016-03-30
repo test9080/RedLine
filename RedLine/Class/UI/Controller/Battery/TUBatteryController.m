@@ -255,7 +255,7 @@
 
 - (UIScrollView *)bgScrollView {
     if (!_bgScrollView) {
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height)];
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49 - 64)];
         _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2137];
     }
     return _bgScrollView;
