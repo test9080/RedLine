@@ -18,6 +18,7 @@
 #import "NSDate+Category.h"
 #import "UIColor+GGColor.h"
 #import "UIImage+YYWebImage.h"
+#import "AFNetworking.h"
 
 @interface TUBatteryController ()
 {
@@ -46,7 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self UIConfig];
     
     [kTUNotificationCenter addObserver:self
@@ -95,7 +96,8 @@
     
     //电量圆圈的View
     displayY += 33;
-    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255)];
+    [self updateBatteryCapacity];
+    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
     [self.bgScrollView addSubview:self.capacityView];
     displayY += self.capacityView.bounds.size.height;
     
@@ -175,20 +177,19 @@
     self.title = [TUSystemInfoManager manager].batteryInfo.status;
 }
 
+- (TUBatteryCapacityViewStyle)styleWithBatteryLevelPercent:(CGFloat)levelPercent {
+    if (levelPercent <= 20) {
+        return TUBatteryCapacityViewStyleRed;
+    } else if (levelPercent >= 80) {
+        return TUBatteryCapacityViewStyleGreen;
+    } else {
+        return TUBatteryCapacityViewStyleYellow;
+    }
+}
+
 - (void)updateBatteryCapacity {
-    if ([TUSystemInfoManager manager].batteryInfo.levelPercent <= 20)
-    {
-        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleRed;
-    }
-    else if ([TUSystemInfoManager manager].batteryInfo.levelPercent >= 80)
-    {
-        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleGreen;
-    }
-    else
-    {
-        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleYellow;
-    }
-    
+   
+    self.capacityView.batteryCapacityViewStyle = [self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent];
     
     NSString *temp = [NSString stringWithFormat:@"%d%@",(int)[TUSystemInfoManager manager].batteryInfo.levelPercent,@"%"];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
@@ -205,6 +206,8 @@
 
 - (void)updateBatteryChargeTimeStatus
 {
+    
+    [afnew];
     NSString *temp = @"充满所需1小时22分钟";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
