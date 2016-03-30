@@ -261,7 +261,12 @@
 }
 
 + (CGFloat)timeToFullWithAverageAmperage:(CGFloat)amperage maxCapacity:(CGFloat)maxCapacity currentCapacity:(CGFloat)currentCapacity {
-    CGFloat time = (maxCapacity - currentCapacity) / amperage * 1.5;
+    UIDeviceBatteryState state = [TUSystemInfoManager manager].batteryInfo.batteryState;
+    if (state == UIDeviceBatteryStateFull || amperage == 0) {
+        return 0;
+    }
+    
+    CGFloat time = (maxCapacity - currentCapacity) / fabs(amperage) * 1.5;
     return time;
 }
 
