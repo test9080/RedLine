@@ -19,6 +19,13 @@
  */
 - (UIColor *)colorAtPoint:(CGPoint)point;
 
+- (UIColor *)colorAtPoint:(CGPoint)point imageRect:(CGRect)imageRect;
+
+/**
+ *  获取图片中出现最多的颜色
+ *
+ *  @return color
+ */
 - (UIColor *)mostColor;
 
 
