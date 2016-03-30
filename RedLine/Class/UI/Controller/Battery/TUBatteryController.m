@@ -116,7 +116,7 @@
     
     //电池温度以及剩余寿命的View
     displayY += 60;
-    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 120)];
+    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 150)];
     [self.bgScrollView addSubview:self.bottomView];
     displayY += self.bottomView.bounds.size.height;
     
