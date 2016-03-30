@@ -11,15 +11,18 @@
 #import "ELLIOKitDumper.h"
 
 @implementation BatteryInfo
+
 @end
 
 @interface TUSystemInfoManager ()
 
-@property(nonatomic, strong) ELLIOKitNodeInfo *root;
-@property(nonatomic, strong) ELLIOKitNodeInfo *locationInTree;
-@property(nonatomic, strong) NSMutableArray *batteryInfoArray;
-@property(nonatomic, strong) NSMutableArray *properitys;
-@property(nonatomic, strong) ELLIOKitDumper *dumper;
+@property (nonatomic, strong) ELLIOKitNodeInfo *root;
+@property (nonatomic, strong) ELLIOKitNodeInfo *locationInTree;
+@property (nonatomic, strong) NSMutableArray *batteryInfoArray;
+@property (nonatomic, strong) NSMutableArray *properitys;
+@property (nonatomic, strong) ELLIOKitDumper *dumper;
+@property (nonatomic, assign) CGFloat        prevBatteryLevel;
+@property (nonatomic, assign) NSTimeInterval startDate;
 
 @end
 
@@ -178,11 +181,16 @@
 
 - (void)batteryStatusUpdatedCB:(NSNotification*)notification {
     [self doUpdateBatteryStatus];
+    [kTUNotificationCenter postNotificationName:kBatteryStatusDidChangeNotification object:self.batteryInfo];
 }
 
 - (void)doUpdateBatteryStatus {
     float batteryMultiplier = [[UIDevice currentDevice] batteryLevel];
     self.batteryInfo.levelPercent = batteryMultiplier * 100;
+    self.batteryInfo.batteryState = [[UIDevice currentDevice] batteryState];
+
+    [self getTimeForBatteryToFullOrEmpty:self.batteryInfo];
+
     
     switch ([[UIDevice currentDevice] batteryState]) {
         case UIDeviceBatteryStateCharging:
@@ -192,6 +200,7 @@
             
             if (self.batteryInfo.levelPercent == 100) {
                 self.batteryInfo.status = kTULocalString(@"fullyCharged");
+                self.batteryInfo.batteryState = UIDeviceBatteryStateFull;
             } else {
                 self.batteryInfo.status = kTULocalString(@"charging");
             }
@@ -208,6 +217,40 @@
     }
 }
 
+- (void)getTimeForBatteryToFullOrEmpty:(BatteryInfo *)batteryInfo {
+ 
+    if (_prevBatteryLevel == 0) {
+        _prevBatteryLevel = batteryInfo.levelPercent;
+    }
+    
+    int levelChange = batteryInfo.levelPercent - _prevBatteryLevel;
+    
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    CGFloat timeChange = now - _startDate;
+    _prevBatteryLevel = batteryInfo.levelPercent;
+    _startDate = now;
+
+    if (levelChange == 0) {
+        return;
+    }
+
+    CGFloat perTime = timeChange / levelChange;
+
+    if (perTime >= 0) {
+        batteryInfo.timeToFull = (100 - batteryInfo.levelPercent) * perTime;
+        NSLog(@"timeToFull %ld", (long)batteryInfo.timeToFull);
+    } else {
+        batteryInfo.timeToEmpty = batteryInfo.levelPercent * perTime;
+        NSLog(@"timeToEmpty %ld", (long)batteryInfo.timeToEmpty);
+    }
+    
+    [kTUNotificationCenter postNotificationName:kBatteryTimeToEmptyOrFullDidChangeNotification object:batteryInfo];
+}
+
+@end
+
+@implementation TUSystemInfoManager (Help)
+
 /** 获取电池剩余寿命 （剩余多少个月） */
 + (NSInteger)getBatteryLifeWithCycleCount:(NSInteger)cycleCount {
     CGFloat months = cycleCount / 1500.0 * 60;
@@ -217,6 +260,21 @@
     return MAX(1, life);
 }
 
++ (CGFloat)timeToFullWithAverageAmperage:(CGFloat)amperage maxCapacity:(CGFloat)maxCapacity currentCapacity:(CGFloat)currentCapacity {
+    CGFloat time = (maxCapacity - currentCapacity) / amperage * 1.5;
+    return time;
+}
+
++ (CGFloat)timeToEmptyWithAverageAmperage:(CGFloat)amperage currentCapacity:(CGFloat)currentCapacity temperature:(CGFloat)temperature {
+    CGFloat factor = 1.0;
+    if (temperature > 35) {
+        factor = 1.2;
+    } else if (temperature < 20) {
+        factor = 1.2;
+    }
+    CGFloat time = currentCapacity / amperage / factor;
+    return time;
+}
 
 @end
 
