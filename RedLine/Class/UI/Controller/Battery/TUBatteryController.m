@@ -49,8 +49,6 @@
 
     [self UIConfig];
     
-    self.navigationController.navigationBarHidden = NO;
-    
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
                                   name:kBatteryInfoDidChangeNotification
@@ -73,7 +71,6 @@
 #pragma mark - UIConfig
 - (void)UIConfig {
     [self configNavigationBar];
-    
     [self setNeedsStatusBarAppearanceUpdate];
 
     [self.view addSubview:self.bgScrollView];
@@ -105,17 +102,25 @@
     //三个充电状态View
     displayY += 55;
     TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
-    [progressView setFrame:CGRectMake(0, displayY, kScreenWidth, 60)];
+    [progressView setFrame:CGRectMake(0, displayY, kScreenWidth, 53)];
     [self.bgScrollView addSubview:progressView];
+    displayY += progressView.bounds.size.height;
     
     //电压电流折线View
+    displayY += 50;
     self.viView = [TUBatteryVIView showGraphView];
-    [self.viView setFrame:CGRectMake(0, 454, kScreenWidth, 90)];
+    [self.viView setFrame:CGRectMake(0, displayY, kScreenWidth, 203)];
     [self.bgScrollView addSubview:self.viView];
+    displayY += self.viView.bounds.size.height;
     
     //电池温度以及剩余寿命的View
-    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, 714, kScreenWidth, 160)];
+    displayY += 60;
+    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 120)];
     [self.bgScrollView addSubview:self.bottomView];
+    displayY += self.bottomView.bounds.size.height;
+    
+    displayY += 5;
+    self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, displayY);
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
@@ -171,6 +176,20 @@
 }
 
 - (void)updateBatteryCapacity {
+    if ([TUSystemInfoManager manager].batteryInfo.levelPercent <= 20)
+    {
+        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleRed;
+    }
+    else if ([TUSystemInfoManager manager].batteryInfo.levelPercent >= 80)
+    {
+        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleGreen;
+    }
+    else
+    {
+        self.capacityView.batteryCapacityViewStyle = TUBatteryCapacityViewStyleYellow;
+    }
+    
+    
     NSString *temp = [NSString stringWithFormat:@"%d%@",(int)[TUSystemInfoManager manager].batteryInfo.levelPercent,@"%"];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
@@ -238,9 +257,8 @@
 
 - (UIScrollView *)bgScrollView {
     if (!_bgScrollView) {
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height)];
         _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2137];
-        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 950)];
     }
     return _bgScrollView;
 }

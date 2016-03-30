@@ -34,7 +34,7 @@
     TUTabBarController *tabBarController = [[TUTabBarController alloc] init];
     
     // 充电
-    TUBatteryController *batteryVC = [[TUBatteryController alloc]init];
+    TUBatteryController *batteryVC = [[TUBatteryController alloc] initWithNibName:@"TUBatteryController" bundle:nil];
     batteryVC.title = @"充电";
     TUNavigationController *batteryNav = [[TUNavigationController alloc] initWithRootViewController:batteryVC];
     
