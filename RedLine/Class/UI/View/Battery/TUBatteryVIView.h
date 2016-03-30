@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *voltageLabel;//电压显示
 @property (weak, nonatomic) IBOutlet UILabel *currentLabel;//电流显示
 
+@property (assign, nonatomic) CGFloat averageCurrent;//平均电流
 
 - (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray;
 

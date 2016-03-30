@@ -54,9 +54,9 @@
 }
 
 - (void)initAnimation {
-    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
-    _disPlayLink.frameInterval = 60;
-    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+//    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
+//    _disPlayLink.frameInterval = 60;
+//    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 - (void)initAnimation2 {
@@ -201,20 +201,20 @@
     [layer removeFromSuperlayer];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
-    _disPlayLink.frameInterval = 40;
-    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-}
-
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.layer removeAllAnimations];
-    [_disPlayLink invalidate];
-    _disPlayLink = nil;
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
+//    _disPlayLink.frameInterval = 40;
+//    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+//}
+//
+//
+//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [self.layer removeAllAnimations];
+//    [_disPlayLink invalidate];
+//    _disPlayLink = nil;
+//}
 
 
 /*

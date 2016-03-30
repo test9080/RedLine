@@ -103,8 +103,13 @@
     self.currentGraphView.enableReferenceXAxisLines = YES;
     self.currentGraphView.enableReferenceYAxisLines = YES;
     self.currentGraphView.enableReferenceAxisFrame = YES;
-
     
+    self.currentGraphView.averageLine.enableAverageLine = YES;
+    self.currentGraphView.averageLine.alpha = 0;
+//    self.currentGraphView.averageLine.color = [UIColor darkGrayColor];
+//    self.currentGraphView.averageLine.width = 2.5;
+//    self.currentGraphView.averageLine.dashPattern = @[@(2),@(2)];
+
     // Set the graph's animation style to draw, fade, or none
     self.currentGraphView.animationGraphStyle = BEMLineAnimationExpand;
     
@@ -130,8 +135,11 @@
 - (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray {
     self.voltageArray = voltageArray;
     self.currentArray = currentArray;
+
     [self.voltageGraphView reloadGraph];
     [self.currentGraphView reloadGraph];
+    
+    self.averageCurrent = self.currentGraphView.averageLine.yValue;
 }
 
 
