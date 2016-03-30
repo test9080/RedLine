@@ -101,7 +101,7 @@
     //三个充电状态View
     displayY += 55;
     TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
-    [progressView setFrame:CGRectMake(0, displayY, kScreenWidth, 53)];
+    [progressView setFrame:CGRectMake(45, displayY, kScreenWidth - 45 * 2, 60)];
     [self.bgScrollView addSubview:progressView];
     displayY += progressView.bounds.size.height;
     
