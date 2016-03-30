@@ -114,7 +114,6 @@
 
 // 动画因应用程序进入后台后会停止。故避免在重新激活程序时出现卡死假象。
 - (void)resume{
-    
     if (self.animationLayer) {
         [self.animationLayer removeFromSuperlayer];
         [self setNeedsDisplay];
