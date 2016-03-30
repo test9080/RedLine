@@ -31,8 +31,6 @@
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
 @property (strong, nonatomic) TUBatteryVIView *viView;     //电压电流折线图
 
-@property (strong, nonatomic) NSString *batteryStatus;     //电池状态
-@property (assign, nonatomic) CGFloat levelPercent;        //电量百分比
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
 @property (assign, nonatomic) float voltage; // 电压
 @property (assign, nonatomic) float current; // 电流
@@ -47,10 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self UIConfig];
     
-    self.navigationController.navigationBarHidden = NO;
+    [self UIConfig];
     
     [kTUNotificationCenter addObserver:self
                               selector:@selector(updateBatteryInfo:)
@@ -74,7 +70,6 @@
 #pragma mark - UIConfig
 - (void)UIConfig {
     [self configNavigationBar];
-    
     [self setNeedsStatusBarAppearanceUpdate];
 
     [self.view addSubview:self.bgScrollView];
@@ -100,24 +95,33 @@
     
     //电量圆圈的View
     displayY += 33;
-    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255)];
+    [self updateBatteryCapacity];
+    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
     [self.bgScrollView addSubview:self.capacityView];
     displayY += self.capacityView.bounds.size.height;
     
     //三个充电状态View
     displayY += 55;
     TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
-    [progressView setFrame:CGRectMake(0, displayY, kScreenWidth, 60)];
+    [progressView setFrame:CGRectMake(45, displayY, kScreenWidth - 45 * 2, 60)];
     [self.bgScrollView addSubview:progressView];
+    displayY += progressView.bounds.size.height;
     
     //电压电流折线View
+    displayY += 50;
     self.viView = [TUBatteryVIView showGraphView];
-    [self.viView setFrame:CGRectMake(0, 454, kScreenWidth, 90)];
+    [self.viView setFrame:CGRectMake(0, displayY, kScreenWidth, 203)];
     [self.bgScrollView addSubview:self.viView];
+    displayY += self.viView.bounds.size.height;
     
     //电池温度以及剩余寿命的View
-    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, 714, kScreenWidth, 160)];
+    displayY += 60;
+    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 120)];
     [self.bgScrollView addSubview:self.bottomView];
+    displayY += self.bottomView.bounds.size.height;
+    
+    displayY += 5;
+    self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, displayY);
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
@@ -175,7 +179,20 @@
     self.title = [TUSystemInfoManager manager].batteryInfo.status;
 }
 
+- (TUBatteryCapacityViewStyle)styleWithBatteryLevelPercent:(CGFloat)levelPercent {
+    if (levelPercent <= 20) {
+        return TUBatteryCapacityViewStyleRed;
+    } else if (levelPercent >= 80) {
+        return TUBatteryCapacityViewStyleGreen;
+    } else {
+        return TUBatteryCapacityViewStyleYellow;
+    }
+}
+
 - (void)updateBatteryCapacity {
+   
+    self.capacityView.batteryCapacityViewStyle = [self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent];
+    
     NSString *temp = [NSString stringWithFormat:@"%d%@",(int)[TUSystemInfoManager manager].batteryInfo.levelPercent,@"%"];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
@@ -242,9 +259,8 @@
 
 - (UIScrollView *)bgScrollView {
     if (!_bgScrollView) {
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49 - 64)];
         _bgScrollView.backgroundColor = [UIColor colorWithARGB:0xff1c2137];
-        [_bgScrollView setContentSize:CGSizeMake(kScreenWidth, 950)];
     }
     return _bgScrollView;
 }

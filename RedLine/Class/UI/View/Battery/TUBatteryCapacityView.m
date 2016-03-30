@@ -13,6 +13,7 @@
 {
     CAAnimationGroup *_animaTionGroup;
     CADisplayLink *_disPlayLink;
+    NSMutableArray *pulsingLayerArray;
 }
 
 
@@ -23,11 +24,13 @@
 
 @implementation TUBatteryCapacityView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame style:(TUBatteryCapacityViewStyle)style {
     self = [super initWithFrame:frame];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resume) name:UIApplicationDidBecomeActiveNotification object:nil];
+        pulsingLayerArray = [[NSMutableArray alloc] initWithCapacity:5];
         self.backgroundColor = [UIColor clearColor];
+        _batteryCapacityViewStyle = style;
     }
     return self;
 }
@@ -47,7 +50,7 @@
 //    self.batteryCapacityLabel.text = @"10%";
     
     [self addSubview:self.batteryTimeLabel];
-    self.batteryTimeLabel.text = @"充满所需1小时22分钟";
+    self.batteryTimeLabel.text = @"正在获取充电状态";
 }
 
 - (void)initAnimation {
@@ -67,6 +70,7 @@
     CALayer * animationLayer = [[CALayer alloc]init];
     self.animationLayer = animationLayer;
     
+    [pulsingLayerArray removeAllObjects];
     for (int i = 0; i < pulsingCount; i++) {
         CALayer * pulsingLayer = [[CALayer alloc]init];
         pulsingLayer.frame = CGRectMake((self.width - 220) / 2, 0, 220, 220);
@@ -75,6 +79,7 @@
         pulsingLayer.borderColor = [self circleDisplayColor].CGColor;
         pulsingLayer.borderWidth = 1.0;
 //        pulsingLayer.position  = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        [pulsingLayerArray addObject:pulsingLayer];
 
         CAMediaTimingFunction * defaultCurve = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         
@@ -136,7 +141,7 @@
     if (!_batteryTimeLabel) {
         _batteryTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 220 + 20, self.width, 20)];
         _batteryTimeLabel.textColor = [UIColor whiteColor];
-        _batteryTimeLabel.font = [UIFont systemFontOfSize:17];
+        _batteryTimeLabel.font = [UIFont systemFontOfSize:15];
         _batteryTimeLabel.backgroundColor = [UIColor clearColor];
         _batteryTimeLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -235,6 +240,19 @@
     else
     {
         return [UIColor greenColor];
+    }
+}
+
+- (void)setBatteryCapacityViewStyle:(TUBatteryCapacityViewStyle)__batteryCapacityViewStyle
+{
+    _batteryCapacityViewStyle = __batteryCapacityViewStyle;
+    
+    for (int i = 0; i < [pulsingLayerArray count] - 1; i++)
+    {
+        CALayer *layer = [pulsingLayerArray objectAtIndex:i];
+        
+        layer.backgroundColor = [self circleDisplayColor].CGColor;//圈圈背景颜色，不设置则为透明。
+        layer.borderColor = [self circleDisplayColor].CGColor;
     }
 }
 
