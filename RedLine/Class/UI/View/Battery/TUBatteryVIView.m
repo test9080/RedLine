@@ -59,7 +59,7 @@
     size_t num_locations = 2;
     CGFloat locations[2] = { 0.0, 1.0 };
     CGFloat components[8] = {
-        0.3, 0.4, 0.8, 1.0,
+        1.0, 1.0, 1.0, 1.0,
         1.0, 1.0, 1.0, 0.0
     };
     
@@ -70,7 +70,7 @@
     self.voltageGraphView.enableTouchReport = YES;
     self.voltageGraphView.enablePopUpReport = YES;
     self.voltageGraphView.enableYAxisLabel = YES;
-    self.voltageGraphView.autoScaleYAxis = NO;
+    self.voltageGraphView.autoScaleYAxis = YES;
     self.voltageGraphView.alwaysDisplayDots = NO;
     self.voltageGraphView.enableReferenceXAxisLines = YES;
     self.voltageGraphView.enableReferenceYAxisLines = YES;
@@ -86,6 +86,7 @@
     self.voltageGraphView.formatStringForValues = @"%.2f";
     
     self.voltageGraphView.enableBezierCurve = YES;
+    
     self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff7386c5];
     self.voltageGraphView.colorTop = [UIColor clearColor];
     
@@ -103,6 +104,7 @@
     self.currentGraphView.enableReferenceYAxisLines = YES;
     self.currentGraphView.enableReferenceAxisFrame = YES;
 
+    
     // Set the graph's animation style to draw, fade, or none
     self.currentGraphView.animationGraphStyle = BEMLineAnimationExpand;
     

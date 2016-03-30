@@ -35,10 +35,8 @@
         manager.dumper = [ELLIOKitDumper new];
         
         [manager configNotification];
-        [manager startBatteryMonitoring];
         
-        [self refreshInfo];
-        
+        //        [manager refreshBatteryInfo];
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     });
@@ -50,6 +48,7 @@
 }
 
 - (void)refreshBatteryInfo {
+    
     [self.batteryInfoArray removeAllObjects];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -60,14 +59,8 @@
 }
 
 - (void)configNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(batteryLevelUpdatedCB:)
-                                                 name:UIDeviceBatteryLevelDidChangeNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(batteryStatusUpdatedCB:)
-                                                 name:UIDeviceBatteryStateDidChangeNotification
-                                               object:nil];
+    [self startBatteryMonitoring];
+    
 }
 
 - (BatteryInfo *)batteryInfo {
@@ -82,12 +75,23 @@
 
 - (void)startBatteryMonitoring {
     UIDevice *device = [UIDevice currentDevice];
+    
     if (!device.batteryMonitoringEnabled) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(batteryLevelUpdatedCB:)
+                                                     name:UIDeviceBatteryLevelDidChangeNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(batteryStatusUpdatedCB:)
+                                                     name:UIDeviceBatteryStateDidChangeNotification
+                                                   object:nil];
+        
         [device setBatteryMonitoringEnabled:YES];
         
         // If by any chance battery value is available - update it immediately
         if ([device batteryState] != UIDeviceBatteryStateUnknown) {
-            [self updateBatteryStatus];
+            [self doUpdateBatteryStatus];
         }
     }
 }
@@ -100,7 +104,7 @@
 }
 
 - (void)loadIOKit {
-    //    [self.properitys removeAllObjects];
+    [self.properitys removeAllObjects];
     [self.batteryInfoArray removeAllObjects];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -117,6 +121,7 @@
 
 // AppleARMPMUCharger
 - (void)getCharge:(ELLIOKitNodeInfo *)node {
+    
     if ([node.name isEqualToString:@"AppleARMPMUCharger"]) {
         [_batteryInfoArray addObjectsFromArray:node.properties];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -125,9 +130,9 @@
         });
     }
     
-    //    if (node.properties.count) {
-    //        [self.properitys addObjectsFromArray:node.properties];
-    //    }
+    if (node.properties.count) {
+        [self.properitys addObjectsFromArray:node.properties];
+    }
     
     for (int i = 0; i < node.children.count; i ++) {
         ELLIOKitNodeInfo *info = node.children[i];
@@ -192,6 +197,8 @@
 
 - (void)updateBatteryInfo {
     
+    //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
     [_batteryInfoArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj rangeOfString:@"Temperature = "].length) {
             NSRange range = [obj rangeOfString:@"Temperature = "];
@@ -223,27 +230,29 @@
     }];
     
     [kTUNotificationCenter postNotificationName:kBatteryInfoDidChangeNotification object:_batteryInfoArray];
+    //    [self refreshBatteryInfo];
 }
 
 - (void)batteryLevelUpdatedCB:(NSNotification*)notification {
-    [self updateBatteryStatus];
+    [self doUpdateBatteryStatus];
     [kTUNotificationCenter postNotificationName:kBatteryLevelDidChangeNotification object:self.batteryInfo];
 }
 
 - (void)batteryStatusUpdatedCB:(NSNotification*)notification {
-    [self updateBatteryStatus];
+    [self doUpdateBatteryStatus];
 }
 
-- (void)updateBatteryStatus {
+- (void)doUpdateBatteryStatus {
     float batteryMultiplier = [[UIDevice currentDevice] batteryLevel];
     self.batteryInfo.levelPercent = batteryMultiplier * 100;
+    self.batteryInfo.levelMAH =  self.batteryInfo.rawMaxCapacity * batteryMultiplier;
     
     switch ([[UIDevice currentDevice] batteryState]) {
         case UIDeviceBatteryStateCharging:
             // UIDeviceBatteryStateFull seems to be overwritten by UIDeviceBatteryStateCharging
             // when charging therefore it's more reliable if we check the battery level here
             // explicitly.
-            
+
             if (self.batteryInfo.levelPercent == 100) {
                 self.batteryInfo.status = kTULocalString(@"fullyCharged");
             } else {
@@ -270,5 +279,6 @@
     NSLog(@"life:%lu", life);
     return MAX(1, life);
 }
+
 
 @end
