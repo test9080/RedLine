@@ -26,6 +26,7 @@
 		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */; };
 		14F8B1241CAA5C8C0006287C /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */; };
+		14F8B12D1CAACB0E0006287C /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B12C1CAACB0E0006287C /* UIImage+Color.m */; };
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
@@ -83,6 +84,8 @@
 		14F8B11F1CAA1FF80006287C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TUSystemInfoManager.strings"; sourceTree = "<group>"; };
 		14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYWebImage.h"; sourceTree = "<group>"; };
 		14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYWebImage.m"; sourceTree = "<group>"; };
+		14F8B12B1CAACB0E0006287C /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		14F8B12C1CAACB0E0006287C /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
 		951691417E220DF6ACB14566 /* Pods_RedLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryCapacityView.h; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 		14F8B1211CAA5C8C0006287C /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
+				14F8B12B1CAACB0E0006287C /* UIImage+Color.h */,
+				14F8B12C1CAACB0E0006287C /* UIImage+Color.m */,
 				14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */,
 				14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */,
 			);
@@ -610,6 +615,7 @@
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
 				A1D109B81CAA71110035610D /* BEMCircle.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
+				14F8B12D1CAACB0E0006287C /* UIImage+Color.m in Sources */,
 				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,
 				A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */,
 			);
