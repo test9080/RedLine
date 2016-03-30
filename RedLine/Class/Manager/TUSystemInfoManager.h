@@ -39,8 +39,8 @@
 
 // 计算数值
 @property (nonatomic, assign) NSInteger remainLifeMonths; // 剩余寿命（月）
-@property (nonatomic,   copy) NSString  *status; // 充电状态
 @property (nonatomic, assign) UIDeviceBatteryState  batteryState; // 充电状态
+@property (nonatomic,   copy) NSString  *status; // 充电状态描述
 
 // 需要监听 kBatteryTimeToEmptyOrFullDidChangeNotification 取值
 @property (nonatomic, assign) NSInteger timeToEmpty; // 用完所需时间（需要电池百分比变化 才有值）
