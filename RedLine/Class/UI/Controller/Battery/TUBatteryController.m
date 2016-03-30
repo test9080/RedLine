@@ -30,6 +30,7 @@
 @property (strong, nonatomic) TUBatteryCapacityView *capacityView; //电量圆圈的View
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
 @property (strong, nonatomic) TUBatteryVIView *viView;     //电压电流折线图
+@property (strong, nonatomic) TUBatteryProgressView *progressView;  //充电进度条View
 
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
 @property (assign, nonatomic) float voltage; // 电压
@@ -109,10 +110,10 @@
     
     //三个充电状态View
     displayY += 55;
-    TUBatteryProgressView *progressView = [TUBatteryProgressView showProgressView];
-    [progressView setFrame:CGRectMake(45, displayY, kScreenWidth - 45 * 2, 60)];
-    [self.bgScrollView addSubview:progressView];
-    displayY += progressView.bounds.size.height;
+    self.progressView = [TUBatteryProgressView showProgressView];
+    [self.progressView  setFrame:CGRectMake(45, displayY, kScreenWidth - 45 * 2, 60)];
+    [self.bgScrollView addSubview:self.progressView ];
+    displayY += self.progressView .bounds.size.height;
     
     //电压电流折线View
     displayY += 50;
@@ -180,6 +181,7 @@
         _isShowBatteryLife = NO;
     }
     [self updateVI];
+    [self updateProgress];
 }
 
 - (void)updateBatteryStatus {
@@ -262,6 +264,10 @@
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
     
     NSLog(@"fdasfasdfas:%f", [TUSystemInfoManager timeToFullWithAverageAmperage:self.viView.averageCurrent maxCapacity:[TUSystemInfoManager manager].batteryInfo.rawMaxCapacity currentCapacity:[TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity]);
+}
+
+- (void)updateProgress {
+    [self.progressView updateProgress:[TUSystemInfoManager manager].batteryInfo.levelPercent / 100.f];
 }
 
 #pragma mark - setter & getter 

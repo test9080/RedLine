@@ -11,39 +11,46 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vdB-Ir-0rn">
-                    <rect key="frame" x="50" y="22" width="220" height="2"/>
-                </progressView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBP-P8-EJS">
+                    <rect key="frame" x="30" y="15" width="260" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Hh0-sb-l8M"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_cycle_bg" translatesAutoresizingMaskIntoConstraints="NO" id="ZfO-Vm-baj">
-                    <rect key="frame" x="20" y="8" width="30" height="30"/>
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="NIN-E4-421"/>
                         <constraint firstAttribute="width" constant="30" id="sp3-L1-f9L"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_cycle_bg" translatesAutoresizingMaskIntoConstraints="NO" id="si2-Na-mKm">
-                    <rect key="frame" x="145" y="8" width="30" height="30"/>
+                    <rect key="frame" x="145" y="0.0" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2XV-cJ-KlQ"/>
                         <constraint firstAttribute="width" constant="30" id="8EE-Tb-P9Q"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_cycle_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Vb5-Pm-bIg">
-                    <rect key="frame" x="270" y="8" width="30" height="30"/>
+                    <rect key="frame" x="290" y="0.0" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="tpu-bN-SK0"/>
                         <constraint firstAttribute="width" constant="30" id="zDF-lv-YLI"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_third" translatesAutoresizingMaskIntoConstraints="NO" id="0sl-vf-2bJ">
-                    <rect key="frame" x="280" y="15" width="11" height="16"/>
+                    <rect key="frame" x="300" y="7" width="11" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="Kgv-Ww-wdX"/>
                         <constraint firstAttribute="height" constant="16" id="SCx-X9-v6u"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快速充电" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkc-2i-ccp">
-                    <rect key="frame" x="0.0" y="46" width="70" height="20"/>
+                    <rect key="frame" x="-20" y="38" width="70" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="10B-V0-twb"/>
                         <constraint firstAttribute="height" constant="20" id="zXo-pG-KOi"/>
@@ -53,7 +60,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续充电" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uau-49-k0z">
-                    <rect key="frame" x="125" y="46" width="70" height="20"/>
+                    <rect key="frame" x="125" y="38" width="70" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="mhT-Q3-WAf"/>
                         <constraint firstAttribute="height" constant="20" id="pAL-hC-UkF"/>
@@ -63,7 +70,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="涓流充电" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gz-G0-OQ2">
-                    <rect key="frame" x="250" y="46" width="70" height="20"/>
+                    <rect key="frame" x="270" y="38" width="70" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="1Ak-Tf-dE1"/>
                         <constraint firstAttribute="width" constant="70" id="Bu2-7L-CNt"/>
@@ -73,14 +80,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_fisrt" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-2M-mZK">
-                    <rect key="frame" x="30" y="15" width="11" height="16"/>
+                    <rect key="frame" x="10" y="7" width="11" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="Cjs-FW-BLQ"/>
                         <constraint firstAttribute="height" constant="16" id="PIf-AF-yyv"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_sec" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-CY-Njk">
-                    <rect key="frame" x="153" y="15" width="15" height="16"/>
+                    <rect key="frame" x="153" y="7" width="15" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="n0X-5l-1DY"/>
                         <constraint firstAttribute="width" constant="15" id="oDz-g5-Jp8"/>
@@ -91,24 +98,24 @@
             <constraints>
                 <constraint firstItem="dkc-2i-ccp" firstAttribute="centerX" secondItem="ZfO-Vm-baj" secondAttribute="centerX" id="1bd-pA-Job"/>
                 <constraint firstItem="Vb5-Pm-bIg" firstAttribute="centerX" secondItem="5Gz-G0-OQ2" secondAttribute="centerX" id="75R-p6-Ba4"/>
+                <constraint firstItem="fBP-P8-EJS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="8dG-H9-IgY"/>
                 <constraint firstItem="si2-Na-mKm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bb5-uC-EiI"/>
-                <constraint firstItem="ZfO-Vm-baj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="IPc-Qb-bsH"/>
-                <constraint firstItem="vdB-Ir-0rn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="KS0-nG-eN3"/>
+                <constraint firstItem="ZfO-Vm-baj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IPc-Qb-bsH"/>
                 <constraint firstItem="Uau-49-k0z" firstAttribute="top" secondItem="si2-Na-mKm" secondAttribute="bottom" constant="8" id="PLE-sZ-73T"/>
-                <constraint firstItem="vdB-Ir-0rn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="SZi-F1-vgp"/>
                 <constraint firstItem="0sl-vf-2bJ" firstAttribute="centerX" secondItem="Vb5-Pm-bIg" secondAttribute="centerX" id="TyO-dY-p9o"/>
                 <constraint firstItem="Ivp-2M-mZK" firstAttribute="centerY" secondItem="ZfO-Vm-baj" secondAttribute="centerY" id="XPv-jq-FOa"/>
-                <constraint firstItem="ZfO-Vm-baj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="XjM-qH-FvS"/>
+                <constraint firstItem="ZfO-Vm-baj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XjM-qH-FvS"/>
                 <constraint firstItem="0sl-vf-2bJ" firstAttribute="centerY" secondItem="Vb5-Pm-bIg" secondAttribute="centerY" id="ZYt-zV-oVC"/>
-                <constraint firstItem="Vb5-Pm-bIg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="bJ5-QE-vtK"/>
-                <constraint firstAttribute="trailing" secondItem="Vb5-Pm-bIg" secondAttribute="trailing" constant="20" id="biF-Ho-XfX"/>
+                <constraint firstItem="Vb5-Pm-bIg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bJ5-QE-vtK"/>
+                <constraint firstAttribute="trailing" secondItem="Vb5-Pm-bIg" secondAttribute="trailing" id="biF-Ho-XfX"/>
                 <constraint firstItem="si2-Na-mKm" firstAttribute="centerX" secondItem="Uau-49-k0z" secondAttribute="centerX" id="c22-Ld-S1X"/>
                 <constraint firstItem="P6t-CY-Njk" firstAttribute="centerX" secondItem="si2-Na-mKm" secondAttribute="centerX" id="e5w-KM-5gL"/>
                 <constraint firstItem="5Gz-G0-OQ2" firstAttribute="top" secondItem="Vb5-Pm-bIg" secondAttribute="bottom" constant="8" id="eRm-Qs-o50"/>
+                <constraint firstAttribute="trailing" secondItem="fBP-P8-EJS" secondAttribute="trailing" constant="30" id="fqQ-r3-YyN"/>
                 <constraint firstItem="dkc-2i-ccp" firstAttribute="top" secondItem="ZfO-Vm-baj" secondAttribute="bottom" constant="8" id="gu8-ly-hJ0"/>
-                <constraint firstItem="si2-Na-mKm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="hTA-Sl-ykb"/>
+                <constraint firstItem="si2-Na-mKm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hTA-Sl-ykb"/>
                 <constraint firstItem="P6t-CY-Njk" firstAttribute="centerY" secondItem="si2-Na-mKm" secondAttribute="centerY" id="jTz-Qf-6YG"/>
-                <constraint firstAttribute="trailing" secondItem="vdB-Ir-0rn" secondAttribute="trailing" constant="50" id="wuZ-tW-2fD"/>
+                <constraint firstItem="fBP-P8-EJS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="lkg-A0-zCu"/>
                 <constraint firstItem="Ivp-2M-mZK" firstAttribute="centerX" secondItem="ZfO-Vm-baj" secondAttribute="centerX" id="xMi-cD-7fp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -116,9 +123,9 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bgLabel" destination="fBP-P8-EJS" id="mbo-HF-Yss"/>
                 <outlet property="firstImage" destination="ZfO-Vm-baj" id="nq4-0Y-AaR"/>
                 <outlet property="firstLabel" destination="dkc-2i-ccp" id="bhM-qo-6Qh"/>
-                <outlet property="progressView" destination="vdB-Ir-0rn" id="cke-U2-UC1"/>
                 <outlet property="secondImage" destination="si2-Na-mKm" id="Gjb-Ku-1oS"/>
                 <outlet property="secondLabel" destination="Uau-49-k0z" id="Rp1-NU-61b"/>
                 <outlet property="thirdImage" destination="Vb5-Pm-bIg" id="ftT-jL-RW8"/>

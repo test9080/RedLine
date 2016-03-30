@@ -9,6 +9,7 @@
 #import "TUBatteryProgressView.h"
 #import "UIView+Category.h"
 #import "UIColor+GGColor.h"
+#import "TUProgressView.h"
 
 #define LOAD_NIB(name) [[[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil] lastObject]
 
@@ -20,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondImage;
 @property (weak, nonatomic) IBOutlet UIImageView *thirdImage;
+@property (weak, nonatomic) IBOutlet UILabel *bgLabel;
+
+@property (strong, nonatomic) TUProgressView *progressView;
 
 @end
 
@@ -31,12 +35,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self setup];
+
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.backgroundColor = [UIColor clearColor];
-    [self setup];
+//    [self setup];
 }
 
 - (void)setup {
@@ -48,23 +54,16 @@
     self.secondImage.backgroundColor = [UIColor colorWithRGB:0xff60b1ce];
     self.thirdImage.backgroundColor = [UIColor colorWithRGB:0xff60b1ce];
     
-    [self.progressView setProgressTintColor:[UIColor colorWithARGB:0xff60b6cf]];
-//    [self.progressView setTrackTintColor:[UIColor colorWithARGB:0xff81a6c1]];
-    [self.progressView setProgress:0.0f];
+    _progressView = [[TUProgressView alloc] initWithFrame:CGRectMake(self.bgLabel.frame.origin.x, 27, self.width - 60, 4)];
+    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self addSubview:self.progressView];
+}
+
+- (void)updateProgress:(CGFloat)progress {
+    NSLog(@"hahahaah");
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(next) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    [_progressView setProgress:progress animated:YES];
 }
-
-- (void)next {
-    self.progressView.progress = self.progressView.progress + 0.01;
-    // 进度条走完 销毁定时器
-    if (self.progressView.progress == 1.0) {
-        [_timer invalidate];
-    }
-}
-
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

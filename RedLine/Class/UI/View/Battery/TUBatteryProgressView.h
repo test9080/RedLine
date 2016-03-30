@@ -16,11 +16,12 @@
 
 @interface TUBatteryProgressView : UIView
 
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
 
 + (TUBatteryProgressView *)showProgressView;
+
+- (void)updateProgress:(CGFloat)progress;
 
 @end
