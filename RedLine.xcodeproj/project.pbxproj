@@ -30,6 +30,7 @@
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
+		A12ACBB41CABD653004F29E2 /* TUAttributeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A12ACBB31CABD653004F29E2 /* TUAttributeLabel.m */; };
 		A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94101CA91B39007E6F7D /* TUBatteryVIView.m */; };
 		A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */; };
 		A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */; };
@@ -94,6 +95,8 @@
 		A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryHeaderView.m; sourceTree = "<group>"; };
 		A1132DB41CA6E78300B21CBF /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		A1132DB51CA6E78300B21CBF /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		A12ACBB21CABD653004F29E2 /* TUAttributeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUAttributeLabel.h; sourceTree = "<group>"; };
+		A12ACBB31CABD653004F29E2 /* TUAttributeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUAttributeLabel.m; sourceTree = "<group>"; };
 		A12F940F1CA91B39007E6F7D /* TUBatteryVIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryVIView.h; sourceTree = "<group>"; };
 		A12F94101CA91B39007E6F7D /* TUBatteryVIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryVIView.m; sourceTree = "<group>"; };
 		A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryVIView.xib; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 				A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */,
 				A12F94561CA98433007E6F7D /* TUBatteryBottomView.h */,
 				A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */,
+				A12ACBB21CABD653004F29E2 /* TUAttributeLabel.h */,
+				A12ACBB31CABD653004F29E2 /* TUAttributeLabel.m */,
 			);
 			path = Battery;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
 				14152D7F1CAB6666001C796B /* UIImage+Color.m in Sources */,
 				A1D109B81CAA71110035610D /* BEMCircle.m in Sources */,
+				A12ACBB41CABD653004F29E2 /* TUAttributeLabel.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,
 				A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */,

@@ -12,7 +12,7 @@
 #import "UIImage+Color.h"
 #import "UIImage+YYWebImage.h"
 #import "TUSystemInfoManager.h"
-
+#import "TUAttributeLabel.h"
 
 #define DegreesToRadians(_degrees) ((M_PI * (_degrees))/180)
 
@@ -29,6 +29,9 @@
 
 @property (strong, nonatomic) UILabel *temperatureLabel;
 @property (strong, nonatomic) UILabel *batteryLabel;
+
+@property (strong, nonatomic) UILabel *temperatureValueLabel;//电池温度Value
+@property (strong, nonatomic) TUAttributeLabel *batteryValueLabel;//电池剩余寿命Value
 
 @property (assign, nonatomic) CGFloat lastTemperature;
 @end
@@ -66,20 +69,22 @@
 - (void)temperatureUI {
     self.temperatureDotLayer = [CAShapeLayer layer];
     self.temperatureDotLayer.position = CGPointMake(self.temperatureImage.width/2, self.temperatureImage.height/2);
-    self.temperatureDotLayer.fillColor = [UIColor whiteColor].CGColor;
+    self.temperatureDotLayer.fillColor = [UIColor colorWithRGB:0xff79d6a2].CGColor;
     
     self.temperatureDotLayer.mask = self.temperatureDotOpacityLayer;
     self.temperatureDotOpacityLayer = [CAShapeLayer layer];
     self.temperatureDotOpacityLayer.position = CGPointMake(self.temperatureImage.width/2, self.temperatureImage.height/2);
-    self.temperatureDotOpacityLayer.fillColor = [UIColor whiteColor].CGColor;
+    self.temperatureDotOpacityLayer.fillColor = [UIColor colorWithRGB:0xff79d6a2].CGColor;
     self.temperatureDotOpacityLayer.opacity = 0.5;
     
     //设置圆的半径
     //设置路径
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(32, 32, 6, 6)];
+    
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-53, -3, 6, 6)];
     self.temperatureDotLayer.path = circlePath.CGPath;
     
-    UIBezierPath *circleMaskPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(30, 30, 10, 10)];
+    UIBezierPath *circleMaskPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-55, -5, 10, 10)];
+    
     self.temperatureDotOpacityLayer.path = circleMaskPath.CGPath;
 
     [self.temperatureImage.layer addSublayer:self.temperatureDotLayer];
@@ -99,10 +104,10 @@
 
     //设置圆的半径
     //设置路径
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(31, 31, 6, 6)];
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-35, 33, 6, 6)];
     self.batteryDotLayer.path = circlePath.CGPath;
     
-    UIBezierPath *circleMaskPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(29, 29, 10, 10)];
+    UIBezierPath *circleMaskPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-37, 31, 10, 10)];
     self.batteryDotOpacityLayer.path = circleMaskPath.CGPath;
 
     
@@ -114,16 +119,16 @@
 - (void)updateTemperatureUI:(CGFloat)temperature {
     self.temperatureValueLabel.text = [NSString stringWithFormat:@"%.1f℃",temperature];
     
-    self.temperatureDotLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
-    self.temperatureDotOpacityLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
+//    self.temperatureDotLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
+//    self.temperatureDotOpacityLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
 
     CGFloat lastTemp = self.lastTemperature ? self.lastTemperature : 0;
     
     CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    anima.duration = 3.f;
+    anima.duration = 1.f;
 
-    anima.fromValue = [NSNumber numberWithFloat:M_PI_4 * 3 + DegreesToRadians(lastTemp/35.0*180)];
-    anima.toValue = [NSNumber numberWithFloat:M_PI_4 * 3 + DegreesToRadians(temperature/35.0*180)];
+    anima.fromValue = [NSNumber numberWithFloat: DegreesToRadians(lastTemp/35.0*180)];
+    anima.toValue = [NSNumber numberWithFloat: DegreesToRadians(temperature/35.0*180)];
     anima.removedOnCompletion = NO;
     anima.fillMode = kCAFillModeForwards;
     anima.delegate = self;
@@ -135,13 +140,14 @@
 
 - (void)updateBatteryLifeUI:(NSInteger)remainLifeMonths {
     self.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",remainLifeMonths/12,remainLifeMonths%12];
-    self.batteryDotLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
-    self.batteryDotOpacityLayer.transform = CATransform3DMakeRotation(M_PI_4 * 3, 0, 0, 1);
-
+    
+    [self.batteryValueLabel addTextFont:[UIFont systemFontOfSize:13] range:NSMakeRange(1, 1)];
+    [self.batteryValueLabel addTextFont:[UIFont systemFontOfSize:13] range:NSMakeRange(3, 2)];
+    
     CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     anima.duration = 5.f;
-    anima.fromValue = [NSNumber numberWithFloat:M_PI_2];
-    anima.toValue = [NSNumber numberWithFloat:M_PI_2 + DegreesToRadians((60-remainLifeMonths)/60.0*240)];
+//    anima.fromValue = [NSNumber numberWithFloat:M_PI_2];
+    anima.toValue = [NSNumber numberWithFloat:DegreesToRadians((60-remainLifeMonths)/60.0*270)];
     anima.removedOnCompletion = NO;
     anima.fillMode = kCAFillModeForwards;
     anima.delegate = self;
@@ -152,47 +158,37 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-
-    if (anim.duration == 3.0f) {
-        NSLog(@"66666");
-        
-        NSNumber *toValue = [(CABasicAnimation *)anim toValue];
-        CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(65, 65) andWithAngle:toValue.floatValue andWithRadius:50];
-        
-        UIColor *color = [self.temperatureImage.image colorAtPoint:point];
-        
-        //    CGRect cropRect = CGRectMake(point.x-2, point.y-2, 4, 4);
-        //    UIImage *cropImage = [self.temperatureImage.image yy_imageByCropToRect:cropRect];
-        //    UIColor *color = [self.temperatureImage.image colorAtPoint:point imageRect:self.temperatureImage.frame];
-        
-        self.temperatureDotLayer.fillColor = color.CGColor;
-        self.temperatureDotOpacityLayer.fillColor = color.CGColor;
-
-    } else if (anim.duration == 5.0f){
     
-    if (flag) {
-        UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, 0, 4, 4);
-        view.backgroundColor = [UIColor redColor];
-        
-        
-        NSNumber *toValue = [(CABasicAnimation *)anim toValue];
-        CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(65, 65) andWithAngle:toValue.floatValue andWithRadius:50];
-        
-        
-        view.center = point;
-        
-        [self.batteryLifeImage addSubview:view];
-        
-        
-        UIColor *color = [self.batteryLifeImage.image colorAtPoint:point];
-        
-        view.backgroundColor = color;
-        
-        self.batteryDotLayer.fillColor = color.CGColor;
-        self.batteryDotOpacityLayer.fillColor = color.CGColor;
-
+    if (anim.duration == 1.0f) {
+        if (flag) {
+            NSNumber *toValue = [(CABasicAnimation *)anim toValue];
+            CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(self.temperatureImage.width/2, self.temperatureImage.height/2) andWithAngle:toValue.floatValue andWithRadius:50];
+            
+            UIColor *color = [self.temperatureImage.image colorAtPoint:point];
+            self.temperatureDotLayer.fillColor = color.CGColor;
+            self.temperatureDotOpacityLayer.fillColor = color.CGColor;
+        }
     }
+     else if (anim.duration == 5.0f){
+    
+        if (flag) {
+            UIView *view = [[UIView alloc] init];
+            view.frame = CGRectMake(0, 0, 4, 4);
+            view.backgroundColor = [UIColor redColor];
+        
+            CGFloat toValue = [[(CABasicAnimation *)anim toValue] floatValue] * 2 / 3;
+            CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(self.batteryLifeImage.width/2, self.batteryLifeImage.height/2) andWithAngle:0.85 andWithRadius:50];
+        
+            view.center = point;
+            [self.batteryLifeImage addSubview:view];
+        
+            UIColor *color = [self.batteryLifeImage.image colorAtPoint:point];
+        
+            view.backgroundColor = color;
+        
+            self.batteryDotLayer.fillColor = color.CGColor;
+            self.batteryDotOpacityLayer.fillColor = color.CGColor;
+        }
     }
 }
 
@@ -205,7 +201,7 @@
 #pragma mark - setter & getter
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
-        _temperatureLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 45, 90, 20)];
+        _temperatureLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.temperatureImage.width/2-45, 40, 90, 20)];
         _temperatureLabel.textColor = [UIColor whiteColor];
         _temperatureLabel.font = [UIFont systemFontOfSize:13.f];
         _temperatureLabel.textAlignment = NSTextAlignmentCenter;
@@ -216,7 +212,7 @@
 
 - (UILabel *)temperatureValueLabel {
     if (!_temperatureValueLabel) {
-        _temperatureValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 65, 90, 20)];
+        _temperatureValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.temperatureImage.width/2-45, 60, 90, 20)];
         _temperatureValueLabel.textColor = [UIColor whiteColor];
         _temperatureValueLabel.font = [UIFont systemFontOfSize:20.f];
         _temperatureValueLabel.textAlignment = NSTextAlignmentCenter;
@@ -227,7 +223,7 @@
 
 - (UILabel *)batteryLabel {
     if (!_batteryLabel) {
-        _batteryLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 45, 90, 20)];
+        _batteryLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.batteryLifeImage.width/2-45, 40, 90, 20)];
         _batteryLabel.textColor = [UIColor whiteColor];
         _batteryLabel.font = [UIFont systemFontOfSize:13.f];
         _batteryLabel.textAlignment = NSTextAlignmentCenter;
@@ -237,9 +233,9 @@
     return _batteryLabel;
 }
 
-- (UILabel *)batteryValueLabel {
+- (TUAttributeLabel *)batteryValueLabel {
     if (!_batteryValueLabel) {
-        _batteryValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, 65, 90, 20)];
+        _batteryValueLabel = [[TUAttributeLabel alloc] initWithFrame:CGRectMake(self.batteryLifeImage.width/2-45, 60, 90, 20)];
         _batteryValueLabel.textColor = [UIColor whiteColor];
         _batteryValueLabel.font = [UIFont systemFontOfSize:20.f];
         _batteryValueLabel.textAlignment = NSTextAlignmentCenter;
@@ -250,7 +246,7 @@
 
 - (UIImageView *)temperatureImage {
     if (!_temperatureImage) {
-        _temperatureImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 - 140, 10, 130, 130)];
+        _temperatureImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 - 165, 10, 155, 130)];
         _temperatureImage.image = [UIImage imageNamed:@"battery_wendu"];
     }
     return _temperatureImage;
@@ -258,7 +254,7 @@
 
 - (UIImageView *)batteryLifeImage {
     if (!_batteryLifeImage) {
-        _batteryLifeImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 + 10, 10, 130, 130)];
+        _batteryLifeImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.width/2 + 10, 10, 155, 130)];
         _batteryLifeImage.image = [UIImage imageNamed:@"battery_life"];
     }
     return _batteryLifeImage;
