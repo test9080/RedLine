@@ -250,10 +250,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [TUSystemInfoManager refreshInfo];
-}
-
 /*
 #pragma mark - Navigation
 

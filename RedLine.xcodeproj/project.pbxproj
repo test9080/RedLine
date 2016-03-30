@@ -10,6 +10,7 @@
 		059F255C33E02209C8A58BC8 /* Pods_RedLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951691417E220DF6ACB14566 /* Pods_RedLine.framework */; };
 		14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BAE1CA59A560044441B /* TUSystemInfoManager.m */; };
 		14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BB51CA59DF20044441B /* UIColor+GGColor.m */; };
+		14152D7F1CAB6666001C796B /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 14152D7E1CAB6666001C796B /* UIImage+Color.m */; };
 		14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A541CA57EBB0084C07E /* TUBatteryController.m */; };
 		14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A551CA57EBB0084C07E /* TUBatteryController.xib */; };
 		14268A671CA57FF10084C07E /* TUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A661CA57FF10084C07E /* TUViewController.m */; };
@@ -53,6 +54,8 @@
 		14143BB41CA59DF20044441B /* UIColor+GGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GGColor.h"; sourceTree = "<group>"; };
 		14143BB51CA59DF20044441B /* UIColor+GGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GGColor.m"; sourceTree = "<group>"; };
 		14143BB91CA5A06C0044441B /* RedLine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedLine.pch; sourceTree = "<group>"; };
+		14152D7D1CAB6666001C796B /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		14152D7E1CAB6666001C796B /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		14268A481CA57D8A0084C07E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		14268A531CA57EBB0084C07E /* TUBatteryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryController.h; sourceTree = "<group>"; };
 		14268A541CA57EBB0084C07E /* TUBatteryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryController.m; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 		14F8B1211CAA5C8C0006287C /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
+				14152D7D1CAB6666001C796B /* UIImage+Color.h */,
+				14152D7E1CAB6666001C796B /* UIImage+Color.m */,
 				14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */,
 				14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */,
 			);
@@ -608,6 +613,7 @@
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
+				14152D7F1CAB6666001C796B /* UIImage+Color.m in Sources */,
 				A1D109B81CAA71110035610D /* BEMCircle.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,

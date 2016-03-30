@@ -112,7 +112,6 @@
 }
 
 - (void)setTabBarConfig:(NSDictionary *)config {
-
     for (NSString *key in [config allKeys]) {
         [self.tabConfig setObject:config[key] forKey:key];
     }
@@ -148,7 +147,6 @@
 
 - (void)addAnimateView {
     UIView *view = [[UIView alloc] init];
-//    view.image = [UIImage imageNamed:@"tab_yuandi"];
     view.layer.borderColor = kTabLineColor.CGColor;
     view.layer.borderWidth = kScreenOneScale;
     self.animateView = view;
@@ -163,7 +161,6 @@
 }
 
 - (void)setupItems:(NSArray<__kindof TUTabBarItem *> *)items {
-    
     [self.items addObjectsFromArray:items];
     
     CGFloat width = kScreenWidth/items.count;

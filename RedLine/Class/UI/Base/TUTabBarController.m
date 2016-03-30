@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tabBar.hidden = YES;
+
     NSArray *titles = @[@"充电", @"红线", @"排行", @"我的"];
     NSArray *selectImages = @[@"tab_chongdianbig", @"tab_hongxianbig", @"tab_paihangbig", @"tab_wodebig"];
     NSArray *unSelectImages = @[@"tab_chongdian", @"tab_hongxian", @"tab_paihang", @"tab_wode"];
@@ -32,19 +34,11 @@
         [items addObject:item];
     }
 
-    self.tabBar.hidden = YES;
     
     TUTabBar *tabBar = [[TUTabBar alloc] initWithItems:items frame:CGRectZero];
     tabBar.delegate = self;
     [tabBar setSelectIndex:0];
     [self.view addSubview:tabBar];
-    
-    //tabbar是readonly的,所以只能通过KVC赋值,不能直接更改
-    //为什么在这里更改系统的tabBar,在这里系统的tabBar还没有值
-//    TUTabBar *tabBar = [[TUTabBar alloc] init];
-//    tabBar.delegate = self;
-//    [self setValue:tabBar forKeyPath:@"tabBar"];
-
 }
 
 - (void)tabBar:(TUTabBar *)tabBar didSelectFrom:(NSInteger)from to:(NSInteger)to {
