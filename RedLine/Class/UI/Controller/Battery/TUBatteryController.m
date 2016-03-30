@@ -30,8 +30,6 @@
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
 @property (strong, nonatomic) TUBatteryVIView *viView;     //电压电流折线图
 
-@property (strong, nonatomic) NSString *batteryStatus;     //电池状态
-@property (assign, nonatomic) CGFloat levelPercent;        //电量百分比
 @property (assign, nonatomic) CGFloat temperature;         //电池温度
 @property (assign, nonatomic) float voltage; // 电压
 @property (assign, nonatomic) float current; // 电流
