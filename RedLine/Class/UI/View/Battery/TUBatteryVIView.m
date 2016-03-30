@@ -59,7 +59,7 @@
     size_t num_locations = 2;
     CGFloat locations[2] = { 0.0, 1.0 };
     CGFloat components[8] = {
-        1.0, 1.0, 1.0, 1.0,
+        0.3, 0.4, 0.8, 1.0,
         1.0, 1.0, 1.0, 0.0
     };
     
@@ -70,7 +70,7 @@
     self.voltageGraphView.enableTouchReport = YES;
     self.voltageGraphView.enablePopUpReport = YES;
     self.voltageGraphView.enableYAxisLabel = YES;
-    self.voltageGraphView.autoScaleYAxis = YES;
+    self.voltageGraphView.autoScaleYAxis = NO;
     self.voltageGraphView.alwaysDisplayDots = NO;
     self.voltageGraphView.enableReferenceXAxisLines = YES;
     self.voltageGraphView.enableReferenceYAxisLines = YES;
@@ -94,6 +94,7 @@
     
     self.voltageGraphView.enableBezierCurve = YES;
     
+    self.voltageGraphView.alphaBottom = 0.8;
     self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff60b1ce];
     self.voltageGraphView.colorTop = [UIColor clearColor];
     
@@ -112,7 +113,7 @@
     self.currentGraphView.enableReferenceAxisFrame = YES;
     
     // Draw an average line
-    self.currentGraphView.averageLine.enableAverageLine = YES;
+    self.currentGraphView.averageLine.enableAverageLine = NO;
     self.currentGraphView.averageLine.alpha = 0.6;
     self.currentGraphView.averageLine.color = [UIColor darkGrayColor];
     self.currentGraphView.averageLine.width = 2.5;
