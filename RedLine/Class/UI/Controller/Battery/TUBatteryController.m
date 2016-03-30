@@ -207,7 +207,6 @@
 - (void)updateBatteryChargeTimeStatus
 {
     
-    [afnew];
     NSString *temp = @"充满所需1小时22分钟";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
