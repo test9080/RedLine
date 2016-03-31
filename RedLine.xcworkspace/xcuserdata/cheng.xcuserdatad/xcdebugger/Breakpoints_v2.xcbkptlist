@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RedLine/Class/Manager/TUSystemInfoManager.m"
-            timestampString = "481026727.506551"
+            timestampString = "481132605.962039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357">
+            startingLineNumber = "154"
+            endingLineNumber = "154">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RedLine/Class/Manager/TUSystemInfoManager.m"
-            timestampString = "481026727.506551"
+            timestampString = "481132605.962039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368">
+            startingLineNumber = "165"
+            endingLineNumber = "165">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
