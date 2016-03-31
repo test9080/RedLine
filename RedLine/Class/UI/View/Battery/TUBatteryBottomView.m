@@ -34,6 +34,7 @@
 @property (strong, nonatomic) TUAttributeLabel *batteryValueLabel;//电池剩余寿命Value
 
 @property (assign, nonatomic) CGFloat lastTemperature;
+@property (assign, nonatomic) NSInteger remainLifeMonths;
 @end
 
 @implementation TUBatteryBottomView
@@ -139,6 +140,8 @@
 }
 
 - (void)updateBatteryLifeUI:(NSInteger)remainLifeMonths {
+    self.remainLifeMonths = remainLifeMonths;
+
     self.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",remainLifeMonths/12,remainLifeMonths%12];
     
     [self.batteryValueLabel addTextFont:[UIFont systemFontOfSize:13] range:NSMakeRange(1, 1)];
@@ -176,15 +179,14 @@
             view.frame = CGRectMake(0, 0, 4, 4);
             view.backgroundColor = [UIColor redColor];
         
-            CGFloat toValue = [[(CABasicAnimation *)anim toValue] floatValue] * 2 / 3;
-            CGPoint point = [self.class calcCircleCoordinateWithCenter:CGPointMake(self.batteryLifeImage.width/2, self.batteryLifeImage.height/2) andWithAngle:0.85 andWithRadius:50];
-        
+            CGPoint point = [self.class calcCircleCoordinateWithCenterPoint:CGPointMake(self.batteryLifeImage.width/2, self.batteryLifeImage.height/2) andWithAngle:(60-self.remainLifeMonths)/60.0*270 andWithRadius:48];
+
             view.center = point;
-            [self.batteryLifeImage addSubview:view];
+//            [self.batteryLifeImage addSubview:view];
         
             UIColor *color = [self.batteryLifeImage.image colorAtPoint:point];
         
-            view.backgroundColor = color;
+            view.backgroundColor = [UIColor redColor];
         
             self.batteryDotLayer.fillColor = color.CGColor;
             self.batteryDotOpacityLayer.fillColor = color.CGColor;
@@ -197,6 +199,13 @@
     CGFloat y2 = radius*sinf(angle*M_PI/180);
     return CGPointMake(center.x+x2, center.y-y2);
 }
+
++(CGPoint)calcCircleCoordinateWithCenterPoint:(CGPoint)center andWithAngle:(CGFloat)angle andWithRadius:(CGFloat)radius{
+    CGFloat x = radius*cosf(-M_PI_4 + angle*M_PI/180);
+    CGFloat y= radius*sinf(-M_PI_4 + angle*M_PI/180);
+    return CGPointMake(center.x - x, center.y - y);
+}
+
 
 #pragma mark - setter & getter
 - (UILabel *)temperatureLabel {

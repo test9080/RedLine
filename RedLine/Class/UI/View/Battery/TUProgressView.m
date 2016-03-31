@@ -34,12 +34,12 @@
     [self configureViews];
 }
 
--(void)configureViews {    
+-(void)configureViews {
     self.userInteractionEnabled = NO;
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _progressBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 1, 1, 2)];
     _progressBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    UIColor *tintColor = [UIColor colorWithRed:22.f / 255.f green:126.f / 255.f blue:251.f / 255.f alpha:1.0];
+    UIColor *tintColor = [UIColor colorWithRGB:0xff5fb7ce];
     _progressBarView.backgroundColor = tintColor;
     [self addSubview:_progressBarView];
     

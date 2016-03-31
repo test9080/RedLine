@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondImage;
 @property (weak, nonatomic) IBOutlet UIImageView *thirdImage;
+@property (weak, nonatomic) IBOutlet UIImageView *secondIconImage;
 @property (weak, nonatomic) IBOutlet UILabel *bgLabel;
 
 @property (strong, nonatomic) TUProgressView *progressView;
@@ -46,22 +47,16 @@
 }
 
 - (void)setup {
-    [self.firstImage roundToCircle];
-    [self.secondImage roundToCircle];
-    [self.thirdImage roundToCircle];
-    
-    self.firstImage.backgroundColor = [UIColor colorWithRGB:0xff60b1ce];
-    self.secondImage.backgroundColor = [UIColor colorWithRGB:0xff60b1ce];
-    self.thirdImage.backgroundColor = [UIColor colorWithRGB:0xff60b1ce];
-    
+    self.bgLabel.backgroundColor = [UIColor colorWithRGB:0xff80a7ce];
     _progressView = [[TUProgressView alloc] initWithFrame:CGRectMake(self.bgLabel.frame.origin.x, 27, self.width - 60, 4)];
     _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self addSubview:self.progressView];
+
+    [self insertSubview:self.secondImage aboveSubview:_progressView];
+    [self insertSubview:self.secondIconImage aboveSubview:self.secondIconImage];
 }
 
 - (void)updateProgress:(CGFloat)progress {
-    NSLog(@"hahahaah");
-    
     [_progressView setProgress:progress animated:YES];
 }
 
