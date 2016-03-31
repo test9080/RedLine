@@ -104,8 +104,8 @@
     self.currentGraphView.enableReferenceYAxisLines = YES;
     self.currentGraphView.enableReferenceAxisFrame = YES;
     
-    self.currentGraphView.averageLine.enableAverageLine = YES;
-    self.currentGraphView.averageLine.alpha = 0;
+//    self.currentGraphView.averageLine.enableAverageLine = YES;
+//    self.currentGraphView.averageLine.alpha = 1.0;
 //    self.currentGraphView.averageLine.color = [UIColor darkGrayColor];
 //    self.currentGraphView.averageLine.width = 2.5;
 //    self.currentGraphView.averageLine.dashPattern = @[@(2),@(2)];
@@ -140,6 +140,7 @@
     [self.currentGraphView reloadGraph];
     
     self.averageCurrent = self.currentGraphView.averageLine.yValue;
+    NSLog(@"self.averageCurrent:r%f",self.averageCurrent);
 }
 
 #pragma mark - SimpleLineGraph Data Source
