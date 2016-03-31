@@ -53,14 +53,14 @@
 //        [self.voltageArray addObject:@([self getRandomFloat])]; // Random values for the graph
 //        [self.currentArray addObject:@([self getRandomFloat])]; // Random values for the graph
 //    }
-    
+    //  68c1fa  7386c5
     // Create a gradient to apply to the bottom portion of the graph
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t num_locations = 2;
     CGFloat locations[2] = { 0.0, 1.0 };
     CGFloat components[8] = {
-        1.0, 1.0, 1.0, 1.0,
-        1.0, 1.0, 1.0, 0.0
+        0.41, 0.76, 0.98, 1.0,
+        0.45, 0.53, 0.77, 1.0,
     };
     
     // Apply the gradient to the bottom portion of the graph
