@@ -300,6 +300,8 @@
     
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
     
+    NSLog(@"aaaaaaa%f",self.viView.averageCurrent);
+    
     NSLog(@"fdasfasdfas:%f", [TUSystemInfoManager timeToFullWithAverageAmperage:self.viView.averageCurrent maxCapacity:[TUSystemInfoManager manager].batteryInfo.rawMaxCapacity currentCapacity:[TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity]);
 }
 

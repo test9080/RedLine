@@ -126,6 +126,7 @@
                 <outlet property="bgLabel" destination="fBP-P8-EJS" id="mbo-HF-Yss"/>
                 <outlet property="firstImage" destination="ZfO-Vm-baj" id="nq4-0Y-AaR"/>
                 <outlet property="firstLabel" destination="dkc-2i-ccp" id="bhM-qo-6Qh"/>
+                <outlet property="secondIconImage" destination="P6t-CY-Njk" id="wAw-1g-kly"/>
                 <outlet property="secondImage" destination="si2-Na-mKm" id="Gjb-Ku-1oS"/>
                 <outlet property="secondLabel" destination="Uau-49-k0z" id="Rp1-NU-61b"/>
                 <outlet property="thirdImage" destination="Vb5-Pm-bIg" id="ftT-jL-RW8"/>
