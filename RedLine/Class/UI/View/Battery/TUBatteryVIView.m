@@ -142,7 +142,6 @@
     self.averageCurrent = self.currentGraphView.averageLine.yValue;
 }
 
-
 #pragma mark - SimpleLineGraph Data Source
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
