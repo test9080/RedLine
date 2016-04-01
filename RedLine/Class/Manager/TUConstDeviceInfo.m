@@ -56,6 +56,7 @@ typedef enum {
 
 @interface TUConstDeviceInfo ()
 @property (nonatomic, assign) iDevice_t iDevice;
+@property (nonatomic, copy) NSString *machine;
 
 - (iDevice_t)machineToIdevice:(NSString*)machine;
 @end
@@ -572,13 +573,14 @@ static const NSString *AspectRatioTable[] = {
         uname(&DT);
         // Set the device type to the machine type
         NewDeviceType = [NSString stringWithFormat:@"%s", DT.machine];
-        [sharedInstance setMachine:NewDeviceType];
+        sharedInstance.machine = NewDeviceType;
     });
     return sharedInstance;
 }
 
 - (void)setMachine:(NSString*)machine
 {
+    _machine = machine;
     self.iDevice = [self machineToIdevice:machine];
 }
 
@@ -635,6 +637,46 @@ static const NSString *AspectRatioTable[] = {
 - (NSString*)getAspectRatio
 {
     return (NSString*) AspectRatioTable[self.iDevice];
+}
+
+- (BOOL)isOldDevice {
+    NSString *model = self.machine;
+    static NSMutableSet *oldDevices;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        oldDevices = [NSMutableSet new];
+        [oldDevices addObject:@"iPod1,1"];
+        [oldDevices addObject:@"iPod2,1"];
+        [oldDevices addObject:@"iPod3,1"];
+        [oldDevices addObject:@"iPod4,1"];
+        [oldDevices addObject:@"iPod5,1"];
+        
+        [oldDevices addObject:@"iPhone1,1"];
+        [oldDevices addObject:@"iPhone1,1"];
+        [oldDevices addObject:@"iPhone1,2"];
+        [oldDevices addObject:@"iPhone2,1"];
+        [oldDevices addObject:@"iPhone3,1"];
+        [oldDevices addObject:@"iPhone3,2"];
+        [oldDevices addObject:@"iPhone3,3"];
+        [oldDevices addObject:@"iPhone4,1"];
+        
+        [oldDevices addObject:@"iPad1,1"];
+        [oldDevices addObject:@"iPad2,1"];
+        [oldDevices addObject:@"iPad2,2"];
+        [oldDevices addObject:@"iPad2,3"];
+        [oldDevices addObject:@"iPad2,4"];
+        [oldDevices addObject:@"iPad2,5"];
+        [oldDevices addObject:@"iPad2,6"];
+        [oldDevices addObject:@"iPad2,7"];
+        [oldDevices addObject:@"iPad3,1"];
+        [oldDevices addObject:@"iPad3,2"];
+        [oldDevices addObject:@"iPad3,3"];
+    });
+    
+    if ([oldDevices containsObject:model]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - private

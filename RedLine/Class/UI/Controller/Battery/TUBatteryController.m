@@ -62,6 +62,14 @@
                               selector:@selector(updateTimeToEmpty:)
                                   name:kBatteryTimeToEmptyDidChangeNotification
                                 object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateBatteryStatus)
+                                  name:kBatteryStatusDidChangeNotification
+                                object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateBatteryCapacity)
+                                  name:kBatteryLevelDidChangeNotification
+                                object:nil];
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
@@ -110,11 +118,11 @@
     
     //电量圆圈的View
     displayY += 33;
-    [self updateBatteryCapacity];
     self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
     [self.bgScrollView addSubview:self.capacityView];
+    [self updateBatteryCapacity];
     displayY += self.capacityView.bounds.size.height;
-    
+
     //三个充电状态View
     displayY += 55;
     self.progressView = [TUBatteryProgressView showProgressView];
@@ -137,6 +145,7 @@
     
     displayY += 5;
     self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, displayY);
+
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {

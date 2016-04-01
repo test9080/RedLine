@@ -10,6 +10,7 @@
 #import "ELLIOKitNodeInfo.h"
 #import "ELLIOKitDumper.h"
 #import "TUHardwareInfo.h"
+#import "TUConstDeviceInfo.h"
 
 @interface TUSystemInfoManager ()
 
@@ -33,13 +34,15 @@
 
         manager.dumper = [ELLIOKitDumper new];
 
+        BOOL isOldDevice = [[TUConstDeviceInfo sharedDevice] isOldDevice];
+        
         [manager refreshBatteryInfo];
-        [manager performSelector:@selector(refreshBatteryInfo) withObject:nil afterDelay:1];
-        
-        NSLog(@"%@", [TUHardwareInfo systemDeviceType]);
-        
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        if (!isOldDevice) {
+            [manager performSelector:@selector(refreshBatteryInfo) withObject:nil afterDelay:1];
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        }
+
     });
     return manager;
 }
@@ -63,13 +66,17 @@
     });
 }
 
-// AppleARMPMUCharger
+// AppleARMPMUCharger-charger
 - (void)getChargeRefreshBattery:(ELLIOKitNodeInfo *)node {
     
-    if ([node.name isEqualToString:@"AppleARMPMUCharger"]) {
+    // iPhone4 - AppleD1815PMUPowerSource
+    if ([node.name isEqualToString:@"AppleD1815PMUPowerSource"] || [node.name isEqualToString:@"AppleARMPMUCharger"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //  NSLog(@"电池相关信息：%@", _batteryInfoArray);
             [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
+            if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
+                [self refreshBatteryInfo];
+            }
         });
         return;
     }
@@ -92,8 +99,6 @@
 }
 
 @end
-
-
 
 
 @implementation TUSystemInfoManager (Help)
