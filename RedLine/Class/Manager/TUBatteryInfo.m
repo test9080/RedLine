@@ -153,6 +153,7 @@
     }
     
     [kTUNotificationCenter postNotificationName:kBatteryStatusDidChangeNotification object:self];
+    [kTUNotificationCenter postNotificationName:kBatteryLevelDidChangeNotification object:self];
 }
 
 - (void)updateBatteryNearCapacity {
@@ -171,55 +172,55 @@
 
     return;
     
-    BatteryLevel *level = [[BatteryLevel alloc] init];
-    level.levelPercent = self.levelPercent;
-    level.capacity = self.rawCurrentCapacity;
-    level.updateTime = [[NSDate date] timeIntervalSince1970];
-    
-    if (self.batteryState == UIDeviceBatteryStateFull) {
-        self.timeToFull = 0;
-        if (level.capacity != [self.nearBatteryCapacity.lastObject capacity]) {
-            [self.nearBatteryCapacity addObject:level];
-        }
-        return;
-    }
-    
-    
-    if (level.capacity != [self.nearBatteryCapacity.lastObject capacity]) {
-        [self.nearBatteryCapacity addObject:level];
-    }
-    
-    if (self.nearBatteryCapacity.count > 3) {
-        [self.nearBatteryCapacity removeObjectsInRange:NSMakeRange(0, self.nearBatteryCapacity.count - 3)];
-    }
-    
-    if (self.nearBatteryCapacity.count >= 2) {
-        
-        BatteryLevel *preLevel = self.nearBatteryCapacity[0];
-        BatteryLevel *lastLevel = self.nearBatteryCapacity.lastObject;
-        
-        
-        CGFloat timeChange = lastLevel.updateTime - preLevel.updateTime;
-        CGFloat capacityChange = lastLevel.capacity - preLevel.capacity;
-        
-        if (capacityChange != 0) {
-            
-            CGFloat speed = capacityChange/timeChange;
-            
-            self.timeToFull = MAX(60, (self.rawMaxCapacity * 0.99 - self.rawCurrentCapacity)/ speed);
-            self.timeToEmpty = self.rawCurrentCapacity / speed;
-            
-            if (self.batteryState == UIDeviceBatteryStateCharging) {
-                [kTUNotificationCenter postNotificationName:kBatteryTimeToFullDidChangeNotification object:@(self.timeToFull)];
-            } else if (self.batteryState == UIDeviceBatteryStateUnplugged) {
-                [kTUNotificationCenter postNotificationName:kBatteryTimeToEmptyDidChangeNotification object:@(self.timeToEmpty)];
-            }
-            
-            NSString *string = [NSString stringWithFormat:@"speed:%f, timeChange:%f, capacityChange:%f ,self.timeToFull: %ld, empty: %ld \n%@", speed,timeChange,capacityChange,(long)self.timeToFull, (long)self.timeToEmpty, self.nearBatteryCapacity];
-            NSLog(@"%@", string);
-            
-        }
-    }
+//    BatteryLevel *level = [[BatteryLevel alloc] init];
+//    level.levelPercent = self.levelPercent;
+//    level.capacity = self.rawCurrentCapacity;
+//    level.updateTime = [[NSDate date] timeIntervalSince1970];
+//    
+//    if (self.batteryState == UIDeviceBatteryStateFull) {
+//        self.timeToFull = 0;
+//        if (level.capacity != [self.nearBatteryCapacity.lastObject capacity]) {
+//            [self.nearBatteryCapacity addObject:level];
+//        }
+//        return;
+//    }
+//    
+//    
+//    if (level.capacity != [self.nearBatteryCapacity.lastObject capacity]) {
+//        [self.nearBatteryCapacity addObject:level];
+//    }
+//    
+//    if (self.nearBatteryCapacity.count > 3) {
+//        [self.nearBatteryCapacity removeObjectsInRange:NSMakeRange(0, self.nearBatteryCapacity.count - 3)];
+//    }
+//    
+//    if (self.nearBatteryCapacity.count >= 2) {
+//        
+//        BatteryLevel *preLevel = self.nearBatteryCapacity[0];
+//        BatteryLevel *lastLevel = self.nearBatteryCapacity.lastObject;
+//        
+//        
+//        CGFloat timeChange = lastLevel.updateTime - preLevel.updateTime;
+//        CGFloat capacityChange = lastLevel.capacity - preLevel.capacity;
+//        
+//        if (capacityChange != 0) {
+//            
+//            CGFloat speed = capacityChange/timeChange;
+//            
+//            self.timeToFull = MAX(60, (self.rawMaxCapacity * 0.99 - self.rawCurrentCapacity)/ speed);
+//            self.timeToEmpty = self.rawCurrentCapacity / speed;
+//            
+//            if (self.batteryState == UIDeviceBatteryStateCharging) {
+//                [kTUNotificationCenter postNotificationName:kBatteryTimeToFullDidChangeNotification object:@(self.timeToFull)];
+//            } else if (self.batteryState == UIDeviceBatteryStateUnplugged) {
+//                [kTUNotificationCenter postNotificationName:kBatteryTimeToEmptyDidChangeNotification object:@(self.timeToEmpty)];
+//            }
+//            
+//            NSString *string = [NSString stringWithFormat:@"speed:%f, timeChange:%f, capacityChange:%f ,self.timeToFull: %ld, empty: %ld \n%@", speed,timeChange,capacityChange,(long)self.timeToFull, (long)self.timeToEmpty, self.nearBatteryCapacity];
+//            NSLog(@"%@", string);
+//            
+//        }
+//    }
 }
 
 - (void)doUpdateBatteryStatus {

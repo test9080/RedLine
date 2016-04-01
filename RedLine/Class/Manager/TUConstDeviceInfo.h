@@ -22,4 +22,5 @@
 - (CGFloat)getScreenSize;
 - (NSUInteger)getPPI;
 - (NSString *)getAspectRatio;
+- (BOOL)isOldDevice;
 @end
