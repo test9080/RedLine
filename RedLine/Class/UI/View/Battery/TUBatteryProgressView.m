@@ -49,11 +49,19 @@
 - (void)setup {
     self.bgLabel.backgroundColor = [UIColor colorWithRGB:0xff80a7ce];
     _progressView = [[TUProgressView alloc] initWithFrame:CGRectMake(self.bgLabel.frame.origin.x, 27, self.width - 60, 4)];
-    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+//    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self addSubview:self.progressView];
 
     [self insertSubview:self.secondImage aboveSubview:_progressView];
     [self insertSubview:self.secondIconImage aboveSubview:self.secondIconImage];
+    
+    [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_bgLabel.mas_left);
+        make.width.mas_equalTo(self.mas_width).mas_offset(-60);
+        make.height.mas_equalTo(4);
+        make.top.mas_equalTo(13);
+    }];
+    
 }
 
 - (void)updateProgress:(CGFloat)progress {

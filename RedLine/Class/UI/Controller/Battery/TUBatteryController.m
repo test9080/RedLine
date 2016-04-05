@@ -54,7 +54,22 @@
                               selector:@selector(updateBatteryInfo:)
                                   name:kBatteryInfoDidChangeNotification
                                 object:nil];
-    
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateTimeToFull:)
+                                  name:kBatteryTimeToFullDidChangeNotification
+                                object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateTimeToEmpty:)
+                                  name:kBatteryTimeToEmptyDidChangeNotification
+                                object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateBatteryStatus)
+                                  name:kBatteryStatusDidChangeNotification
+                                object:nil];
+    [kTUNotificationCenter addObserver:self
+                              selector:@selector(updateBatteryCapacity)
+                                  name:kBatteryLevelDidChangeNotification
+                                object:nil];
     CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
     NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
 
@@ -103,11 +118,11 @@
     
     //电量圆圈的View
     displayY += 33;
-    [self updateBatteryCapacity];
     self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
     [self.bgScrollView addSubview:self.capacityView];
+    [self updateBatteryCapacity];
     displayY += self.capacityView.bounds.size.height;
-    
+
     //三个充电状态View
     displayY += 55;
     self.progressView = [TUBatteryProgressView showProgressView];
@@ -130,6 +145,7 @@
     
     displayY += 5;
     self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, displayY);
+
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
@@ -141,9 +157,11 @@
     self.current = [TUSystemInfoManager manager].batteryInfo.amperage/1000.0;
     CGFloat count = [TUSystemInfoManager manager].batteryInfo.cycleCount;
 
+    NSInteger current = [TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity;
+    
     NSString *date = [[NSDate dateFromStringOrNumber:@([TUSystemInfoManager manager].batteryInfo.updateTime)] standardTimeIntervalDescription];
     
-    NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@", self.voltage, self.current, count, self.temperature, date];
+    NSString *string = [NSString stringWithFormat:@"voltage:%f,\n amperage:%f,\n count:%f,\n temperature:%f,\n date:%@,\n current:%ld", self.voltage, self.current, count, self.temperature, date, (long)current];
     NSLog(@"%@", string);
     
     [self updateUI];
@@ -174,7 +192,7 @@
 - (void)updateUI {
     [self updateBatteryStatus];
     [self updateBatteryCapacity];
-    [self updateBatteryChargeTimeStatus];
+//    [self updateBatteryChargeTimeStatus];
     [self updateTemperature];
     if (_isShowBatteryLife) {
         [self updateBatteryLife];
@@ -215,9 +233,37 @@
     self.capacityView.batteryCapacityLabel.attributedText = attrString;
 }
 
-- (void)updateBatteryChargeTimeStatus
+- (void)updateTimeToFull:(NSNotification *)note {
+    int info = abs([note.object intValue]);
+    if (info == 0) {
+        self.capacityView.batteryTimeLabel.text = @"正在获取充电状态";
+        return;
+    }
+
+    int hour = info / 3600;
+    int min = (info % 3600) / 60;
+
+    NSString *string = [NSString stringWithFormat:@"%d小时%d分钟", hour, min];
+    [self updateBatteryChargeTimeStatus:@"充满所需" time:string];
+}
+
+- (void)updateTimeToEmpty:(NSNotification *)note {
+    int info = abs([note.object intValue]);
+    
+    if (info == 0) {
+        self.capacityView.batteryTimeLabel.text = @"正在获取电池状态";
+        return;
+    }
+    int hour = info / 3600;
+    int min = (info % 3600) / 60;
+    NSString *string = [NSString stringWithFormat:@"%d小时%d分钟", hour, min];
+    [self updateBatteryChargeTimeStatus:@"剩余可用" time:string];
+}
+
+- (void)updateBatteryChargeTimeStatus:(NSString *)status time:(NSString *)time
 {
-    NSString *temp = @"充满所需1小时22分钟";
+//    NSString *temp = @"充满所需1小时22分钟";
+    NSString *temp = [NSString stringWithFormat:@"%@%@", status, time];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:temp];
     
     //设置字体
@@ -225,7 +271,7 @@
     [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, [temp length])];
     
     font = [UIFont systemFontOfSize:20];
-    NSRange temp1 = [temp rangeOfString:@"充满所需"];
+    NSRange temp1 = [temp rangeOfString:status];
     NSRange temp2 = [temp rangeOfString:@"小时"];
     NSRange temp3 = [temp rangeOfString:@"分钟"];
     unsigned long tempLoc = temp1.location + temp1.length;

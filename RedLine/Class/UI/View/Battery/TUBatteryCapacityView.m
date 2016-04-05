@@ -247,6 +247,10 @@
 {
     _batteryCapacityViewStyle = __batteryCapacityViewStyle;
     
+    if (![pulsingLayerArray count]) {
+        return;
+    }
+    
     for (int i = 0; i < [pulsingLayerArray count] - 1; i++)
     {
         CALayer *layer = [pulsingLayerArray objectAtIndex:i];
