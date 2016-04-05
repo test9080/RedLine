@@ -71,7 +71,7 @@
         
         // If by any chance battery value is available - update it immediately
         if ([device batteryState] != UIDeviceBatteryStateUnknown) {
-            [self doUpdateBatteryStatus];
+            [self updateBatteryStatus];
         }
     }
 }
@@ -129,12 +129,12 @@
 }
 
 - (void)batteryLevelUpdatedCB:(NSNotification*)notification {
-    [self doUpdateBatteryStatus];
+    [self updateBatteryStatus];
     [kTUNotificationCenter postNotificationName:kBatteryLevelDidChangeNotification object:self];
 }
 
 - (void)batteryStatusUpdatedCB:(NSNotification*)notification {
-    [self doUpdateBatteryStatus];
+    [self updateBatteryStatus];
     [self.nearBatteryCapacity removeAllObjects];
     
     CGFloat fullTime = 0;
@@ -223,7 +223,7 @@
 //    }
 }
 
-- (void)doUpdateBatteryStatus {
+- (void)updateBatteryStatus {
     float batteryMultiplier = [[UIDevice currentDevice] batteryLevel];
     self.levelPercent = batteryMultiplier * 100;
     self.batteryState = [[UIDevice currentDevice] batteryState];
