@@ -70,10 +70,6 @@
                               selector:@selector(updateBatteryCapacity)
                                   name:kBatteryLevelDidChangeNotification
                                 object:nil];
-    CGFloat level = [TUSystemInfoManager manager].batteryInfo.levelPercent;
-    NSString *status = [TUSystemInfoManager manager].batteryInfo.status;
-
-    NSLog(@"level:%f, status:%@", level, status);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -236,7 +232,11 @@
 - (void)updateTimeToFull:(NSNotification *)note {
     int info = abs([note.object intValue]);
     if (info == 0) {
-        self.capacityView.batteryTimeLabel.text = @"正在获取充电状态";
+        if ([TUSystemInfoManager manager].batteryInfo.batteryState == UIDeviceBatteryStateFull) {
+            self.capacityView.batteryTimeLabel.text = @"电池已充满";
+        } else {
+            self.capacityView.batteryTimeLabel.text = @"正在获取充电状态";
+        }
         return;
     }
 
