@@ -142,7 +142,7 @@
 - (void)updateBatteryLifeUI:(NSInteger)remainLifeMonths {
     self.remainLifeMonths = remainLifeMonths;
 
-    self.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",remainLifeMonths/12,remainLifeMonths%12];
+    self.batteryValueLabel.text = [NSString stringWithFormat:@"%d年%d个月",(int)(remainLifeMonths/12),(int)(remainLifeMonths%12)];
     
     [self.batteryValueLabel addTextFont:[UIFont systemFontOfSize:13] range:NSMakeRange(1, 1)];
     [self.batteryValueLabel addTextFont:[UIFont systemFontOfSize:13] range:NSMakeRange(3, 2)];

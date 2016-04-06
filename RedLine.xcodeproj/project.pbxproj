@@ -21,6 +21,12 @@
 		14268A6E1CA580C00084C07E /* TUMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A6C1CA580C00084C07E /* TUMineController.m */; };
 		14268A6F1CA580C00084C07E /* TUMineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14268A6D1CA580C00084C07E /* TUMineController.xib */; };
 		14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14268A711CA588AC0084C07E /* TUTabBarController.m */; };
+		14E06CAA1CB3C83800F74AC9 /* TUBlueToothInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CA91CB3C83800F74AC9 /* TUBlueToothInfo.m */; };
+		14E06CB61CB4115400F74AC9 /* BEMAverageLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CAD1CB4115400F74AC9 /* BEMAverageLine.m */; };
+		14E06CB71CB4115400F74AC9 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CAF1CB4115400F74AC9 /* BEMCircle.m */; };
+		14E06CB81CB4115400F74AC9 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CB11CB4115400F74AC9 /* BEMLine.m */; };
+		14E06CB91CB4115400F74AC9 /* BEMPermanentPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CB31CB4115400F74AC9 /* BEMPermanentPopupView.m */; };
+		14E06CBA1CB4115400F74AC9 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E06CB51CB4115400F74AC9 /* BEMSimpleLineGraphView.m */; };
 		14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */; };
 		14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1021CA5C4DA0006287C /* ELLIOKitNodeInfo.m */; };
 		14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1081CA5D16B0006287C /* NSDate+Category.m */; };
@@ -39,11 +45,6 @@
 		A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */; };
 		A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */; };
 		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
-		A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109AE1CAA71110035610D /* BEMAverageLine.m */; };
-		A1D109B81CAA71110035610D /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B01CAA71110035610D /* BEMCircle.m */; };
-		A1D109B91CAA71110035610D /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B21CAA71110035610D /* BEMLine.m */; };
-		A1D109BA1CAA71110035610D /* BEMPermanentPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */; };
-		A1D109BB1CAA71110035610D /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */; };
 		A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */; };
 		A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
@@ -80,6 +81,18 @@
 		14268A6D1CA580C00084C07E /* TUMineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUMineController.xib; sourceTree = "<group>"; };
 		14268A701CA588AC0084C07E /* TUTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUTabBarController.h; sourceTree = "<group>"; };
 		14268A711CA588AC0084C07E /* TUTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUTabBarController.m; sourceTree = "<group>"; };
+		14E06CA81CB3C83800F74AC9 /* TUBlueToothInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBlueToothInfo.h; sourceTree = "<group>"; };
+		14E06CA91CB3C83800F74AC9 /* TUBlueToothInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBlueToothInfo.m; sourceTree = "<group>"; };
+		14E06CAC1CB4115400F74AC9 /* BEMAverageLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAverageLine.h; sourceTree = "<group>"; };
+		14E06CAD1CB4115400F74AC9 /* BEMAverageLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAverageLine.m; sourceTree = "<group>"; };
+		14E06CAE1CB4115400F74AC9 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
+		14E06CAF1CB4115400F74AC9 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
+		14E06CB01CB4115400F74AC9 /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
+		14E06CB11CB4115400F74AC9 /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
+		14E06CB21CB4115400F74AC9 /* BEMPermanentPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPermanentPopupView.h; sourceTree = "<group>"; };
+		14E06CB31CB4115400F74AC9 /* BEMPermanentPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPermanentPopupView.m; sourceTree = "<group>"; };
+		14E06CB41CB4115400F74AC9 /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
+		14E06CB51CB4115400F74AC9 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		14F8B0FC1CA5BE0C0006287C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IOKit.framework; sourceTree = "<group>"; };
 		14F8B0FE1CA5C09F0006287C /* ELLIOKitDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLIOKitDumper.h; sourceTree = "<group>"; };
 		14F8B0FF1CA5C09F0006287C /* ELLIOKitDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLIOKitDumper.m; sourceTree = "<group>"; };
@@ -116,16 +129,6 @@
 		A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryBottomView.m; sourceTree = "<group>"; };
 		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
 		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
-		A1D109AD1CAA71110035610D /* BEMAverageLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAverageLine.h; sourceTree = "<group>"; };
-		A1D109AE1CAA71110035610D /* BEMAverageLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAverageLine.m; sourceTree = "<group>"; };
-		A1D109AF1CAA71110035610D /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
-		A1D109B01CAA71110035610D /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
-		A1D109B11CAA71110035610D /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
-		A1D109B21CAA71110035610D /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
-		A1D109B31CAA71110035610D /* BEMPermanentPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPermanentPopupView.h; sourceTree = "<group>"; };
-		A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPermanentPopupView.m; sourceTree = "<group>"; };
-		A1D109B51CAA71110035610D /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
-		A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryProgressView.h; sourceTree = "<group>"; };
 		A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryProgressView.m; sourceTree = "<group>"; };
 		A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryProgressView.xib; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 		14268A3F1CA57C6A0084C07E /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				14E06CA81CB3C83800F74AC9 /* TUBlueToothInfo.h */,
+				14E06CA91CB3C83800F74AC9 /* TUBlueToothInfo.m */,
 				14152D821CAD1C11001C796B /* TUConstDeviceInfo.h */,
 				14152D831CAD1C11001C796B /* TUConstDeviceInfo.m */,
 				14F8B1011CA5C4DA0006287C /* ELLIOKitNodeInfo.h */,
@@ -301,6 +306,23 @@
 				14268A711CA588AC0084C07E /* TUTabBarController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		14E06CAB1CB4115400F74AC9 /* BEMSimpleLine */ = {
+			isa = PBXGroup;
+			children = (
+				14E06CAC1CB4115400F74AC9 /* BEMAverageLine.h */,
+				14E06CAD1CB4115400F74AC9 /* BEMAverageLine.m */,
+				14E06CAE1CB4115400F74AC9 /* BEMCircle.h */,
+				14E06CAF1CB4115400F74AC9 /* BEMCircle.m */,
+				14E06CB01CB4115400F74AC9 /* BEMLine.h */,
+				14E06CB11CB4115400F74AC9 /* BEMLine.m */,
+				14E06CB21CB4115400F74AC9 /* BEMPermanentPopupView.h */,
+				14E06CB31CB4115400F74AC9 /* BEMPermanentPopupView.m */,
+				14E06CB41CB4115400F74AC9 /* BEMSimpleLineGraphView.h */,
+				14E06CB51CB4115400F74AC9 /* BEMSimpleLineGraphView.m */,
+			);
+			path = BEMSimpleLine;
 			sourceTree = "<group>";
 		};
 		14F8B1041CA5D16B0006287C /* NSDate */ = {
@@ -404,26 +426,9 @@
 		A1D1099B1CAA70C40035610D /* OpenLib */ = {
 			isa = PBXGroup;
 			children = (
-				A1D109AC1CAA71110035610D /* Classes */,
+				14E06CAB1CB4115400F74AC9 /* BEMSimpleLine */,
 			);
 			path = OpenLib;
-			sourceTree = "<group>";
-		};
-		A1D109AC1CAA71110035610D /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				A1D109AD1CAA71110035610D /* BEMAverageLine.h */,
-				A1D109AE1CAA71110035610D /* BEMAverageLine.m */,
-				A1D109AF1CAA71110035610D /* BEMCircle.h */,
-				A1D109B01CAA71110035610D /* BEMCircle.m */,
-				A1D109B11CAA71110035610D /* BEMLine.h */,
-				A1D109B21CAA71110035610D /* BEMLine.m */,
-				A1D109B31CAA71110035610D /* BEMPermanentPopupView.h */,
-				A1D109B41CAA71110035610D /* BEMPermanentPopupView.m */,
-				A1D109B51CAA71110035610D /* BEMSimpleLineGraphView.h */,
-				A1D109B61CAA71110035610D /* BEMSimpleLineGraphView.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		A3DFE4501CA4ED13002C3E13 = {
@@ -615,22 +620,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
-				A1D109BA1CAA71110035610D /* BEMPermanentPopupView.m in Sources */,
 				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
+				14E06CB91CB4115400F74AC9 /* BEMPermanentPopupView.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
 				A12ACBFC1CAC39F0004F29E2 /* TUProgressView.m in Sources */,
 				A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */,
-				A1D109B91CAA71110035610D /* BEMLine.m in Sources */,
+				14E06CBA1CB4115400F74AC9 /* BEMSimpleLineGraphView.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
 				14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */,
-				A1D109BB1CAA71110035610D /* BEMSimpleLineGraphView.m in Sources */,
 				A3DFE4611CA4ED13002C3E13 /* AppDelegate.m in Sources */,
+				14E06CB81CB4115400F74AC9 /* BEMLine.m in Sources */,
 				14F8B1151CA633B70006287C /* TUTabBarItem.m in Sources */,
+				14E06CB71CB4115400F74AC9 /* BEMCircle.m in Sources */,
 				A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */,
+				14E06CAA1CB3C83800F74AC9 /* TUBlueToothInfo.m in Sources */,
 				14F8B1241CAA5C8C0006287C /* UIImage+YYWebImage.m in Sources */,
+				14E06CB61CB4115400F74AC9 /* BEMAverageLine.m in Sources */,
 				14F8B10C1CA5D16B0006287C /* NSDate+Category.m in Sources */,
 				A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */,
 				14F8B1001CA5C09F0006287C /* ELLIOKitDumper.m in Sources */,
@@ -643,11 +651,9 @@
 				14152D841CAD1C11001C796B /* TUConstDeviceInfo.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,
 				14152D7F1CAB6666001C796B /* UIImage+Color.m in Sources */,
-				A1D109B81CAA71110035610D /* BEMCircle.m in Sources */,
 				A12ACBB41CABD653004F29E2 /* TUAttributeLabel.m in Sources */,
 				14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */,
 				A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */,
-				A1D109B71CAA71110035610D /* BEMAverageLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

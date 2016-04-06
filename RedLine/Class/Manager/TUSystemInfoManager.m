@@ -108,7 +108,7 @@
     CGFloat months = cycleCount / 1500.0 * 60;
     // 四舍五入 至少剩余寿命1个月
     NSInteger life = 60 - ceilf(months);
-    NSLog(@"life:%lu", life);
+    NSLog(@"life:%lu", (long)life);
     return MAX(1, life);
 }
 

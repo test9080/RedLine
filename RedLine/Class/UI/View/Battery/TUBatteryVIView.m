@@ -140,7 +140,7 @@
     [self.currentGraphView reloadGraph];
     
     self.averageCurrent = self.currentGraphView.averageLine.yValue;
-    NSLog(@"self.averageCurrent:r%f",self.averageCurrent);
+//    NSLog(@"self.averageCurrent:r%f",self.averageCurrent);
 }
 
 #pragma mark - SimpleLineGraph Data Source
