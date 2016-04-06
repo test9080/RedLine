@@ -11,7 +11,6 @@
 #import "TUNavigationController.h"
 #import "TUBatteryController.h"
 #import "TUMineController.h"
-#import "TUTabBar.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [self setupViewControllers];
     [self.window makeKeyAndVisible];
-
+    
     return YES;
 }
 
