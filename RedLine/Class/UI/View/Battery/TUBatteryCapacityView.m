@@ -38,28 +38,21 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self initAnimation2];
+    [self initAnimation];
     [self initLable];
-    
-//    [self initAnimation];
-    
 }
+
+#pragma mark - initLabel
 
 - (void)initLable {
     [self addSubview:self.batteryCapacityLabel];
-//    self.batteryCapacityLabel.text = @"10%";
-    
     [self addSubview:self.batteryTimeLabel];
     self.batteryTimeLabel.text = @"正在获取充电状态";
 }
 
-- (void)initAnimation {
-//    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
-//    _disPlayLink.frameInterval = 60;
-//    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-}
+#pragma mark - initCycle
 
-- (void)initAnimation2 {
+- (void)initAnimation {
     [[UIColor clearColor] setFill];
     
 //    UIRectFill(rect);
@@ -124,8 +117,12 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+- (void)removeLayer:(CALayer *)layer {
+    [layer removeFromSuperlayer];
+}
 
 #pragma mark - getter or setter
+
 - (UILabel *)batteryCapacityLabel {
     if (!_batteryCapacityLabel) {
         _batteryCapacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2 - 60, 220 / 2 - 20, 120, 40)];
@@ -148,97 +145,15 @@
     return _batteryTimeLabel;
 }
 
-#pragma mark - 这个方法有问题
-- (void)startAnimation
-{
-    
-    
-    //    CALayer *layer = [[CALayer alloc] init];
-    //    layer.cornerRadius = self.frame.size.height/2;
-    //    layer.frame = CGRectMake(0, 0, layer.cornerRadius * 2, layer.cornerRadius * 2);
-    //    layer.position  = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-    //    UIColor *color = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
-    //    layer.backgroundColor = color.CGColor;
-    //    [self.layer addSublayer:layer];
-    //
-    //    CAMediaTimingFunction *defaultCurve = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-    //
-    //    _animaTionGroup = [CAAnimationGroup animation];
-    //    _animaTionGroup.delegate = self;
-    //    _animaTionGroup.duration = 2;
-    //    _animaTionGroup.removedOnCompletion = YES;
-    //    _animaTionGroup.timingFunction = defaultCurve;
-    //
-    //    //大小
-    //    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.xy"];
-    //    scaleAnimation.fromValue = @0;
-    //    scaleAnimation.toValue = @1.0;
-    //    scaleAnimation.duration = 2;
-    //
-    //    //透明度
-    //    CAKeyframeAnimation *opencityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-    //    opencityAnimation.duration = 2;
-    //    opencityAnimation.values = @[@0.8,@0.4,@0];
-    //    opencityAnimation.keyTimes = @[@0,@0.5,@1];
-    //    opencityAnimation.removedOnCompletion = YES;
-    //
-    //    NSArray *animations = @[scaleAnimation,opencityAnimation];
-    //    _animaTionGroup.animations = animations;
-    //    [layer addAnimation:_animaTionGroup forKey:nil];
-    //
-    //    [self performSelector:@selector(removeLayer:) withObject:layer afterDelay:2];
-    
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
-    
-    NSLog(@"%@",dateTime);
-}
-
-- (void)removeLayer:(CALayer *)layer
-{
-    [layer removeFromSuperlayer];
-}
-
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startAnimation)];
-//    _disPlayLink.frameInterval = 40;
-//    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-//}
-//
-//
-//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [self.layer removeAllAnimations];
-//    [_disPlayLink invalidate];
-//    _disPlayLink = nil;
-//}
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 #pragma mark - color help
 
 - (UIColor *)circleDisplayColor
 {
-    if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleRed)
-    {
+    if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleRed) {
         return [UIColor colorWithARGB:0xffd74760];
-    }
-    else if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleYellow)
-    {
-        return [UIColor yellowColor];
-    }
-    else
-    {
+    } else if (self.batteryCapacityViewStyle == TUBatteryCapacityViewStyleYellow) {
+        return [UIColor colorWithRGB:0xffffe14d];
+    } else {
         return [UIColor greenColor];
     }
 }
@@ -251,10 +166,8 @@
         return;
     }
     
-    for (int i = 0; i < [pulsingLayerArray count] - 1; i++)
-    {
+    for (int i = 0; i < [pulsingLayerArray count] - 1; i++) {
         CALayer *layer = [pulsingLayerArray objectAtIndex:i];
-        
         layer.backgroundColor = [self circleDisplayColor].CGColor;//圈圈背景颜色，不设置则为透明。
         layer.borderColor = [self circleDisplayColor].CGColor;
     }

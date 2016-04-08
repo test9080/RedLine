@@ -6,6 +6,11 @@
 //  Copyright © 2016年 cn. All rights reserved.
 //
 
+/*
+ *
+ *  设置Label的Attribute属性
+ *
+ */
 #import <UIKit/UIKit.h>
 
 @interface TUAttributeLabel : UILabel

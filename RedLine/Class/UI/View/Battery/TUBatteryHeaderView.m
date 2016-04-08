@@ -27,10 +27,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     [self addSubview:self.stateLabel];
 }
-
 
 #pragma mark - setter & getter
 - (UILabel *)stateLabel {
@@ -44,8 +42,7 @@
         [_stateLabel.layer setMasksToBounds:YES];
         [_stateLabel.layer setCornerRadius:_stateLabel.bounds.size.height / 2.0]; //设置矩形四个圆角半径
         [_stateLabel.layer setBorderWidth:1]; //边框宽度
-        [_stateLabel.layer setBorderColor:[UIColor whiteColor].CGColor];//边框颜色
-
+        [_stateLabel.layer setBorderColor:[UIColor colorWithWhite:1.f alpha:0.7f].CGColor];//边框颜色
     }
     return _stateLabel;
 }

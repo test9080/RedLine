@@ -14,6 +14,7 @@
 @interface TUBatteryTipsView ()
 
 @property (assign, nonatomic) NSInteger buttonCount;
+
 @end
 
 @implementation TUBatteryTipsView
@@ -27,17 +28,13 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    
+- (void)layoutSubviews {    
     CGFloat margin = (kScreenWidth - kButtonWH * self.buttonCount) / (self.buttonCount+1);
 
     for (int i = 0; i < self.buttonCount; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setBackgroundColor:[UIColor whiteColor]];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitle:[NSString stringWithFormat:@"%d",i] forState:UIControlStateNormal];
         button.frame = CGRectMake(margin + (margin + kButtonWH) * i, 0, kButtonWH, kButtonWH);
-        [button roundToCircle];
+        [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"battery_tips%d",i+1]] forState:UIControlStateNormal];
         button.tag = i;
         [button addTarget:self action:@selector(tipsBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
