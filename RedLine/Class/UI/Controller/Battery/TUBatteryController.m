@@ -288,7 +288,6 @@
 
 - (void)updateBatteryLife {
     [self.bottomView updateBatteryLifeUI:self.remainLifeMonths];
-//    self.bottomView.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",self.remainLifeMonths/12,self.remainLifeMonths%12];
 }
 
 - (void)updateVI {
@@ -308,10 +307,6 @@
     }
     
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
-    
-//    NSLog(@"aaaaaaa%f",self.viView.averageCurrent);
-//    
-//    NSLog(@"fdasfasdfas:%f", [TUSystemInfoManager timeToFullWithAverageAmperage:self.viView.averageCurrent maxCapacity:[TUSystemInfoManager manager].batteryInfo.rawMaxCapacity currentCapacity:[TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity]);
 }
 
 - (void)updateProgress {
