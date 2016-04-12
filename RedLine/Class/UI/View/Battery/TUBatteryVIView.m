@@ -9,6 +9,8 @@
 #import "TUBatteryVIView.h"
 #import "BEMSimpleLineGraphView.h"
 #import "UIColor+GGColor.h"
+#import "TUSystemInfoManager.h"
+#import "UIView+Category.h"
 
 #define LOAD_NIB(name) [[[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil] lastObject]
 
@@ -19,6 +21,7 @@
 
 @property (strong, nonatomic)NSMutableArray *voltageArray;//电压valueArray
 @property (strong, nonatomic)NSMutableArray *currentArray;//电流valueArray
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *currentTopConstraint; //currentLabel距离顶端的约束
 
 
 @end
@@ -49,10 +52,6 @@
 }
 
 - (void)setup {
-//    for (int i = 0 ; i < 9; i ++ ) {
-//        [self.voltageArray addObject:@([self getRandomFloat])]; // Random values for the graph
-//        [self.currentArray addObject:@([self getRandomFloat])]; // Random values for the graph
-//    }
     //  68c1fa  7386c5
     // Create a gradient to apply to the bottom portion of the graph
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
@@ -84,13 +83,9 @@
     
     // Show the y axis values with this format string
     self.voltageGraphView.formatStringForValues = @"%.2f";
-    
     self.voltageGraphView.enableBezierCurve = YES;
-    
     self.voltageGraphView.colorBottom = [UIColor colorWithARGB:0xff7386c5];
     self.voltageGraphView.colorTop = [UIColor clearColor];
-    
-    
 
     self.currentGraphView.gradientBottom = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
     
@@ -103,12 +98,6 @@
     self.currentGraphView.enableReferenceXAxisLines = YES;
     self.currentGraphView.enableReferenceYAxisLines = YES;
     self.currentGraphView.enableReferenceAxisFrame = YES;
-    
-//    self.currentGraphView.averageLine.enableAverageLine = YES;
-//    self.currentGraphView.averageLine.alpha = 1.0;
-//    self.currentGraphView.averageLine.color = [UIColor darkGrayColor];
-//    self.currentGraphView.averageLine.width = 2.5;
-//    self.currentGraphView.averageLine.dashPattern = @[@(2),@(2)];
 
     // Set the graph's animation style to draw, fade, or none
     self.currentGraphView.animationGraphStyle = BEMLineAnimationExpand;
@@ -132,7 +121,22 @@
 }
 
 #pragma updateUI
-- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray {
+- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray voltage:(float)voltage current:(float)current{
+    
+    self.voltageLabel.text = [NSString stringWithFormat:@"当前电压:%.3fV",voltage];
+    
+    if ([TUSystemInfoManager manager].batteryInfo.batteryState == UIDeviceBatteryStateUnplugged) {
+        self.voltageLabel.hidden = YES;
+        self.voltageGraphView.hidden = YES;
+        self.currentTopConstraint.constant = 8;
+        self.currentLabel.text = [NSString stringWithFormat:@"输出电流:%.3fA",current];
+    } else {
+        self.voltageLabel.hidden = NO;
+        self.voltageGraphView.hidden = NO;
+        self.currentTopConstraint.constant = 132;
+        self.currentLabel.text = [NSString stringWithFormat:@"当前电流:%.3fA",current];
+    }
+    
     self.voltageArray = voltageArray;
     self.currentArray = currentArray;
 
@@ -140,7 +144,6 @@
     [self.currentGraphView reloadGraph];
     
     self.averageCurrent = self.currentGraphView.averageLine.yValue;
-//    NSLog(@"self.averageCurrent:r%f",self.averageCurrent);
 }
 
 #pragma mark - SimpleLineGraph Data Source
@@ -160,14 +163,5 @@
         return [[self.currentArray objectAtIndex:index] doubleValue];
     }
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

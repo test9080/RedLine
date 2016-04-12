@@ -23,10 +23,12 @@
 {
     int _viCount;
     BOOL _isShowBatteryLife;//电池剩余时间，就显示一次就行了
+    int _displayY;
 }
 
 @property (strong, nonatomic) UIScrollView *bgScrollView;  //背景scroll
 
+@property (strong, nonatomic) TUBatteryHeaderView *headerView;
 @property (strong, nonatomic) TUBatteryCapacityView *capacityView; //电量圆圈的View
 @property (strong, nonatomic) TUBatteryBottomView *bottomView;     //电池温度、电池剩余寿命View
 @property (strong, nonatomic) TUBatteryVIView *viView;     //电压电流折线图
@@ -98,56 +100,60 @@
     _viCount = 0;
     _isShowBatteryLife = YES;
     
-    int displayY = 15;
+    _displayY = 15;
     
     
     //已开启全面保护模式
-    TUBatteryHeaderView *headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 15, kScreenWidth, 30)];
-    [self.bgScrollView addSubview:headerView];
-    displayY += headerView.bounds.size.height;
+    self.headerView = [[TUBatteryHeaderView alloc] initWithFrame:CGRectMake(0, 15, kScreenWidth, 30)];
+    [self.bgScrollView addSubview:self.headerView];
+    _displayY += self.headerView.bounds.size.height;
     
     //7个按钮的View
-    displayY += 15;
-    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 30) count:7];
+    _displayY += 15;
+    TUBatteryTipsView *tipsBtnView = [[TUBatteryTipsView alloc] initWithFrame:CGRectMake(0, _displayY, kScreenWidth, 30) count:7];
     [self.bgScrollView addSubview:tipsBtnView];
-    displayY += tipsBtnView.bounds.size.height;
+    _displayY += tipsBtnView.bounds.size.height;
     
     //电量圆圈的View
-    displayY += 33;
-    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
+    _displayY += 33;
+    self.capacityView = [[TUBatteryCapacityView alloc] initWithFrame:CGRectMake(0, _displayY, kScreenWidth, 255) style:[self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent]];
     [self.bgScrollView addSubview:self.capacityView];
     [self updateBatteryCapacity];
-    displayY += self.capacityView.bounds.size.height;
+    _displayY += self.capacityView.bounds.size.height;
 
     //三个充电状态View
-    displayY += 55;
     self.progressView = [TUBatteryProgressView showProgressView];
-    [self.progressView  setFrame:CGRectMake(45, displayY, kScreenWidth - 45 * 2, 60)];
-    [self.bgScrollView addSubview:self.progressView ];
-    displayY += self.progressView .bounds.size.height;
-    
-    //电压电流折线View
-    displayY += 50;
-    self.viView = [TUBatteryVIView showGraphView];
-    [self.viView setFrame:CGRectMake(0, displayY, kScreenWidth, 203)];
-    [self.bgScrollView addSubview:self.viView];
-    displayY += self.viView.bounds.size.height;
-    
-    //电池温度以及剩余寿命的View
-    displayY += 60;
-    self.bottomView = [[TUBatteryBottomView alloc] initWithFrame:CGRectMake(0, displayY, kScreenWidth, 150)];
-    [self.bgScrollView addSubview:self.bottomView];
-    displayY += self.bottomView.bounds.size.height;
-    
-    displayY += 5;
-    self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, displayY);
+    [self.bgScrollView addSubview:self.progressView];
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(45);
+        make.top.mas_equalTo(self.capacityView.mas_bottom).mas_offset(55);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth - 45 * 2, 60));
+    }];
 
+    //电压电流折线View
+    self.viView = [TUBatteryVIView showGraphView];
+    [self.bgScrollView addSubview:self.viView];
+    [self.viView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(0);
+        make.top.mas_equalTo(self.progressView.mas_bottom).mas_offset(50);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, 203));
+    }];
+
+    //电池温度以及剩余寿命的View
+    self.bottomView = [[TUBatteryBottomView alloc] init];
+    [self.bgScrollView addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(0);
+        make.top.mas_equalTo(self.viView.mas_bottom).mas_offset(60);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, 150));
+    }];
+    
+    self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 900);
 }
 
 - (void)updateBatteryInfo:(NSNotification *)note {
     self.temperature = [TUSystemInfoManager manager].batteryInfo.temperature/100.0;
     self.remainLifeMonths = [TUSystemInfoManager manager].batteryInfo.remainLifeMonths;
-    
     
     self.voltage = [TUSystemInfoManager manager].batteryInfo.voltage/1000.0;
     self.current = [TUSystemInfoManager manager].batteryInfo.amperage/1000.0;
@@ -186,16 +192,46 @@
 }
 
 - (void)updateUI {
+    if ([TUSystemInfoManager manager].batteryInfo.batteryState == UIDeviceBatteryStateUnplugged) {
+        self.progressView.hidden = YES;
+        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.capacityView.mas_bottom).mas_offset(-70);
+        }];
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.viView.mas_bottom).mas_offset(-50);
+        }];
+        self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 700);
+
+    } else {
+        self.progressView.hidden = NO;
+        [self updateProgress];
+        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.capacityView.mas_bottom).mas_offset(55);
+        }];
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.viView.mas_bottom).mas_offset(60);
+        }];
+        self.bgScrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 900);
+    }
+
+    [self updateHeaderUI];
+    
     [self updateBatteryStatus];
+    
     [self updateBatteryCapacity];
-//    [self updateBatteryChargeTimeStatus];
+    
     [self updateTemperature];
+    
     if (_isShowBatteryLife) {
         [self updateBatteryLife];
         _isShowBatteryLife = NO;
     }
+    
     [self updateVI];
-    [self updateProgress];
+}
+
+- (void)updateHeaderUI {
+    [self.headerView updateHeaderUI];
 }
 
 - (void)updateBatteryStatus {
@@ -288,13 +324,9 @@
 
 - (void)updateBatteryLife {
     [self.bottomView updateBatteryLifeUI:self.remainLifeMonths];
-//    self.bottomView.batteryValueLabel.text = [NSString stringWithFormat:@"%ld年%ld个月",self.remainLifeMonths/12,self.remainLifeMonths%12];
 }
 
 - (void)updateVI {
-    self.viView.voltageLabel.text = [NSString stringWithFormat:@"当前电压:%.3fV",self.voltage];
-    self.viView.currentLabel.text = [NSString stringWithFormat:@"当前电流:%.3fA",self.current];
-    
     _viCount++;
     if (_viCount >= 20) {
         [self.voltageArray removeObjectAtIndex:0];
@@ -307,11 +339,7 @@
         [self.currentArray addObject:[NSNumber numberWithFloat:self.current]];
     }
     
-    [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray];
-    
-//    NSLog(@"aaaaaaa%f",self.viView.averageCurrent);
-//    
-//    NSLog(@"fdasfasdfas:%f", [TUSystemInfoManager timeToFullWithAverageAmperage:self.viView.averageCurrent maxCapacity:[TUSystemInfoManager manager].batteryInfo.rawMaxCapacity currentCapacity:[TUSystemInfoManager manager].batteryInfo.rawCurrentCapacity]);
+    [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray voltage:self.voltage current:self.current];
 }
 
 - (void)updateProgress {

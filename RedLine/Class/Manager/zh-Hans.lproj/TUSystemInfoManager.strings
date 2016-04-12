@@ -11,3 +11,5 @@
 "charging"      = "正在充电";
 "unPlugged"     = "未接入电源";
 "unKnown"       = "未知状态";
+"protectMethod"   = "已开启全面保护模式";
+"unProtectMethod" = "未开启全面保护模式";

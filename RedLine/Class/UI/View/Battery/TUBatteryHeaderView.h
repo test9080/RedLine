@@ -15,4 +15,6 @@
 
 @interface TUBatteryHeaderView : UIView
 
+- (void)updateHeaderUI;
+
 @end
