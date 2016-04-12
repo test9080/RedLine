@@ -20,10 +20,9 @@
     return self;
 }
 
-- (id)initWithParent:(ELLIOKitNodeInfo *)parent nodeInfoWithInfo:(NSString *)info properties:(NSArray *)properties {
+- (id)initWithInfo:(NSString *)info properties:(NSArray *)properties {
     self = [self init];
     if (self) {
-        _parent = parent;
         _name = info;
         _properties = properties;
 

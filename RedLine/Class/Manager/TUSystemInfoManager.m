@@ -36,6 +36,8 @@
 
         BOOL isOldDevice = [[TUConstDeviceInfo sharedDevice] isOldDevice];
         
+        [[NSNotificationCenter defaultCenter] addObserver:manager selector:@selector(chargeRefreshBatteryInfoNotification:) name:kELLIOKitDumperDidReadBatteryNotification object:nil];
+        
         [manager refreshBatteryInfo];
         if (!isOldDevice) {
             [manager performSelector:@selector(refreshBatteryInfo) withObject:nil afterDelay:1];
@@ -48,44 +50,67 @@
 }
 
 - (void)refreshBatteryInfo {
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self getChargeRefreshBattery:[self.dumper dumpIOKitTree]];
+        [self.dumper dumpIOKitTree];
     });
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [self getChargeRefreshBattery:[self.dumper dumpIOKitTree]];
+//    });
 }
 
 #pragma mark - private
 
-- (void)loadIOKit {
-    [self.InfoArray removeAllObjects];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self getCharge:[self.dumper dumpIOKitTree]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [kTUNotificationCenter postNotificationName:kSystemInfoDidReadFinishedNotification object:self.InfoArray];
-        });
-    });
-}
-
-// AppleARMPMUCharger-charger
-- (void)getChargeRefreshBattery:(ELLIOKitNodeInfo *)node {
+- (void)chargeRefreshBatteryInfoNotification:(NSNotification *)note {
     
-    // iPhone4 - AppleD1815PMUPowerSource
-    if ([node.name isEqualToString:@"AppleD1815PMUPowerSource"] || [node.name isEqualToString:@"AppleARMPMUCharger"]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //  NSLog(@"电池相关信息：%@", _batteryInfoArray);
-            [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
-            if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
-                [self refreshBatteryInfo];
-            }
-        });
-        return;
+    
+    ELLIOKitNodeInfo *node = note.object;
+    
+    if ([node isKindOfClass:[ELLIOKitNodeInfo class]]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //  NSLog(@"电池相关信息：%@", _batteryInfoArray);
+                [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
+                if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
+                    [self refreshBatteryInfo];
+                }
+            });
     }
-
-    for (int i = 0; i < node.children.count; i ++) {
-        ELLIOKitNodeInfo *info = node.children[i];
-        [self getChargeRefreshBattery:info];
-    }
+    
 }
+
+
+//- (void)loadIOKit {
+//    [self.InfoArray removeAllObjects];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [self getCharge:[self.dumper dumpIOKitTree]];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [kTUNotificationCenter postNotificationName:kSystemInfoDidReadFinishedNotification object:self.InfoArray];
+//        });
+//    });
+//}
+
+//// AppleARMPMUCharger-charger
+//- (void)getChargeRefreshBattery:(ELLIOKitNodeInfo *)node {
+//    
+//    // iPhone4 - AppleD1815PMUPowerSource
+//    if ([node.name isEqualToString:@"AppleD1815PMUPowerSource"] || [node.name isEqualToString:@"AppleARMPMUCharger"]) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            //  NSLog(@"电池相关信息：%@", _batteryInfoArray);
+//            [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
+//            if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
+//                [self refreshBatteryInfo];
+//            }
+//        });
+//        return;
+//    }
+//
+//    for (int i = 0; i < node.children.count; i ++) {
+//        ELLIOKitNodeInfo *info = node.children[i];
+//        [self getChargeRefreshBattery:info];
+//    }
+//}
 
 - (void)getCharge:(ELLIOKitNodeInfo *)node {
     if (node.properties.count) {
