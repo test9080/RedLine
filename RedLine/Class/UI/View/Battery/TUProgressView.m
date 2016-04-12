@@ -37,16 +37,14 @@
 
 -(void)configureViews {
     self.userInteractionEnabled = NO;
-//    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _progressBarView = [[UIView alloc] initWithFrame:CGRectMake(-1, 1, 1, 2)];
-//    _progressBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     UIColor *tintColor = [UIColor colorWithRGB:0xff5fb7ce];
     _progressBarView.backgroundColor = tintColor;
     [self addSubview:_progressBarView];
     
     _barAnimationDuration = 2.f;
     
-    _dotView = [[UIView alloc] initWithFrame:CGRectMake(-8, -2, 8, 8)];
+    _dotView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
     [_dotView roundToCircle];
     _dotView.backgroundColor = tintColor;
     [self addSubview:_dotView];
@@ -54,7 +52,6 @@
     _dotView.alpha = 0;
     _progressBarView.alpha = 0;
     _dotView.transform = CGAffineTransformIdentity;
-
 }
 
 - (void)setProgress:(float)progress animated:(BOOL)animated {
@@ -67,19 +64,17 @@
     BOOL isGrowing = progress > 0.0;
     _dotView.alpha = isGrowing ? 1 : 0;
     _progressBarView.alpha = _dotView.alpha;
-    _dotView.transform = CGAffineTransformMakeScale(1.5, 1.0);
 
     [UIView animateWithDuration:(isGrowing && animated) ? _barAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = _progressBarView.frame;
         frame.size.width = ceil(progress * self.bounds.size.width);
         _progressBarView.frame = frame;
         _dotView.x = frame.size.width-2;
-        _dotView.transform = CGAffineTransformMakeScale(1.3, 1.2);
     } completion:^(BOOL finished) {
         CGRect frame = _progressBarView.frame;
         frame.size.width = 1;
         _progressBarView.frame = frame;
-        _dotView.x = -8;
+        _dotView.x = 0;
         _dotView.alpha = isGrowing ? 0 : 1;
         _progressBarView.alpha = _dotView.alpha;
         _dotView.transform = CGAffineTransformIdentity;
