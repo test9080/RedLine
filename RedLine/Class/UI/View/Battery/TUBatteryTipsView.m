@@ -35,6 +35,8 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(margin + (margin + kButtonWH) * i, 0, kButtonWH, kButtonWH);
         [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"battery_tips%d",i+1]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"battery_click_tips%d",i+1]] forState:UIControlStateHighlighted];
+
         button.tag = i;
         [button addTarget:self action:@selector(tipsBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];

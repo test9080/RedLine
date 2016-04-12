@@ -8,6 +8,7 @@
 
 #import "TUBatteryHeaderView.h"
 #import "UIView+Category.h"
+#import "TUSystemInfoManager.h"
 
 @interface TUBatteryHeaderView ()
 
@@ -37,7 +38,6 @@
         _stateLabel.textColor = [UIColor whiteColor];
         _stateLabel.textAlignment = NSTextAlignmentCenter;
         _stateLabel.font = [UIFont systemFontOfSize:12];
-        _stateLabel.text = @"已开启全面保护模式";
         
         [_stateLabel.layer setMasksToBounds:YES];
         [_stateLabel.layer setCornerRadius:_stateLabel.bounds.size.height / 2.0]; //设置矩形四个圆角半径
@@ -45,6 +45,15 @@
         [_stateLabel.layer setBorderColor:[UIColor colorWithWhite:1.f alpha:0.7f].CGColor];//边框颜色
     }
     return _stateLabel;
+}
+
+- (void)updateHeaderUI {
+    if ([TUSystemInfoManager manager].batteryInfo.batteryState == UIDeviceBatteryStateUnplugged) {
+        _stateLabel.text = kTULocalString(@"unProtectMethod");
+    } else {
+        _stateLabel.text = kTULocalString(@"protectMethod");
+    }
+    
 }
 
 /*
