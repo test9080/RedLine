@@ -20,7 +20,7 @@
 @interface TUSystemInfoManager : NSObject
 
 @property (nonatomic, weak) TUBatteryInfo   *batteryInfo; // 电池信息
-@property (nonatomic, strong) NSDictionary   *systemInfo; // 包含所有IOKit获取的信息(暂时无数据)
+//@property (nonatomic, strong) NSDictionary   *systemInfo; // 包含所有IOKit获取的信息(暂时无数据)
 
 + (TUSystemInfoManager *)manager;
 

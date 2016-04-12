@@ -15,12 +15,6 @@
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, strong) NSArray *properties;
 
-
-@property(nonatomic, assign) NSInteger searchCount;
-@property(nonatomic, strong) NSArray *matchingProperties;
-@property(nonatomic, strong) NSArray *matchedChildren;
-
-
 - (id)initWithInfo:(NSString *)info properties:(NSArray *)properties;
 
 - (void)addChild:(ELLIOKitNodeInfo *)child;

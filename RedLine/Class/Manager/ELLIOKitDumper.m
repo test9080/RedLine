@@ -159,8 +159,9 @@ static void assertion(int condition, char *message) {
     
     NSString *noteName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
 
+    // 只有符合所需信息条件的才做转化 节省系统资源
     if ([noteName isEqualToString:@"Root"] || [noteName isEqualToString:@"AppleARMPMUCharger"] || [noteName isEqualToString:@"AppleD1815PMUPowerSource"]) {
-        NSLog(@"_showService 好哒好哒待会好的");
+
         NSMutableArray *translatedProperties = [NSMutableArray new];
         
         if (options.class && IOObjectConformsTo(service, options.class)) {
