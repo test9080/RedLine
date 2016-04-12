@@ -10,9 +10,7 @@
 
 @interface ELLIOKitNodeInfo : NSObject
 
-@property(nonatomic, weak) ELLIOKitNodeInfo *parent;
 @property(nonatomic, copy, readonly) NSMutableArray *children;
-
 
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, strong) NSArray *properties;
@@ -23,7 +21,7 @@
 @property(nonatomic, strong) NSArray *matchedChildren;
 
 
-- (id)initWithParent:(ELLIOKitNodeInfo *)parent nodeInfoWithInfo:(NSString *)info properties:(NSArray *)properties;
+- (id)initWithInfo:(NSString *)info properties:(NSArray *)properties;
 
 - (void)addChild:(ELLIOKitNodeInfo *)child;
 
