@@ -71,6 +71,8 @@ static void assertion(int condition, char *message) {
     io_registry_entry_t service = 0;
     kern_return_t status = KERN_SUCCESS;
 
+    _isGetCharge = NO;
+    
     options.class = 0;
     options.flags = kIORegFlagShowProperties;
     options.name = 0;
@@ -82,16 +84,20 @@ static void assertion(int condition, char *message) {
     service = IORegistryGetRootEntry(iokitPort);
     assertion(service, "can't obtain I/O Kit's root service");
 
-    ELLIOKitNodeInfo *root = [self _scan:nil service:service options:options];
+    ELLIOKitNodeInfo *root = [self _scanService:service options:options];
 
     IOObjectRelease(service);
 
     return root;
 }
 
+// service:25759 34219
+- (ELLIOKitNodeInfo *)_scanService:(io_registry_entry_t)service options:(struct options)options {
 
-- (ELLIOKitNodeInfo *)_scan:(ELLIOKitNodeInfo *)parent service:(io_registry_entry_t)service options:(struct options)options {
-
+    if (_isGetCharge) {
+        return nil;
+    }
+    
     io_registry_entry_t child = 0;
     io_registry_entry_t childUpNext = 0;
     io_iterator_t children = 0;
@@ -104,17 +110,29 @@ static void assertion(int condition, char *message) {
 
     childUpNext = IOIteratorNext(children);
 
-    ELLIOKitNodeInfo *node = [self _showService:service parent:parent options:options];
+    ELLIOKitNodeInfo *node = [self _showService:service options:options];
 
+    if ([node.name isEqualToString:@"AppleARMPMUCharger"] || [node.name isEqualToString:@"AppleD1815PMUPowerSource"]) {
+        NSLog(@"ELLIOKitDumper -> _scanService:options: -> ELLIOKitNodeInfo 电池信息读取完成");
+        _isGetCharge = YES;
+
+        childUpNext = 0;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kELLIOKitDumperDidReadBatteryNotification object:node];
+        
+        return node;
+    }
+    
     // Traverse over the children of this service.
     while (childUpNext) {
+
         child = childUpNext;
         childUpNext = IOIteratorNext(children);
 
-        ELLIOKitNodeInfo *childNode = [self _scan:node service:child options:options];
-
+        ELLIOKitNodeInfo *childNode = [self _scanService:child options:options];
+        
         [node addChild:childNode];
-
+        
         IOObjectRelease(child);
     }
 
@@ -125,7 +143,12 @@ static void assertion(int condition, char *message) {
 
 }
 
-- (ELLIOKitNodeInfo *)_showService:(io_registry_entry_t)service parent:(ELLIOKitNodeInfo *)parent options:(struct options)options {
+- (ELLIOKitNodeInfo *)_showService:(io_registry_entry_t)service options:(struct options)options {
+    
+    if (_isGetCharge) {
+        return nil;
+    }
+    
     io_name_t name;
     CFMutableDictionaryRef properties = 0;
     kern_return_t status = KERN_SUCCESS;
@@ -133,35 +156,43 @@ static void assertion(int condition, char *message) {
     status = IORegistryEntryGetNameInPlane(service, options.plane, name);
     if(status != KERN_SUCCESS) return nil;
     assertion(status == KERN_SUCCESS, "can't obtain name");
+    
+    NSString *noteName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
 
-    NSMutableArray *translatedProperties = [NSMutableArray new];
-
-    if (options.class && IOObjectConformsTo(service, options.class)) {
-        options.flags |= kIORegFlagShowProperties;
+    if ([noteName isEqualToString:@"Root"] || [noteName isEqualToString:@"AppleARMPMUCharger"] || [noteName isEqualToString:@"AppleD1815PMUPowerSource"]) {
+        NSLog(@"_showService 好哒好哒待会好的");
+        NSMutableArray *translatedProperties = [NSMutableArray new];
+        
+        if (options.class && IOObjectConformsTo(service, options.class)) {
+            options.flags |= kIORegFlagShowProperties;
+        }
+        
+        if (options.name && !strcmp(name, options.name)) {
+            options.flags |= kIORegFlagShowProperties;
+        }
+        
+        
+        if (options.flags & kIORegFlagShowProperties) {
+            
+            // Obtain the service's properties.
+            
+            status = IORegistryEntryCreateCFProperties(service,
+                                                       &properties,
+                                                       kCFAllocatorDefault,
+                                                       kNilOptions);
+            
+            assertion(status == KERN_SUCCESS, "can't obtain properties");
+            assertion(CFGetTypeID(properties) == CFDictionaryGetTypeID(), NULL);
+            
+            CFDictionaryApplyFunction(properties, CFDictionaryShow_Applier, (__bridge void *) (translatedProperties));
+            
+            CFRelease(properties);
+        }
+        
+        return [[ELLIOKitNodeInfo alloc] initWithInfo:noteName properties:translatedProperties];
     }
-
-    if (options.name && !strcmp(name, options.name)) {
-        options.flags |= kIORegFlagShowProperties;
-    }
-
-    if (options.flags & kIORegFlagShowProperties) {
-
-        // Obtain the service's properties.
-
-        status = IORegistryEntryCreateCFProperties(service,
-                &properties,
-                kCFAllocatorDefault,
-                kNilOptions);
-
-        assertion(status == KERN_SUCCESS, "can't obtain properties");
-        assertion(CFGetTypeID(properties) == CFDictionaryGetTypeID(), NULL);
-
-        CFDictionaryApplyFunction(properties, CFDictionaryShow_Applier, (__bridge void *) (translatedProperties));
-
-        CFRelease(properties);
-    }
-
-    return [[ELLIOKitNodeInfo alloc] initWithParent:parent nodeInfoWithInfo:[NSString stringWithCString:name encoding:NSUTF8StringEncoding] properties:translatedProperties];
+    
+    return nil;
 
 
 }

@@ -10,7 +10,12 @@
 
 @class ELLIOKitNodeInfo;
 
+#define kELLIOKitDumperDidReadBatteryNotification   @"ELLIOKitDumperDidReadBatteryNotification"
+
+
 @interface ELLIOKitDumper : NSObject
+
+@property (nonatomic, assign) BOOL isGetCharge;
 
 - (ELLIOKitNodeInfo *)dumpIOKitTree;
 
