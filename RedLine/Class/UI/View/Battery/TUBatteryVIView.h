@@ -23,6 +23,7 @@
 
 @property (assign, nonatomic) CGFloat averageCurrent;//平均电流
 
-- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray;
+- (void)updeteDataWithVoltageArray:(NSMutableArray *)voltageArray currentArray:(NSMutableArray *)currentArray voltage:(float)voltage current:(float)current;
+
 
 @end

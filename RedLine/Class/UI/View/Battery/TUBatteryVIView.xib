@@ -53,8 +53,8 @@
                 <constraint firstItem="ZEJ-vP-K3m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="XPw-BM-oQL"/>
                 <constraint firstItem="cZa-1I-up9" firstAttribute="top" secondItem="dsN-SN-hlN" secondAttribute="bottom" constant="8" id="dbb-W2-O9n"/>
                 <constraint firstItem="cZa-1I-up9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="fZE-CD-0cC"/>
+                <constraint firstItem="dsN-SN-hlN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="132" id="hUP-Ty-etj"/>
                 <constraint firstAttribute="trailing" secondItem="cZa-1I-up9" secondAttribute="trailing" constant="20" id="oD2-xs-TR9"/>
-                <constraint firstItem="dsN-SN-hlN" firstAttribute="top" secondItem="ZEJ-vP-K3m" secondAttribute="bottom" constant="11" id="pBW-VG-Ukq"/>
                 <constraint firstItem="JFv-50-9mS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="qTY-AH-GPw"/>
                 <constraint firstAttribute="trailing" secondItem="ZEJ-vP-K3m" secondAttribute="trailing" constant="20" id="r7h-6Y-iKP"/>
                 <constraint firstAttribute="trailing" secondItem="dsN-SN-hlN" secondAttribute="trailing" constant="20" id="ya0-W9-Fqi"/>
@@ -66,6 +66,7 @@
             <connections>
                 <outlet property="currentGraphView" destination="cZa-1I-up9" id="wbP-UU-M2w"/>
                 <outlet property="currentLabel" destination="dsN-SN-hlN" id="yQJ-Xr-uyJ"/>
+                <outlet property="currentTopConstraint" destination="hUP-Ty-etj" id="XD1-h0-qeD"/>
                 <outlet property="voltageGraphView" destination="ZEJ-vP-K3m" id="9re-D2-ifO"/>
                 <outlet property="voltageLabel" destination="JFv-50-9mS" id="ZMw-5f-El6"/>
             </connections>
