@@ -44,6 +44,8 @@
 		A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94101CA91B39007E6F7D /* TUBatteryVIView.m */; };
 		A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */; };
 		A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */; };
+		A17747F51CC5DD0F003077D4 /* TUMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A17747F31CC5DD0F003077D4 /* TUMineCell.m */; };
+		A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17747F41CC5DD0F003077D4 /* TUMineCell.xib */; };
 		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
 		A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */; };
 		A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */; };
@@ -127,6 +129,9 @@
 		A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryVIView.xib; sourceTree = "<group>"; };
 		A12F94561CA98433007E6F7D /* TUBatteryBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryBottomView.h; sourceTree = "<group>"; };
 		A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryBottomView.m; sourceTree = "<group>"; };
+		A17747F21CC5DD0F003077D4 /* TUMineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUMineCell.h; sourceTree = "<group>"; };
+		A17747F31CC5DD0F003077D4 /* TUMineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUMineCell.m; sourceTree = "<group>"; };
+		A17747F41CC5DD0F003077D4 /* TUMineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUMineCell.xib; sourceTree = "<group>"; };
 		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
 		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
 		A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryProgressView.h; sourceTree = "<group>"; };
@@ -378,6 +383,7 @@
 		A1132D9D1CA6495800B21CBF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				A17747EB1CC5D349003077D4 /* Mine */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -421,6 +427,16 @@
 				A1132DB51CA6E78300B21CBF /* UIView+Category.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A17747EB1CC5D349003077D4 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				A17747F21CC5DD0F003077D4 /* TUMineCell.h */,
+				A17747F31CC5DD0F003077D4 /* TUMineCell.m */,
+				A17747F41CC5DD0F003077D4 /* TUMineCell.xib */,
+			);
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		A1D1099B1CAA70C40035610D /* OpenLib */ = {
@@ -555,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
+				A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */,
 				14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */,
 				14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */,
 				A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */,
@@ -624,6 +641,7 @@
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14E06CB91CB4115400F74AC9 /* BEMPermanentPopupView.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
+				A17747F51CC5DD0F003077D4 /* TUMineCell.m in Sources */,
 				A12ACBFC1CAC39F0004F29E2 /* TUProgressView.m in Sources */,
 				A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */,
 				14E06CBA1CB4115400F74AC9 /* BEMSimpleLineGraphView.m in Sources */,
