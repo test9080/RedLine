@@ -31,16 +31,16 @@
 
         manager.InfoArray = [NSMutableArray array];
         manager.batteryInfo = [TUBatteryInfo battery];
-
         manager.dumper = [ELLIOKitDumper new];
-
-        BOOL isOldDevice = [[TUConstDeviceInfo sharedDevice] isOldDevice];
         
-        [[NSNotificationCenter defaultCenter] addObserver:manager selector:@selector(chargeRefreshBatteryInfoNotification:) name:kELLIOKitDumperDidReadBatteryNotification object:nil];
+        [kTUNotificationCenter addObserver:manager selector:@selector(chargeRefreshBatteryInfoNotification:) name:kELLIOKitDumperDidReadBatteryNotification object:nil];
         
+        // 手动刷新信息
         [manager refreshBatteryInfo];
-        if (!isOldDevice) {
+        
+        if (![[TUConstDeviceInfo sharedDevice] isOldDevice]) {
             [manager performSelector:@selector(refreshBatteryInfo) withObject:nil afterDelay:1];
+            
             NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:manager selector:@selector(refreshBatteryInfo) userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         }
@@ -50,7 +50,6 @@
 }
 
 - (void)refreshBatteryInfo {
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.dumper dumpIOKitTree];
     });
@@ -63,18 +62,15 @@
 #pragma mark - private
 
 - (void)chargeRefreshBatteryInfoNotification:(NSNotification *)note {
-    
-    
     ELLIOKitNodeInfo *node = note.object;
     
     if ([node isKindOfClass:[ELLIOKitNodeInfo class]]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //  NSLog(@"电池相关信息：%@", _batteryInfoArray);
-                [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
-                if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
-                    [self refreshBatteryInfo];
-                }
-            });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [kTUNotificationCenter postNotificationName:kSystemBatteryInfoDidReadFinishedNotification object:node.properties];
+            if ([[TUConstDeviceInfo sharedDevice] isOldDevice]) {
+                [self performSelector:@selector(refreshBatteryInfo) withObject:nil afterDelay:5];
+            }
+        });
     }
     
 }
@@ -133,7 +129,7 @@
     CGFloat months = cycleCount / 1500.0 * 60;
     // 四舍五入 至少剩余寿命1个月
     NSInteger life = 60 - ceilf(months);
-    NSLog(@"life:%lu", (long)life);
+
     return MAX(1, life);
 }
 
