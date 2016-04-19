@@ -218,6 +218,8 @@
     
     [self updateBatteryStatus];
     
+    [self updateVI];
+    
     [self updateBatteryCapacity];
     
     [self updateTemperature];
@@ -226,14 +228,14 @@
         [self updateBatteryLife];
         _isShowBatteryLife = NO;
     }
-    
-    [self updateVI];
 }
 
+//更新header UI
 - (void)updateHeaderUI {
     [self.headerView updateHeaderUI];
 }
 
+//更新nav title
 - (void)updateBatteryStatus {
     self.title = [TUSystemInfoManager manager].batteryInfo.status;
 }
@@ -248,8 +250,9 @@
     }
 }
 
+//更新电量圆圈
 - (void)updateBatteryCapacity {
-   
+    
     self.capacityView.batteryCapacityViewStyle = [self styleWithBatteryLevelPercent:[TUSystemInfoManager manager].batteryInfo.levelPercent];
     
     NSString *temp = [NSString stringWithFormat:@"%d%@",(int)[TUSystemInfoManager manager].batteryInfo.levelPercent,@"%"];
@@ -265,6 +268,7 @@
     self.capacityView.batteryCapacityLabel.attributedText = attrString;
 }
 
+//更新充电电量时间
 - (void)updateTimeToFull:(NSNotification *)note {
     int info = abs([note.object intValue]);
     if (info == 0) {
@@ -283,6 +287,7 @@
     [self updateBatteryChargeTimeStatus:@"充满所需" time:string];
 }
 
+//更新放电电量时间
 - (void)updateTimeToEmpty:(NSNotification *)note {
     int info = abs([note.object intValue]);
     
@@ -318,14 +323,12 @@
     self.capacityView.batteryTimeLabel.attributedText = attrString;
 }
 
-- (void)updateTemperature {
-    [self.bottomView updateTemperatureUI:self.temperature];
+//更新充电进度条
+- (void)updateProgress {
+    [self.progressView updateProgress:[TUSystemInfoManager manager].batteryInfo.levelPercent / 100.f];
 }
 
-- (void)updateBatteryLife {
-    [self.bottomView updateBatteryLifeUI:self.remainLifeMonths];
-}
-
+//更新电压电流
 - (void)updateVI {
     _viCount++;
     if (_viCount >= 20) {
@@ -342,8 +345,14 @@
     [self.viView updeteDataWithVoltageArray:self.voltageArray currentArray:self.currentArray voltage:self.voltage current:self.current];
 }
 
-- (void)updateProgress {
-    [self.progressView updateProgress:[TUSystemInfoManager manager].batteryInfo.levelPercent / 100.f];
+//更新温度
+- (void)updateTemperature {
+    [self.bottomView updateTemperatureUI:self.temperature];
+}
+
+//更新电池剩余寿命
+- (void)updateBatteryLife {
+    [self.bottomView updateBatteryLifeUI:self.remainLifeMonths];
 }
 
 #pragma mark - setter & getter 

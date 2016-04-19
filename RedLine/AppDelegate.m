@@ -48,7 +48,7 @@
     TUNavigationController *rankNav = [[TUNavigationController alloc] initWithRootViewController:rankVC];
     
     // 我的
-    TUMineController *mineVC = [[TUMineController alloc] init];
+    TUMineController *mineVC = [[TUMineController alloc] initWithNibName:@"TUMineController" bundle:nil];
     mineVC.title = @"我的";
     TUNavigationController *mineNav = [[TUNavigationController alloc] initWithRootViewController:mineVC];
     
