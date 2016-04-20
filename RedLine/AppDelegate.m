@@ -10,6 +10,7 @@
 #import "TUTabBarController.h"
 #import "TUNavigationController.h"
 #import "TUBatteryController.h"
+#import "TUFindViewController.h"
 #import "TUMineController.h"
 
 @interface AppDelegate ()
@@ -37,10 +38,9 @@
     batteryVC.title = @"充电";
     TUNavigationController *batteryNav = [[TUNavigationController alloc] initWithRootViewController:batteryVC];
     
-    // 红线
-    TUViewController *redLineVC = [[TUViewController alloc]init];
-    redLineVC.title = @"红线";
-    TUNavigationController *redLineNav = [[TUNavigationController alloc] initWithRootViewController:redLineVC];
+    // 发现
+    TUFindViewController *findVC = [[TUFindViewController alloc] init];
+    TUNavigationController *findNav = [[TUNavigationController alloc] initWithRootViewController:findVC];
     
     // 排行
     TUViewController *rankVC = [[TUViewController alloc]init];
@@ -52,7 +52,7 @@
     mineVC.title = @"我的";
     TUNavigationController *mineNav = [[TUNavigationController alloc] initWithRootViewController:mineVC];
     
-    [tabBarController setViewControllers:@[batteryNav, redLineNav, rankNav, mineNav]];
+    [tabBarController setViewControllers:@[batteryNav, findNav, rankNav, mineNav]];
     
     return tabBarController;
 }
