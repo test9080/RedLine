@@ -7,10 +7,13 @@
 //
 
 #import "AppDelegate.h"
+
 #import "TUTabBarController.h"
 #import "TUNavigationController.h"
+
 #import "TUBatteryController.h"
 #import "TUFindViewController.h"
+#import "TUMessageController.h"
 #import "TUMineController.h"
 
 @interface AppDelegate ()
@@ -42,17 +45,16 @@
     TUFindViewController *findVC = [[TUFindViewController alloc] init];
     TUNavigationController *findNav = [[TUNavigationController alloc] initWithRootViewController:findVC];
     
-    // 排行
-    TUViewController *rankVC = [[TUViewController alloc]init];
-    rankVC.title = @"排行";
-    TUNavigationController *rankNav = [[TUNavigationController alloc] initWithRootViewController:rankVC];
+    // 消息
+    TUMessageController *megVC = [[TUMessageController alloc]init];
+    TUNavigationController *megNav = [[TUNavigationController alloc] initWithRootViewController:megVC];
     
     // 我的
     TUMineController *mineVC = [[TUMineController alloc] initWithNibName:@"TUMineController" bundle:nil];
     mineVC.title = @"我的";
     TUNavigationController *mineNav = [[TUNavigationController alloc] initWithRootViewController:mineVC];
     
-    [tabBarController setViewControllers:@[batteryNav, findNav, rankNav, mineNav]];
+    [tabBarController setViewControllers:@[batteryNav, findNav, megNav, mineNav]];
     
     return tabBarController;
 }

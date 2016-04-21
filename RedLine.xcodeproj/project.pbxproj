@@ -47,6 +47,12 @@
 		A13899CE1CC86A190090FF43 /* TURankingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899CC1CC86A190090FF43 /* TURankingListCell.m */; };
 		A13899CF1CC86A190090FF43 /* TURankingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13899CD1CC86A190090FF43 /* TURankingListCell.xib */; };
 		A13899D31CC8839C0090FF43 /* TURankingTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899D21CC8839C0090FF43 /* TURankingTableController.m */; };
+		A13899D91CC8C3C90090FF43 /* TUFriendListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899D71CC8C3C90090FF43 /* TUFriendListCell.m */; };
+		A13899DA1CC8C3CA0090FF43 /* TUFriendListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13899D81CC8C3C90090FF43 /* TUFriendListCell.xib */; };
+		A13899DD1CC8C4330090FF43 /* TUMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899DC1CC8C4330090FF43 /* TUMessageController.m */; };
+		A13899E01CC8CFA90090FF43 /* TUFriendListTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899DF1CC8CFA90090FF43 /* TUFriendListTableController.m */; };
+		A13899E51CC8D8F30090FF43 /* TULoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899E31CC8D8F30090FF43 /* TULoginController.m */; };
+		A13899E61CC8D8F30090FF43 /* TULoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13899E41CC8D8F30090FF43 /* TULoginController.xib */; };
 		A158127A1CC738590040B731 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812721CC738590040B731 /* UIView+Frame.m */; };
 		A158127B1CC738590040B731 /* YZDisplayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812741CC738590040B731 /* YZDisplayTitleLabel.m */; };
 		A158127C1CC738590040B731 /* YZDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812761CC738590040B731 /* YZDisplayViewController.m */; };
@@ -145,6 +151,16 @@
 		A13899CD1CC86A190090FF43 /* TURankingListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TURankingListCell.xib; sourceTree = "<group>"; };
 		A13899D11CC8839C0090FF43 /* TURankingTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TURankingTableController.h; sourceTree = "<group>"; };
 		A13899D21CC8839C0090FF43 /* TURankingTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TURankingTableController.m; sourceTree = "<group>"; };
+		A13899D61CC8C3C90090FF43 /* TUFriendListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUFriendListCell.h; sourceTree = "<group>"; };
+		A13899D71CC8C3C90090FF43 /* TUFriendListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUFriendListCell.m; sourceTree = "<group>"; };
+		A13899D81CC8C3C90090FF43 /* TUFriendListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUFriendListCell.xib; sourceTree = "<group>"; };
+		A13899DB1CC8C4330090FF43 /* TUMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUMessageController.h; sourceTree = "<group>"; };
+		A13899DC1CC8C4330090FF43 /* TUMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUMessageController.m; sourceTree = "<group>"; };
+		A13899DE1CC8CFA90090FF43 /* TUFriendListTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUFriendListTableController.h; sourceTree = "<group>"; };
+		A13899DF1CC8CFA90090FF43 /* TUFriendListTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUFriendListTableController.m; sourceTree = "<group>"; };
+		A13899E21CC8D8F30090FF43 /* TULoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TULoginController.h; sourceTree = "<group>"; };
+		A13899E31CC8D8F30090FF43 /* TULoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TULoginController.m; sourceTree = "<group>"; };
+		A13899E41CC8D8F30090FF43 /* TULoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TULoginController.xib; sourceTree = "<group>"; };
 		A15812711CC738590040B731 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		A15812721CC738590040B731 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		A15812731CC738590040B731 /* YZDisplayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZDisplayTitleLabel.h; sourceTree = "<group>"; };
@@ -308,6 +324,7 @@
 			children = (
 				14268A4E1CA57E570084C07E /* Battery */,
 				A158127F1CC758A50040B731 /* Find */,
+				A13899D41CC8C2C40090FF43 /* Message */,
 				14268A4F1CA57E570084C07E /* Mine */,
 			);
 			path = Controller;
@@ -326,6 +343,7 @@
 		14268A4F1CA57E570084C07E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				A13899E11CC8D8BA0090FF43 /* Login */,
 				14268A6B1CA580C00084C07E /* TUMineController.h */,
 				14268A6C1CA580C00084C07E /* TUMineController.m */,
 				14268A6D1CA580C00084C07E /* TUMineController.xib */,
@@ -417,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				A15812831CC762C00040B731 /* Find */,
+				A13899D51CC8C2D00090FF43 /* Message */,
 				A17747EB1CC5D349003077D4 /* Mine */,
 			);
 			path = Cell;
@@ -461,6 +480,37 @@
 				A1132DB51CA6E78300B21CBF /* UIView+Category.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A13899D41CC8C2C40090FF43 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				A13899DB1CC8C4330090FF43 /* TUMessageController.h */,
+				A13899DC1CC8C4330090FF43 /* TUMessageController.m */,
+				A13899DE1CC8CFA90090FF43 /* TUFriendListTableController.h */,
+				A13899DF1CC8CFA90090FF43 /* TUFriendListTableController.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		A13899D51CC8C2D00090FF43 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				A13899D61CC8C3C90090FF43 /* TUFriendListCell.h */,
+				A13899D71CC8C3C90090FF43 /* TUFriendListCell.m */,
+				A13899D81CC8C3C90090FF43 /* TUFriendListCell.xib */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		A13899E11CC8D8BA0090FF43 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A13899E21CC8D8F30090FF43 /* TULoginController.h */,
+				A13899E31CC8D8F30090FF43 /* TULoginController.m */,
+				A13899E41CC8D8F30090FF43 /* TULoginController.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A15812701CC738590040B731 /* YZDisplayViewController */ = {
@@ -647,10 +697,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A13899E61CC8D8F30090FF43 /* TULoginController.xib in Resources */,
 				A15812881CC764260040B731 /* TUFindCell.xib in Resources */,
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
 				A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */,
 				A13899CF1CC86A190090FF43 /* TURankingListCell.xib in Resources */,
+				A13899DA1CC8C3CA0090FF43 /* TUFriendListCell.xib in Resources */,
 				14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */,
 				14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */,
 				A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */,
@@ -719,6 +771,7 @@
 				A13899CE1CC86A190090FF43 /* TURankingListCell.m in Sources */,
 				A158127B1CC738590040B731 /* YZDisplayTitleLabel.m in Sources */,
 				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
+				A13899DD1CC8C4330090FF43 /* TUMessageController.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14E06CB91CB4115400F74AC9 /* BEMPermanentPopupView.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
@@ -730,6 +783,7 @@
 				A158127D1CC738590040B731 /* YZFlowLayout.m in Sources */,
 				14268A561CA57EBB0084C07E /* TUBatteryController.m in Sources */,
 				A158127A1CC738590040B731 /* UIView+Frame.m in Sources */,
+				A13899E51CC8D8F30090FF43 /* TULoginController.m in Sources */,
 				14F8B10D1CA5D16B0006287C /* NSDateFormatter+Category.m in Sources */,
 				14268A6E1CA580C00084C07E /* TUMineController.m in Sources */,
 				A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */,
@@ -747,12 +801,14 @@
 				14152D8D1CAD25DC001C796B /* TUBatteryInfo.m in Sources */,
 				14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */,
 				A15812871CC764260040B731 /* TUFindCell.m in Sources */,
+				A13899E01CC8CFA90090FF43 /* TUFriendListTableController.m in Sources */,
 				A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */,
 				14268A6A1CA580230084C07E /* TUNavigationController.m in Sources */,
 				14152D8A1CAD20CB001C796B /* TUHardwareInfo.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				A158127C1CC738590040B731 /* YZDisplayViewController.m in Sources */,
 				A13899D31CC8839C0090FF43 /* TURankingTableController.m in Sources */,
+				A13899D91CC8C3C90090FF43 /* TUFriendListCell.m in Sources */,
 				14152D841CAD1C11001C796B /* TUConstDeviceInfo.m in Sources */,
 				A15812821CC7595E0040B731 /* TUFindViewController.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,

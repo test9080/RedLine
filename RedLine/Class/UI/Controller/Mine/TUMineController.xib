@@ -52,6 +52,9 @@
                         <constraint firstAttribute="height" constant="30" id="y4z-tN-8K8"/>
                     </constraints>
                     <state key="normal" title="立即登录"/>
+                    <connections>
+                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="xFI-TK-VL9"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

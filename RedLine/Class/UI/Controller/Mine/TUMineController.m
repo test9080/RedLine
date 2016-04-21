@@ -7,6 +7,9 @@
 //
 
 #import "TUMineController.h"
+
+#import "TULoginController.h"
+
 #import "TUMineCell.h"
 
 #define kMineCell   @"TUMineCell"
@@ -85,6 +88,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
+
+#pragma mark - Action
+
+- (IBAction)loginAction:(UIButton *)sender {
+    
+    TULoginController *loginVC = [[TULoginController alloc] initWithNibName:@"TULoginController" bundle:nil];
+    [self presentViewController:loginVC animated:YES completion:nil];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
