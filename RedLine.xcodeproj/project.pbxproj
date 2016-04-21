@@ -44,6 +44,9 @@
 		A12F94111CA91B39007E6F7D /* TUBatteryVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94101CA91B39007E6F7D /* TUBatteryVIView.m */; };
 		A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */; };
 		A12F94581CA98433007E6F7D /* TUBatteryBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */; };
+		A13899CE1CC86A190090FF43 /* TURankingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899CC1CC86A190090FF43 /* TURankingListCell.m */; };
+		A13899CF1CC86A190090FF43 /* TURankingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13899CD1CC86A190090FF43 /* TURankingListCell.xib */; };
+		A13899D31CC8839C0090FF43 /* TURankingTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13899D21CC8839C0090FF43 /* TURankingTableController.m */; };
 		A158127A1CC738590040B731 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812721CC738590040B731 /* UIView+Frame.m */; };
 		A158127B1CC738590040B731 /* YZDisplayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812741CC738590040B731 /* YZDisplayTitleLabel.m */; };
 		A158127C1CC738590040B731 /* YZDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15812761CC738590040B731 /* YZDisplayViewController.m */; };
@@ -137,6 +140,11 @@
 		A12F94121CA91B81007E6F7D /* TUBatteryVIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryVIView.xib; sourceTree = "<group>"; };
 		A12F94561CA98433007E6F7D /* TUBatteryBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryBottomView.h; sourceTree = "<group>"; };
 		A12F94571CA98433007E6F7D /* TUBatteryBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryBottomView.m; sourceTree = "<group>"; };
+		A13899CB1CC86A190090FF43 /* TURankingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TURankingListCell.h; sourceTree = "<group>"; };
+		A13899CC1CC86A190090FF43 /* TURankingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TURankingListCell.m; sourceTree = "<group>"; };
+		A13899CD1CC86A190090FF43 /* TURankingListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TURankingListCell.xib; sourceTree = "<group>"; };
+		A13899D11CC8839C0090FF43 /* TURankingTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TURankingTableController.h; sourceTree = "<group>"; };
+		A13899D21CC8839C0090FF43 /* TURankingTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TURankingTableController.m; sourceTree = "<group>"; };
 		A15812711CC738590040B731 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		A15812721CC738590040B731 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		A15812731CC738590040B731 /* YZDisplayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZDisplayTitleLabel.h; sourceTree = "<group>"; };
@@ -478,6 +486,8 @@
 				A15812811CC7595E0040B731 /* TUFindViewController.m */,
 				A15812891CC7876D0040B731 /* TUNearbyTableController.h */,
 				A158128A1CC7876D0040B731 /* TUNearbyTableController.m */,
+				A13899D11CC8839C0090FF43 /* TURankingTableController.h */,
+				A13899D21CC8839C0090FF43 /* TURankingTableController.m */,
 			);
 			path = Find;
 			sourceTree = "<group>";
@@ -488,6 +498,9 @@
 				A15812841CC764260040B731 /* TUFindCell.h */,
 				A15812851CC764260040B731 /* TUFindCell.m */,
 				A15812861CC764260040B731 /* TUFindCell.xib */,
+				A13899CB1CC86A190090FF43 /* TURankingListCell.h */,
+				A13899CC1CC86A190090FF43 /* TURankingListCell.m */,
+				A13899CD1CC86A190090FF43 /* TURankingListCell.xib */,
 			);
 			path = Find;
 			sourceTree = "<group>";
@@ -637,6 +650,7 @@
 				A15812881CC764260040B731 /* TUFindCell.xib in Resources */,
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
 				A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */,
+				A13899CF1CC86A190090FF43 /* TURankingListCell.xib in Resources */,
 				14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */,
 				14268A571CA57EBB0084C07E /* TUBatteryController.xib in Resources */,
 				A12F94131CA91B81007E6F7D /* TUBatteryVIView.xib in Resources */,
@@ -702,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14268A671CA57FF10084C07E /* TUViewController.m in Sources */,
+				A13899CE1CC86A190090FF43 /* TURankingListCell.m in Sources */,
 				A158127B1CC738590040B731 /* YZDisplayTitleLabel.m in Sources */,
 				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
@@ -737,6 +752,7 @@
 				14152D8A1CAD20CB001C796B /* TUHardwareInfo.m in Sources */,
 				A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */,
 				A158127C1CC738590040B731 /* YZDisplayViewController.m in Sources */,
+				A13899D31CC8839C0090FF43 /* TURankingTableController.m in Sources */,
 				14152D841CAD1C11001C796B /* TUConstDeviceInfo.m in Sources */,
 				A15812821CC7595E0040B731 /* TUFindViewController.m in Sources */,
 				14F8B1031CA5C4DA0006287C /* ELLIOKitNodeInfo.m in Sources */,

@@ -1,21 +1,21 @@
 //
-//  TUNearbyTableController.m
+//  TURankingTableController.m
 //  RedLine
 //
-//  Created by LXJ on 16/4/20.
+//  Created by LXJ on 16/4/21.
 //  Copyright © 2016年 cn. All rights reserved.
 //
 
-#import "TUNearbyTableController.h"
-#import "TUFindCell.h"
+#import "TURankingTableController.h"
+#import "TURankingListCell.h"
 
-#define kFindCell   @"TUFindCell"
+#define kRankingCell   @"TURankingListCell"
 
-@interface TUNearbyTableController ()
+@interface TURankingTableController ()
 
 @end
 
-@implementation TUNearbyTableController
+@implementation TURankingTableController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +25,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)initTable {
@@ -32,9 +33,10 @@
     if (self.navigationController) {
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 44, 0);
     }
-
-    [self.tableView registerNib:[UINib nibWithNibName:kFindCell bundle:nil] forCellReuseIdentifier:kFindCell];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:kRankingCell bundle:nil] forCellReuseIdentifier:kRankingCell];
 }
+
 
 #pragma mark - UITableView DataSource
 
@@ -49,12 +51,13 @@
 #pragma mark - UITableView Delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TUFindCell *cell = [tableView dequeueReusableCellWithIdentifier:kFindCell forIndexPath:indexPath];
+    TURankingListCell *cell = [tableView dequeueReusableCellWithIdentifier:kRankingCell forIndexPath:indexPath];
+    [cell setInfo:YES];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 126;
+    return 90;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +71,8 @@
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.

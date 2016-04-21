@@ -8,6 +8,7 @@
 
 #import "TUFindViewController.h"
 #import "TUNearbyTableController.h"
+#import "TURankingTableController.h"
 
 @interface TUFindViewController ()
 
@@ -51,14 +52,14 @@
 
 // 添加所有子控制器
 - (void)setUpAllViewController {
-    
+
     TUNearbyTableController *nearbyVC = [[TUNearbyTableController alloc] init];
     nearbyVC.title = @"附近";
     [self addChildViewController:nearbyVC];
     
-    UIViewController *wordVc2 = [[UIViewController alloc] init];
-    wordVc2.title = @"排行榜";
-    [self addChildViewController:wordVc2];
+    TURankingTableController *rankingVc = [[TURankingTableController alloc] init];
+    rankingVc.title = @"排行榜";
+    [self addChildViewController:rankingVc];
 }
 
 
