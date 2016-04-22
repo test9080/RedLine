@@ -481,9 +481,9 @@
         
 //        labelX = _titleMargin + CGRectGetMaxX(lastLabel.frame);
         if (i == 0) {
-            label.frame = CGRectMake(YZScreenW/2 - 60, labelY, labelW, labelH);
+            label.frame = CGRectMake(YZScreenW/2 - 50, labelY, labelW, labelH);
         } else if (i == 1) {
-            label.frame = CGRectMake(YZScreenW/2 , labelY, labelW, labelH);
+            label.frame = CGRectMake(YZScreenW/2 +10, labelY, labelW, labelH);
         }
         
         // 监听标题的点击
