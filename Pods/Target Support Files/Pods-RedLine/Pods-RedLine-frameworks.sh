@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-RedLine/AFNetworking.framework"
+  install_framework "Pods-RedLine/EXTView.framework"
   install_framework "Pods-RedLine/MBProgressHUD.framework"
   install_framework "Pods-RedLine/MJExtension.framework"
   install_framework "Pods-RedLine/MJRefresh.framework"
@@ -92,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-RedLine/AFNetworking.framework"
+  install_framework "Pods-RedLine/EXTView.framework"
   install_framework "Pods-RedLine/MBProgressHUD.framework"
   install_framework "Pods-RedLine/MJExtension.framework"
   install_framework "Pods-RedLine/MJRefresh.framework"

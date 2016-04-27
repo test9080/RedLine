@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		059F255C33E02209C8A58BC8 /* Pods_RedLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951691417E220DF6ACB14566 /* Pods_RedLine.framework */; };
 		14143BAF1CA59A560044441B /* TUSystemInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BAE1CA59A560044441B /* TUSystemInfoManager.m */; };
 		14143BB71CA59DF20044441B /* UIColor+GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 14143BB51CA59DF20044441B /* UIColor+GGColor.m */; };
 		14152D7F1CAB6666001C796B /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 14152D7E1CAB6666001C796B /* UIImage+Color.m */; };
@@ -36,6 +35,7 @@
 		14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8B0FC1CA5BE0C0006287C /* IOKit.framework */; };
 		14F8B11C1CAA1FF30006287C /* TUSystemInfoManager.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14F8B11E1CAA1FF30006287C /* TUSystemInfoManager.strings */; };
 		14F8B1241CAA5C8C0006287C /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */; };
+		42CCE5352CFA6AF0E4F129D4 /* Pods_RedLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A782EFA47F13AE10989DF60 /* Pods_RedLine.framework */; };
 		A1132DA21CA649A200B21CBF /* TUBatteryCapacityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */; };
 		A1132DB11CA6E6AD00B21CBF /* TUBatteryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB01CA6E6AD00B21CBF /* TUBatteryHeaderView.m */; };
 		A1132DB61CA6E78300B21CBF /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A1132DB51CA6E78300B21CBF /* UIView+Category.m */; };
@@ -64,6 +64,8 @@
 		A17747F51CC5DD0F003077D4 /* TUMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A17747F31CC5DD0F003077D4 /* TUMineCell.m */; };
 		A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17747F41CC5DD0F003077D4 /* TUMineCell.xib */; };
 		A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */; };
+		A1D2C0C81CCA067300FC1F51 /* TURegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2C0C61CCA067300FC1F51 /* TURegisterController.m */; };
+		A1D2C0C91CCA067300FC1F51 /* TURegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D2C0C71CCA067300FC1F51 /* TURegisterController.xib */; };
 		A1E7E9731CA8D3A500D0C2AE /* TUBatteryProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */; };
 		A1E7E9751CA8D3BF00D0C2AE /* TUBatteryProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */; };
 		A3DFE45E1CA4ED13002C3E13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DFE45D1CA4ED13002C3E13 /* main.m */; };
@@ -130,7 +132,7 @@
 		14F8B1221CAA5C8C0006287C /* UIImage+YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYWebImage.h"; sourceTree = "<group>"; };
 		14F8B1231CAA5C8C0006287C /* UIImage+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYWebImage.m"; sourceTree = "<group>"; };
 		497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedLine.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedLine/Pods-RedLine.release.xcconfig"; sourceTree = "<group>"; };
-		951691417E220DF6ACB14566 /* Pods_RedLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A782EFA47F13AE10989DF60 /* Pods_RedLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1132DA01CA649A200B21CBF /* TUBatteryCapacityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryCapacityView.h; sourceTree = "<group>"; };
 		A1132DA11CA649A200B21CBF /* TUBatteryCapacityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryCapacityView.m; sourceTree = "<group>"; };
 		A1132DAF1CA6E6AD00B21CBF /* TUBatteryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryHeaderView.h; sourceTree = "<group>"; };
@@ -182,6 +184,9 @@
 		A17747F41CC5DD0F003077D4 /* TUMineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUMineCell.xib; sourceTree = "<group>"; };
 		A1B8440C1CA81064002F6208 /* TUBatteryTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryTipsView.h; sourceTree = "<group>"; };
 		A1B8440D1CA81064002F6208 /* TUBatteryTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryTipsView.m; sourceTree = "<group>"; };
+		A1D2C0C51CCA067300FC1F51 /* TURegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TURegisterController.h; sourceTree = "<group>"; };
+		A1D2C0C61CCA067300FC1F51 /* TURegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TURegisterController.m; sourceTree = "<group>"; };
+		A1D2C0C71CCA067300FC1F51 /* TURegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TURegisterController.xib; sourceTree = "<group>"; };
 		A1E7E9711CA8D3A500D0C2AE /* TUBatteryProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUBatteryProgressView.h; sourceTree = "<group>"; };
 		A1E7E9721CA8D3A500D0C2AE /* TUBatteryProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUBatteryProgressView.m; sourceTree = "<group>"; };
 		A1E7E9741CA8D3BF00D0C2AE /* TUBatteryProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUBatteryProgressView.xib; sourceTree = "<group>"; };
@@ -201,7 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F8B1161CA6387C0006287C /* IOKit.framework in Frameworks */,
-				059F255C33E02209C8A58BC8 /* Pods_RedLine.framework in Frameworks */,
+				42CCE5352CFA6AF0E4F129D4 /* Pods_RedLine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +514,9 @@
 				A13899E21CC8D8F30090FF43 /* TULoginController.h */,
 				A13899E31CC8D8F30090FF43 /* TULoginController.m */,
 				A13899E41CC8D8F30090FF43 /* TULoginController.xib */,
+				A1D2C0C51CCA067300FC1F51 /* TURegisterController.h */,
+				A1D2C0C61CCA067300FC1F51 /* TURegisterController.m */,
+				A1D2C0C71CCA067300FC1F51 /* TURegisterController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -622,7 +630,7 @@
 		B109948D4406045EC0E7980E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				951691417E220DF6ACB14566 /* Pods_RedLine.framework */,
+				7A782EFA47F13AE10989DF60 /* Pods_RedLine.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -700,6 +708,7 @@
 				A13899E61CC8D8F30090FF43 /* TULoginController.xib in Resources */,
 				A15812881CC764260040B731 /* TUFindCell.xib in Resources */,
 				A3DFE46C1CA4ED13002C3E13 /* LaunchScreen.storyboard in Resources */,
+				A1D2C0C91CCA067300FC1F51 /* TURegisterController.xib in Resources */,
 				A17747F61CC5DD0F003077D4 /* TUMineCell.xib in Resources */,
 				A13899CF1CC86A190090FF43 /* TURankingListCell.xib in Resources */,
 				A13899DA1CC8C3CA0090FF43 /* TUFriendListCell.xib in Resources */,
@@ -772,6 +781,7 @@
 				A158127B1CC738590040B731 /* YZDisplayTitleLabel.m in Sources */,
 				A1B8440E1CA81064002F6208 /* TUBatteryTipsView.m in Sources */,
 				A13899DD1CC8C4330090FF43 /* TUMessageController.m in Sources */,
+				A1D2C0C81CCA067300FC1F51 /* TURegisterController.m in Sources */,
 				14268A721CA588AC0084C07E /* TUTabBarController.m in Sources */,
 				14E06CB91CB4115400F74AC9 /* BEMPermanentPopupView.m in Sources */,
 				14F8B1121CA631380006287C /* TUTabBar.m in Sources */,
@@ -932,6 +942,7 @@
 			baseConfigurationReference = ACA1CB2F0F3A21195269C316 /* Pods-RedLine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -953,6 +964,7 @@
 			baseConfigurationReference = 497B916567184E2613853C3A /* Pods-RedLine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
