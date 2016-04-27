@@ -7,8 +7,10 @@
 //
 
 #import "TULoginController.h"
+#import "TURegisterController.h"
 
 @interface TULoginController ()
+
 
 @end
 
@@ -18,8 +20,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+
 - (IBAction)cancelVC:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)gotoRegister:(UIButton *)sender {
+    TURegisterController *registerVC = [[TURegisterController alloc] initWithNibName:@"TURegisterController" bundle:nil];
+    [self presentViewController:registerVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
